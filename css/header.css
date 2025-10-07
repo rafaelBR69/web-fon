@@ -1,0 +1,122 @@
+/* =========================================================
+   ▸ HEADER / NAVBAR (limpio, sin mosaico) + links más grandes
+   ========================================================= */
+:root{
+  --header-bg   : transparent;
+  --brand-color : #092B3F;
+  --brand-light : #ffffff;
+  --shadow-hdr  : 0 6px 18px rgba(0,0,0,.12);
+
+  --ff-body     : 'Montserrat', sans-serif;
+  --fw-nav      : 300;
+}
+
+header{ font-family: var(--ff-body); }
+
+/* Header fijo (sin patrón) */
+header.fixed-top{
+  width:100%;
+  background: transparent;
+  box-shadow: none !important;
+  transition: background-color .25s ease, box-shadow .25s ease, backdrop-filter .25s ease;
+  z-index: 1030;
+  position: fixed;
+}
+
+/* ❌ Quitar por completo el mosaico/pixelado del overlay */
+header.fixed-top::before{
+  content: none !important;
+}
+
+/* Navbar sin extra padding */
+header .navbar{
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  position: relative;
+}
+
+/* Subir conjunto (ajusta si lo necesitas) */
+.navbar .navbar-brand,
+.navbar .navbar-toggler,
+.navbar .nav-right{
+  position: relative;
+  top: -18px;
+  transition: top .2s ease;
+}
+@media (max-width: 991.98px){
+  .navbar .navbar-brand,
+  .navbar .navbar-toggler,
+  .navbar .nav-right{ top: 0; }
+}
+
+/* Logo */
+.navbar-brand img{
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+  transition: height .25s ease;
+}
+
+/* NAV LINKS — tamaño aumentado + mejor legibilidad */
+.navbar-nav .nav-link{
+  font-family: var(--ff-body);
+  font-size: clamp(1.05rem, 1.1vw, 1.95rem); /* ⬅️ AUMENTADO */
+  font-weight: var(--fw-nav);
+  text-transform: uppercase;
+  letter-spacing: .18em;                  /* un pelín más abierto */
+  color: var(--brand-light) !important;
+  padding: .85rem 1.1rem;                 /* más “hit area” */
+  transition: opacity .25s ease, color .25s ease;
+}
+.navbar-nav .nav-link:hover{ opacity:.85; }
+
+/* Estado al hacer scroll: fondo sutil, sin pixelado */
+.scrolled header.fixed-top{
+  background-color: rgba(9,43,63,.38);
+  -webkit-backdrop-filter: blur(4px) saturate(120%);
+  backdrop-filter: blur(4px) saturate(120%);
+  box-shadow: var(--shadow-hdr);
+}
+/* ====== Pixelated glass header (añadir al final) ====== */
+
+/* Tamaño del “pixel” del mosaico (ajústalo a gusto: 4–10px va bien) */
+:root { --px: 6px; }
+
+/* Fondo translúcido + blur (activo siempre, más fuerte al scrollear) */
+header.fixed-top{
+  background-color: rgba(9, 43, 63, .18);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  backdrop-filter: blur(6px) saturate(120%);
+  position: fixed;
+}
+
+/* RE-HABILITA el ::before (anula el “content: none !important” anterior) */
+header.fixed-top::before{
+  content: "" !important;
+  position: absolute; inset: 0;
+  pointer-events: none;
+  /* Capa 1: grid cuadrado tipo “pixel” */
+  background:
+    /* Ruido leve en puntos (3 capas muy sutiles) */
+    radial-gradient(1px 1px at 12% 22%, rgba(255,255,255,.08), transparent 60%),
+    radial-gradient(1px 1px at 68% 46%, rgba(255,255,255,.06), transparent 60%),
+    radial-gradient(1px 1px at 34% 84%, rgba(255,255,255,.05), transparent 60%),
+    ;
+  opacity: .45;
+  mix-blend-mode: soft-light;   /* integra el mosaico con el fondo */
+  border-bottom: 1px solid rgba(255,255,255,.12); /* corte limpio */
+}
+
+/* Estado al hacer scroll (usa la clase en el propio header) */
+header.fixed-top.scrolled{
+  background-color: rgba(9, 43, 63, .36);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  backdrop-filter: blur(8px) saturate(120%);
+  box-shadow: var(--shadow-hdr);
+}
+header.fixed-top.scrolled::before{
+  opacity: .60;                 /* mosaico un pelín más visible al bajar */
+}
+
+/* (Opcional) Reforzar contraste sobre fondos muy claros del hero */
+.navbar .nav-link { text-shadow: 0 1px 8px rgba(0,0,0,.25); }

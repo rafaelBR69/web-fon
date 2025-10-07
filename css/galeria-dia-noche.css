@@ -1,0 +1,226 @@
+:root {
+  /* Header/UI */
+  --header-h     : 100px;
+  --header-bg    : #092B3F;
+  --brand-color  : #092B3F;
+  --second-color : #8C7223;
+  --shadow-hdr   : 3px 3px 5px rgba(0,0,0,.7);
+
+  /* Fonts */
+  --ff-display   : 'Alegreya SC', Georgia, serif;
+  --ff-body      : 'Montserrat', sans-serif;
+}
+
+/* ===============================
+   Galería Día/Noche (fullscreen)
+   =============================== */
+#galeria-dia-noche {
+  position: relative;
+  min-height: 100svh;
+  padding: 0 !important;
+  color: #ffffffce;
+  overflow: hidden; /* fallback */
+  overflow: clip;   /* moderno */
+}
+
+/* Encabezado superior (título/subtítulo fuera del switch) */
+#galeria-dia-noche .container.title-wrap {
+  position: absolute;
+  top: 24px;
+  left: 0; right: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+#galeria-dia-noche .title-wrap .section-title {
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-shadow: 0 12px 32px rgba(0,0,0,.35);
+}
+#galeria-dia-noche .title-wrap .section-subtitle {
+  opacity: .95;
+  text-shadow: 0 10px 28px rgba(0,0,0,.35);
+}
+
+/* Escenario/carruseles a pantalla completa */
+#galeria-dia-noche .stage {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+}
+#galeria-dia-noche .carousel,
+#galeria-dia-noche .carousel-inner,
+#galeria-dia-noche .carousel-item {
+  width: 100%;
+  height: 100%;
+}
+#galeria-dia-noche .carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Capas: sólo una visible con .is-active */
+.mode-day,
+.mode-night {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 1.15s cubic-bezier(.22,.61,.36,1),
+              transform 1.15s cubic-bezier(.22,.61,.36,1);
+}
+.mode-day.is-active,
+.mode-night.is-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+/* Velo de legibilidad */
+#galeria-dia-noche::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(65% 60% at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,.35) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ===============================
+   Encabezado “Nuestras Villas”
+   =============================== */
+.dn-header {
+  position: absolute;
+  top: 40px;                  /* separa desde arriba */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+.dn-header .dn-title {
+  font-family: var(--ff-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(22px, 6vw, 56px);
+  color: #ffffffce;
+  letter-spacing: .1em;
+  text-shadow: 0 4px 18px rgba(0,0,0,.35);
+  margin: 0;
+}
+
+/* ===============================
+   Switch DÍA / NOCHE (arriba)
+   =============================== */
+.dn-switch {
+  position: absolute;
+  top: 110px;                /* debajo de “Nuestras Villas” */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 400px;                /* ⇦ AJUSTA la separación a tu gusto */
+  z-index: 4;
+}
+.dn-switch .switch-item {
+  font-family: var(--ff-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-size: clamp(20px, 5vw, 46px);
+  color: #ffffffce;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  text-shadow: 0 4px 18px rgba(0,0,0,.35);
+  transition: transform .35s ease, opacity .35s ease;
+}
+.dn-switch .switch-item:not(.active):hover {
+  transform: translateY(-2px);
+  opacity: .9;
+}
+.dn-switch .switch-item.active { pointer-events: none; }
+.dn-switch .switch-item.active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -8px;             /* separa el subrayado */
+  height: 3px;
+  background: currentColor;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+
+/* ===============================
+   Controles del carrusel
+   =============================== */
+#galeria-dia-noche .carousel-control-prev,
+#galeria-dia-noche .carousel-control-next {
+  background: transparent !important;
+  border: 0 !important;
+  width: 14%;               /* área clicable más grande */
+  z-index: 2;
+}
+#galeria-dia-noche .carousel-control-prev-icon,
+#galeria-dia-noche .carousel-control-next-icon {
+  width: 3.25rem;           /* iconos más grandes */
+  height: 3.25rem;
+  filter: brightness(0);
+}
+
+/* Hover “ghost grow” (sólo desktop con hover real) */
+@media (hover: hover) {
+  #galeria-dia-noche .carousel-control-prev:hover .carousel-control-prev-icon,
+  #galeria-dia-noche .carousel-control-next:hover .carousel-control-next-icon {
+    transform: scale(1.08);
+  }
+}
+
+/* ===============================
+   Responsive
+   =============================== */
+@media (max-width: 991.98px) {
+  #galeria-dia-noche .container.title-wrap { top: 16px; }
+  #galeria-dia-noche,
+  #galeria-dia-noche .stage { min-height: 100svh; height: 100svh; }
+}
+
+/* === Flechas blancas, GRANDES y GRUESAS === */
+:root{
+  --dn-arrow-size: 9rem;     /* ⇦ ajusta tamaño total */
+  --dn-arrow-stroke: 1.5;    /* ⇦ ajusta grosor del chevron */
+}
+
+/* Área clicable amplia */
+#galeria-dia-noche .carousel-control-prev,
+#galeria-dia-noche .carousel-control-next{
+  width: 12% !important;
+}
+
+/* Base de iconos (override de cualquier tamaño previo) */
+#galeria-dia-noche .carousel-control-prev-icon,
+#galeria-dia-noche .carousel-control-next-icon{
+  width: var(--dn-arrow-size) !important;
+  height: var(--dn-arrow-size) !important;
+  background-size: 100% 100% !important;
+  filter: none !important; /* no oscurecer/aclarecer */
+}
+
+/* Flecha IZQUIERDA (chevron grueso blanco) */
+#galeria-dia-noche .carousel-control-prev-icon{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='%3C!--WIDTH--%3E' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'/%3E%3C/svg%3E") !important;
+}
+
+/* Flecha DERECHA (chevron grueso blanco) */
+#galeria-dia-noche .carousel-control-next-icon{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='%3C!--WIDTH--%3E' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 6 15 12 9 18'/%3E%3C/svg%3E") !important;
+}
+
+/* Reemplaza el placeholder de stroke-width en runtime */
+#galeria-dia-noche .carousel-control-prev-icon,
+#galeria-dia-noche .carousel-control-next-icon{
+  /* pequeño truco para inyectar el grosor desde la var: */
+  background-image: none; /* reset para volver a setear abajo si el navegador no soporta */
+}
+
+#galeria-dia-noche .carousel-control-prev-icon{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'/%3E%3C/svg%3E") !important;
+}
+#galeria-dia-noche .carousel-control-next-icon{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 6 15 12 9 18'/%3E%3C/svg%3E") !important;
+}

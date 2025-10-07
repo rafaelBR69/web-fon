@@ -1,0 +1,66 @@
+/* ===== Overrides suaves para #destacados ===== */
+#destacados{
+  --tt-gap: .5rem;                        /* separación título ↔ texto */
+  --reveal-speed: 700ms cubic-bezier(.22,.61,.36,1);  /* transición suave */
+  --scale-hover: 1.03;                    /* cuánto “crece” al pasar */
+}
+
+/* 1) Mantén TODAS las columnas con el mismo ancho (sin expandir) */
+#destacados .f3up-row:hover .f3up-card{ flex: 1; }
+#destacados .f3up-row:hover .f3up-card:hover{ flex: 1; }
+
+/* 2) Efecto hover sutil: solo un pequeño scale + leve oscurecido */
+#destacados .f3up-card{
+  transition: transform var(--reveal-speed);
+  will-change: transform;
+}
+#destacados .f3up-card:hover{ transform: scale(var(--scale-hover)); }
+
+#destacados .f3up-overlay::before{
+  opacity: .45;
+  transition: opacity var(--reveal-speed);
+}
+#destacados .f3up-card:hover .f3up-overlay::before{ opacity: .6; }
+
+/* 3) Hueco cómodo entre título y texto + tipografía estable */
+#destacados .f3up-overlay{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tt-gap);
+  padding-inline: min(4vw, 40px);
+}
+#destacados .f3up-title{
+  margin: 0;
+  line-height: 1.15;          /* evita que se pisen líneas */
+  text-wrap: balance;         /* distribuye mejor saltos (cuando hay soporte) */
+  hyphens: auto;
+}
+#destacados .f3up-text{
+  margin: 0;
+  line-height: 1.4;
+  max-width: 42ch;
+  opacity: 0;
+  transform: translateY(6px);
+  filter: blur(2px);
+  max-height: 0;
+  transition: opacity var(--reveal-speed),
+              transform var(--reveal-speed),
+              filter var(--reveal-speed),
+              max-height var(--reveal-speed);
+}
+/* revelar de forma suave y SIN cortes */
+#destacados .f3up-card:hover .f3up-text,
+#destacados .f3up-card.is-open .f3up-text{
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  max-height: 40vh;           /* suficiente para textos largos */
+}
+
+/* 4) En móvil, sin scale para que sea más estable */
+@media (max-width: 900px){
+  #destacados .f3up-card:hover{ transform: none; }
+}
+

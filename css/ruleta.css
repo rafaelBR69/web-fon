@@ -1,0 +1,70 @@
+/* === Limpiar fondo antiguo === */
+.section_1 { background-image: none !important; }
+.section_1::before { content: none !important; }
+
+/* === Hero a pantalla completa === */
+#hero { 
+  position: relative; 
+  /* 🔒 Bloquea clics por defecto dentro del hero.
+     Luego reactivamos SOLO flechas e indicadores. */
+  pointer-events: none;
+}
+#hero.section_1 { display: block; } /* por si tu .section_1 antiguo era flex */
+
+#hero, 
+#hero .carousel, 
+#hero .carousel-inner, 
+#hero .carousel-item { height: 100vh; }
+
+.hero-img { 
+  height: 100vh; 
+  width: 100vw; 
+  object-fit: cover; 
+  display: block; 
+}
+
+html, body { margin: 0; padding: 0; overflow-x: hidden; }
+
+/* === Overlay visual (no bloquea clics) === */
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.2);
+  z-index: 2; pointer-events: none;
+}
+
+@keyframes slideinBottom {
+  0% { transform: translateY(50px); opacity: 0; }
+  100%{ transform: translateY(0);   opacity: 1; }
+}
+
+/* === Orden de capas y clics habilitados === */
+/* flechas SIEMPRE encima y clicables */
+#hero .carousel-control-prev,
+#hero .carousel-control-next {
+  z-index: 100 !important;
+  pointer-events: auto !important;   /* 🔓 reactivamos clic */
+}
+
+/* indicadores/thumbnails arriba y clicables */
+.carousel-indicators.thumbnails {
+  position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: .75rem; margin: 0;
+  z-index: 110 !important;
+}
+.carousel-indicators.thumbnails button {
+  width: 96px; height: 56px; border: 2px solid transparent;
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  border-radius: 8px; opacity: .8;
+  transition: transform .2s ease, opacity .2s ease, border-color .2s ease;
+  pointer-events: auto !important;   /* 🔓 reactivamos clic */
+}
+.carousel-indicators.thumbnails button:hover { opacity: 1; transform: translateY(-2px); }
+.carousel-indicators.thumbnails .active { opacity: 1; border-color: var(--brand-color, #3b4d2b); }
+
+/* cualquier info dentro del hero no debe bloquear */
+#hero .promo-info { position: relative; z-index: 0 !important; pointer-events: none; }
+
+/* Responsive thumbnails */
+@media (max-width: 576px) {
+  .carousel-indicators.thumbnails button { width: 72px; height: 44px; }
+}

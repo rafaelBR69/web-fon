@@ -1,0 +1,235 @@
+/* ========= GALERÍA INFINITY =========
+   Scope: #galeria-infinity
+   Encapsulado con prefijo gi-
+   --------------------------------- */
+
+#galeria-infinity.gi-slider{
+  /* ===== Tokens / Personaliza aquí ===== */
+  --gi-bg: url('/images/galeria-infinity/bg3.webp');
+  --gi-gap: 21px;
+  --gi-card-radius: 8px;
+
+  --gi-width-closed: 110px;
+  --gi-width-open: clamp(320px, 62vw, 766px);
+
+  --gi-height-closed-1: 480px;
+  --gi-height-closed-2: 560px;
+  --gi-height-closed-3: 665px;
+  --gi-height-open: clamp(520px, 78vh, 750px);
+
+  --gi-speed: 700ms cubic-bezier(.22,1,.36,1);
+
+  /* Altura del título superior (mover header) */
+  --gi-header-top: 18px;
+
+  /* Posición base del rótulo vertical */
+  --gi-ribbon-x: 26px;
+  --gi-ribbon-top-offset: 0px;
+
+  /* Lienzo */
+  width: 100%;
+  min-height: 100vh;
+  background: var(--gi-bg) center/cover no-repeat, #0d1117;
+  display: grid;
+  place-items: center;
+  padding: min(6vh, 48px) min(4vw, 36px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== Stage ===== */
+#galeria-infinity .gi-stage{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gi-gap);
+  width: min(1400px, 100%);
+  margin-inline: auto;
+}
+
+/* ===== Item ===== */
+#galeria-infinity .gi-item{
+  position: relative;
+  flex: 0 0 var(--gi-width-closed);
+  height: var(--gi-height-closed-3);
+  cursor: pointer;
+  border-radius: var(--gi-card-radius);
+  overflow: hidden;
+  transition: all var(--gi-speed);
+  outline: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  isolation: isolate;
+}
+#galeria-infinity .gi-item:nth-child(1),
+#galeria-infinity .gi-item:nth-child(7){ height: var(--gi-height-closed-1); }
+#galeria-infinity .gi-item:nth-child(2),
+#galeria-infinity .gi-item:nth-child(6){ height: var(--gi-height-closed-2); }
+/* 3-4-5 ya usan height-closed-3 */
+
+#galeria-infinity .gi-item > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ===== Rótulo vertical (nombre) – UNIFICADO ===== */
+#galeria-infinity .gi-ribbon{
+  position: absolute;
+  top: calc(60% + var(--gi-ribbon-top-offset));
+  left: var(--gi-ribbon-x);
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: 0 50%;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font: 700 40px/1 "Jost", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.35));
+  transition: opacity var(--gi-speed), transform var(--gi-speed);
+}
+/* Empuja hacia abajo SOLO cuando la tarjeta está cerrada */
+#galeria-infinity .gi-item:not(.is-active) .gi-ribbon{
+  --gi-ribbon-top-offset: 20px;
+}
+
+/* ===== Detalles (se muestran al abrir) ===== */
+#galeria-infinity .gi-details{
+  position: absolute;
+  left: 43px;
+  bottom: 43px;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0,0,0,.6);
+  display: none;
+  z-index: 1;
+}
+#galeria-infinity .gi-details h4{
+  font: 700 26px/1.4 "Jost", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  margin: 0 0 6px;
+}
+#galeria-infinity .gi-details p{
+  font: 700 20px/1.4 "Jost", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  margin: 0;
+  opacity: .95;
+}
+
+/* ===== Estado activo (abierto) ===== */
+#galeria-infinity .gi-item.is-active{
+  flex-basis: var(--gi-width-open);
+  height: var(--gi-height-open);
+}
+#galeria-infinity .gi-item.is-active .gi-ribbon{ opacity: 0; }
+#galeria-infinity .gi-item.is-active .gi-details{ display: block; }
+
+/* ===== Controles ===== */
+#galeria-infinity .gi-controls{
+  position: absolute;
+  inset: auto 0 24px 0;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+#galeria-infinity .gi-controls button{
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+#galeria-infinity .gi-controls button:hover{ background: rgba(255,255,255,.22); }
+#galeria-infinity .gi-controls button:active{ background: rgba(255,255,255,.3); }
+
+/* ===== Accesibilidad (foco) ===== */
+#galeria-infinity .gi-item:focus-visible{
+  outline: 3px solid rgba(255,255,255,.6);
+  outline-offset: 2px;
+}
+
+/* ===== Header/Títulos de sección ===== */
+#galeria-infinity .gi-header{
+  position: absolute;
+  top: var(--gi-header-top); /* ← súbelo/bájalo aquí */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 3;
+  pointer-events: none; /* no bloquea clics del slider */
+}
+#galeria-infinity .gi-title{
+  margin: 0;
+  color: #092B3F;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 600;
+  font-size: clamp(28px, 3.2vw, 42px);
+}
+#galeria-infinity .gi-subtitle{
+  margin: .25rem 0 0;
+  color: inherit;
+  font: 500 14px/1.2 "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing: .08em;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 992px){
+  #galeria-infinity.gi-slider{
+    padding: 28px 16px 72px;
+    min-height: 90vh;
+  }
+  #galeria-infinity .gi-stage{
+    gap: 14px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 6px;
+  }
+  #galeria-infinity .gi-item{
+    scroll-snap-align: center;
+    --gi-width-closed: 90px;
+    --gi-width-open: min(88vw, 540px);
+    --gi-height-open: min(64vh, 560px);
+  }
+  #galeria-infinity .gi-ribbon{
+    font-size: 28px;
+  }
+  #galeria-infinity .gi-details h4{ font-size: 22px; }
+  #galeria-infinity .gi-details p{ font-size: 16px; }
+
+  /* Rótulo un poco menos desplazado al estar cerrada en móvil */
+  #galeria-infinity .gi-item:not(.is-active) .gi-ribbon{
+    --gi-ribbon-top-offset: 12px;
+  }
+}
+
+/* ===== Prefiere less motion ===== */
+@media (prefers-reduced-motion: reduce){
+  #galeria-infinity .gi-item{ transition: none; }
+}
+
+/* ===== Header del sitio transparente mientras la sección está en view ===== */
+body.gi-in-view header.fixed-top{
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important; /* por si tu header usa blur */
+}
+/* Header interno SIN fondo ni sombras (solo el de esta sección) */
+#galeria-infinity header.gi-header,
+#galeria-infinity header.gi-header::before,
+#galeria-infinity header.gi-header::after{
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  border: 0 !important;
+}

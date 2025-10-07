@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Hojas de estilo globales -->
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./mediaquaries.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- i18next CDN -->
+  <script src="https://unpkg.com/i18next@23/i18next.min.js"></script>
+  <script src="https://unpkg.com/i18next-http-backend@2/i18nextHttpBackend.min.js"></script>
+  <script src="https://unpkg.com/i18next-browser-languagedetector@8/i18nextBrowserLanguageDetector.min.js"></script>
+
+  <title data-i18n="legalNotice.pageTitle"></title>
+
+  <!-- Estilos opcionales del contenedor legal -->
+  <style>
+    .legal-container{
+      max-width:1100px;
+      margin:calc(var(--header-h) + 3rem) auto 4rem;
+      padding:0 1.5rem;
+      font-family: var(--ff-body);
+      font-size:1.6rem;
+      line-height:1.8;
+      color:#5C4033;
+    }
+  </style>
+</head>
+
+<body>
+  <!--========== HEADER (idéntico al de la home) ==========-->
+  <header>
+    <nav>
+      <a class="logo" href="index.html">
+        <img src="/images/logo.png" alt="Infinity 8">
+      </a>
+
+      <div class="burgar" onclick="toggleNav()">&#9776;</div>
+
+      <ul id="navLinks" class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home"></a></li>
+        <li><a href="availability.html" data-i18n="nav.availability"></a></li>
+        <li><a href="contact.html" data-i18n="nav.contact"></a></li>
+        <li><a href="/proceso.html"      data-i18n="nav.process"></a></li>
+      </ul>
+
+      <div class="btn">
+        <a class="sign_up primary" href="contact.html#contactForm" data-i18n="btn.contact"></a>
+      </div>
+
+      <select id="langSwitcher" aria-label="Language">
+        <option value="es">ES</option>
+        <option value="en">EN</option>
+      </select>
+    </nav>
+  </header>
+
+  <!--========== AVISO LEGAL (contenido vía i18n) ==========-->
+  <section class="legal-container" data-i18n="legalNotice.content"></section>
+
+  <!--========== FOOTER (igual que en la home) ==========-->
+  <footer>
+    <p data-i18n="footer.contact"></p>
+
+    <p>
+      <span data-i18n="footer.follow"></span><br />
+      <div class="social">
+        <a href="https://www.instagram.com/blancarealspain/?hl=es" target="_blank" rel="noopener" aria-label="Instagram">
+          <i class="fa-brands fa-instagram fa-fw"></i>
+        </a>
+        <a href="https://es.linkedin.com/company/blancareal-real-estate" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin fa-fw"></i>
+        </a>
+        <a href="https://www.blancareal.com/" target="_blank" rel="noopener" aria-label="Official website">
+          <i class="fa-solid fa-globe fa-fw"></i>
+        </a>
+        <a href="https://www.youtube.com/@BlancaRealSpain" target="_blank" rel="noopener" aria-label="YouTube">
+          <i class="fa-brands fa-youtube fa-fw"></i>
+        </a>
+      </div>
+    </p>
+
+    <div class="legal-links">
+      <a href="/legal-notice.html"   data-i18n="footer.legal"   target="_blank" rel="noopener"></a>
+      <a href="/cookie-policy.html"  data-i18n="footer.cookies" target="_blank" rel="noopener"></a>
+      <a href="/privacy-policy.html" data-i18n="footer.privacy" target="_blank" rel="noopener"></a>
+    </div>
+
+    <p class="footer-text1" data-i18n="footer.copyright"></p>
+    <p class="footer-text1" data-i18n="footer.developer"></p>
+  </footer>
+
+  <!--========== SCRIPTS COMUNES ==========-->
+  <script src="/js/i18n.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

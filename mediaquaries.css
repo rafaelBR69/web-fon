@@ -1,0 +1,628 @@
+@media (max-width: 1200px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: #fff;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    padding-left: 0;
+    text-align: center;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .nav-links li {
+    margin: 2rem 0;
+  }
+  .nav-links a {
+    font-size: 3rem;
+  }
+  .burgar {
+    display: block;
+  }
+  .logo {
+    font-size: 3.5rem;
+    margin-right: 80rem;
+    margin-left: 1rem;
+  }
+  .btn {
+    display: none;
+  }
+}
+
+@media (max-width: 884px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: white;
+    top: 80px;
+    left: 0;
+    width: 100%;
+
+    text-align: center;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .nav-links li {
+    margin: 2rem 0;
+    font-size: 3rem;
+  }
+  .nav-links a {
+    font-size: 4rem;
+  }
+  .burgar {
+    display: block;
+  }
+  .logo {
+    font-size: 3.5rem;
+    margin-right: 40rem;
+    margin-left: 1rem;
+  }
+  .btn {
+    display: none;
+  }
+  .section_1 {
+    height: 130vh;
+  }
+  .bg_div {
+    top: 40%;
+  }
+  .bg_div :first-child {
+    font-size: 7rem;
+    line-height: 1.5;
+  }
+  .bg_div :last-child {
+    font-size: 2.7rem;
+  }
+  .service-header {
+    width: 45%;
+    line-height: 1.6;
+  }
+  @media (max-width: 600px) {
+    .service-header h1 {
+      font-size: 1.8rem;
+    }
+  }
+  @media (max-width: 768px) {
+    .img-text,
+    .img-text--reverse {
+      flex-direction: column;
+      text-align: center;
+    }
+    .img-text__img {
+      /* que la imagen sea 100 % en móvil, pero sin max-width */
+      width: 100%;
+      flex-basis: auto;
+      max-width: none;
+    }
+  }
+    .service-header h2 {
+    font-size: 1.9rem;
+  }
+  .service-header p {
+    font-size: 1.9rem;
+  }
+  .flex {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  .section3_div1 {
+    width: 280px;
+  }
+  .buy {
+    font-size: 2.2rem;
+  }
+  .expert {
+    font-size: 1.7rem;
+  }
+  .learn_more {
+    font-size: 1.7rem;
+  }
+  .blog-gallary {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+    align-items: center;
+    row-gap: 40px;
+  }
+  .section2_div1 img {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+/* max-width 834x*/
+@media (max-width: 834px) {
+  .section_1 {
+    height: 100vh;
+  }
+  .bg_div {
+    top: 40%;
+  }
+  .bg_div :first-child {
+    font-size: 6rem;
+    line-height: 1.5;
+  }
+  .bg_div :last-child {
+    font-size: 3rem;
+  }
+  .flex {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  .section3_div1 {
+    width: 280px;
+  }
+  .buy {
+    font-size: 2.3rem;
+  }
+  .expert {
+    font-size: 1.8rem;
+  }
+  .learn_more {
+    font-size: 1.8rem;
+  }
+}
+
+/* max-width 800px*/
+@media (max-width: 800px) {
+  .logo {
+    margin-right: 45rem;
+  }
+  .section_1 {
+    height: 100vh;
+  }
+  .bg_div :first-child {
+    font-size: 6rem;
+    line-height: 1.4;
+  }
+  .bg_div :last-child {
+    font-size: 2.5rem;
+  }
+  .service-header {
+    width: 50%;
+    line-height: 1.6;
+  }
+  .section3_div1 {
+    width: 280px;
+  }
+}
+
+/* max-width 500px*/
+@media (max-width: 500px) {
+  .logo {
+    font-size: 2.5rem;
+    margin-right: 20rem;
+    margin-left: 1rem;
+  }
+  .section_1 {
+    height: 100vh;
+  }
+  .bg_div {
+    top: 40%;
+  }
+  .bg_div :first-child {
+    font-size: 3.5rem;
+    line-height: 1.5;
+  }
+  .bg_div :last-child {
+    font-size: 1.5rem;
+  }
+  .service-header {
+    width: 70%;
+    line-height: 1.6;
+  }
+  .flex {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+  }
+  .section3_div1 {
+    width: 280px;
+  }
+  .blog-gallary {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+    align-items: center;
+    row-gap: 40px;
+  }
+  .blog-header {
+    width: 80%;
+  }
+  .blog-header h1 {
+    padding-top: 8rem;
+    font-size: 2rem;
+  }
+  .blog-header p {
+    font-size: 1.5rem;
+  }
+  .section2_div1 img {
+    width: 100%;
+    max-width: 350px;
+  }
+}
+
+/* max-width 412px*/
+@media (max-width: 412px) {
+  .logo {
+    margin-right: 18rem;
+  }
+  .section_1 {
+    height: 100vh;
+  }
+  .bg_div {
+    top: 35%;
+  }
+  .bg_div :first-child {
+    font-size: 3.2rem;
+    line-height: 1.5;
+  }
+  .bg_div :last-child {
+    font-size: 1.5rem;
+  }
+  .blog-header {
+    width: 60%;
+  }
+  .blog-header h1 {
+    padding-top: 8rem;
+    font-size: 2.5rem;
+  }
+  .blog-header p {
+    font-size: 1.7rem;
+  }
+  .section2_div1 img {
+    width: 100%;
+    max-width: 320px;
+  }
+  .footer {
+    padding-bottom: 1rem;
+  }
+  footer :nth-child(1) {
+    font-size: 1.7rem;
+  }
+  footer :nth-child(2) {
+    font-size: 1.7rem;
+    font-weight: bold;
+  }
+  .footer-text1 {
+    font-size: 1.5rem;
+  }
+}
+/* max-width 360px*/
+@media (max-width: 360px) {
+  .logo {
+    font-size: 2.5rem;
+    margin-right: 15rem;
+  }
+
+  .bg_div :first-child {
+    font-size: 3rem;
+    line-height: 1.5;
+  }
+  .service-header {
+    width: 73%;
+    line-height: 1.6;
+  }
+  .flex {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+  }
+  .section2_div1 img {
+    width: 100%;
+    max-width: 300px;
+  }
+  footer :nth-child(1) {
+    font-size: 1.5rem;
+  }
+  footer :nth-child(2) {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .footer-text1 {
+    font-size: 1.3rem;
+  }
+}
+
+/* max-width 320px*/
+@media (max-width: 320px) {
+  .logo {
+    font-size: 2.2rem;
+    margin-right: 12rem;
+  }
+  .bg_div {
+    top: 33%;
+  }
+  .bg_div :first-child {
+    font-size: 2.6rem;
+    line-height: 1.5;
+  }
+  .service-header {
+    width: 75%;
+    line-height: 1.6;
+  }
+  .flex {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+  }
+  .section3_div1 {
+    width: 250px;
+  }
+  .section2_div1 img {
+    width: 100%;
+    max-width: 260px;
+  }
+  @media (max-width: 768px) {
+    .modal__box {
+      max-width: 90%;           /* un poco más de ancho relativo */
+      padding: 2rem 1.5rem;     /* menos padding */
+    }
+    .modal__title   { font-size: 1.9rem; }
+    .modal__form label,
+    .modal__form input,
+    .modal__form textarea,
+    .modal__send    { font-size: 1.3rem; }
+  }
+
+  /*──────── MÓVIL  ≤ 480 px ────────*/
+  @media (max-width: 480px) {
+    .modal__box {
+      max-width: 95%;
+      padding: 1.5rem 1rem;
+    }
+    .modal__title   { font-size: 1.7rem; }
+    .modal__close   { font-size: 2rem; }
+    .modal__send    { font-size: 1.4rem; }
+  }
+  /*────────────────  RESPONSIVE ───────────────*/
+  @media (max-width: 768px) {
+    .contact-form { width: 95%; padding: 2rem 1.5rem; }
+    .contact-form__title { font-size: 1.9rem; }
+  }
+  @media(max-width:768px){
+    .section_1--availability{flex-direction:column;}
+    .unit-info{width:100%;order:2;}
+    #blockA-img{order:1;}
+  }
+
+  .lead-card{
+    grid-template-columns:1fr 1fr;    /* 2 columnas */
+    column-gap:1.6rem;
+    max-width:640px;
+  }
+  
+  .lead-card h3,
+  .lead-card button{
+    grid-column:1 / -1;               /* ocupar ambas columnas */
+  }
+  
+  /* mantiene textarea ancho completo */
+  .lead-card textarea{
+    min-height:7rem;
+  }
+}
+
+/*────────────────────────────────────────
+  MÓVIL  ≤ 600 px  ▸  títulos encima de la foto
+────────────────────────────────────────*/
+@media (max-width: 600px){
+
+  /* Sección en columna: primero títulos, luego imagen */
+  .section_1--availability{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: 0;        /* sin franja crema */
+    gap: 0;
+    margin-top: var(--header-h);
+  }
+
+  /* Títulos (bg_div) reincorporados al flujo normal */
+  .section_1--availability .bg_div{
+    position: static !important;
+    transform: none !important;
+    order: 0;                /* aparece antes que la imagen */
+    width: 100%;
+    padding: 0 1rem 0.5rem;
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  /* Imagen después de los títulos */
+  #avail-img{ order: 1; width:100%; height:auto; display:block; }
+
+  /* Tipografía y COLOR en móvil */
+  .section_1--availability .bg_text1{
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    color: #2F4F4F;          /* ← aquí tu color principal */
+    margin-bottom: .4rem;
+  }
+  .section_1--availability .bg_text2{
+    font-size: clamp(1.4rem, 3.8vw, 2rem);
+    color: #2F4F4F;          /* ← aquí tu color secundario (si es diferente) */
+    margin-top: .6rem;       /* separación entre líneas */
+  }
+   /* garantizamos flex‑column solo para el plan-box */
+  .section_1--availability .plan-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  /* 1 ▸ títulos primero */
+  .section_1--availability .bg_div  { order: 0; }
+
+  /* 2 ▸ imagen en segundo lugar */
+  #blockB-img                        { order: 1; }
+
+  /* 3 ▸ ficha de la vivienda al final */
+  #info-text { 
+    order: 2;
+  }
+
+  /* opcional: un poco de separación entre bloques */
+  .section_1--availability .bg_div  { margin-bottom: .8rem; }
+  #info-text { 
+    margin-top: .8rem;
+  }
+  .info-card{          /* tarjeta con datos de la vivienda */
+    margin-bottom:1.4rem;   /* aire hacia abajo             */
+  }
+  .lead-card{          /* formulario “Are you interested?” */
+    margin-top:1.4rem;      /* aire hacia arriba            */
+  }
+}
+
+/* ───────── VERSIÓN MÓVIL ───────── */
+@media (max-width:900px){
+  /* volvemos a poner el formulario en el flujo para apilar todo */
+  .lead-card{
+    position:static;
+    margin:2rem auto 0;
+    transform:none;
+  }
+
+  /* centramos conjunto plano + formulario */
+  .plan-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+}
+
+/* ==========================================================
+   4K / Ultra‑HD  – a partir de 2560 px de ancho
+   ========================================================== */
+@media (min-width: 2560px) {
+
+  /* 1 ▸ Escalado tipográfico base */
+  html            { font-size: 87.5%; }    /* 1 rem = 14 px aprox. */
+
+  /* 2 ▸ Barra de navegación */
+  .logo           { font-size: 4rem; margin-right: 25rem; }
+  .nav-links li   { font-size: 2.2rem; margin-right: 5rem; }
+  .btn a          { font-size: 2rem; }
+
+  /* 3 ▸ Hero */
+  .bg_div :first-child { font-size: 9rem; } /* título grande */
+  .bg_div :last-child  { font-size: 3rem; } /* subtítulo    */
+
+  /* 4 ▸ Bloques imagen‑texto */
+  .img-text {
+    --gap: 14rem;              /* aire entre img y texto          */
+    --img-basis: 36%;          /* ancho inicial de la imagen      */
+    --img-max: 840px;          /* máximo de la imagen             */
+    --line: 2;                 /* interlineado más relajado       */
+    --padding: 3.5rem 4rem;    /* relleno interior del bloque     */
+  }
+  .img-text__title,
+  .img-text__subtitle         { font-size: 3rem; }
+  .img-text__list li,
+  .img-text__paragraph        { font-size: 2.6rem; }
+
+  /* 5 ▸ Secciones de texto */
+  .service-header h1          { font-size: 4rem; }
+  .service-header p           { font-size: 2.4rem; max-width: 1600px; }
+
+  /* 6 ▸ Footer y otros detalles */
+  footer :nth-child(1),
+  footer :nth-child(2)        { font-size: 2.8rem; }
+  .footer-text1               { font-size: 2.4rem; }
+  #langSwitcher               { font-size: 1.8rem; }
+
+  /* 7 ▸ Formularios / modales */
+  .modal__title               { font-size: 3.2rem; }
+  .modal__form label          { font-size: 2rem; }
+}
+
+/* Opcional: ajustes finos solo para 3840×2160 */
+@media (min-width: 3840px) {
+
+  /* 1 ▸ Sube un poco más la base */
+  html        { font-size: 100%; }   /* 1 rem = 16 px */
+
+  /* 2 ▸ Recoloca títulos sobre planos */
+  .bg_div     { top: 35%; }
+
+  /* 3 ▸ Tarjeta de formulario junto al plano */
+  .lead-card  {
+    --card-top: 20%;
+    left: calc(100% + 6rem);
+    max-width: 520px;
+  }
+}
+
+/* ============================
+   PANEL LATERAL EN MÓVIL
+   ============================ */
+@media (max-width: 1200px){
+
+  /* contenedor del menú */
+  .nav-links{
+    position: fixed;      /* sale del flujo */
+    top: 0;
+    right: 0;             /* ⇦ empújalo desde la derecha.
+                             Cambia a left:0 si lo quieres por la izda */
+    height: 100vh;
+    width: 55vw;          /* ancho del cajón (70 % de pantalla)        */
+    max-width: 320px;     /* …o un tope fijo                            */
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    background : rgba(255,255,255,.55);
+    backdrop-filter        : blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-left : 1px solid rgba(255,255,255,.35);
+    box-shadow  : -4px 0 18px rgba(0,0,0,.12);
+
+    /* efecto deslizante --------------------------------- */
+    transform: translateX(100%);    /* oculto fuera de vista */
+    transition: transform .35s ease;
+    z-index: 1000;
+    padding-left: 2.4rem;
+  }
+
+  /* cuando JS añade .active → se ve */
+  .nav-links.active{
+    transform: translateX(0);
+  }
+
+  /* enlaces grandes y separados */
+  .nav-links li{
+    margin: 1.6rem 0;
+  }
+  .nav-links a{
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #5C4033;
+  }
+
+  /* ▸ hamburguesa visible */
+  .burgar{ display:block; }
+
+  /* ▸ botón CTA / switcher: ocúltalos si estorban */
+  .btn,
+  #langSwitcher{
+    display:none;
+  }
+
+  /* cuerpo no se desplaza al abrir menú (opcional) */
+  body.nav-open{
+    overflow:hidden;
+  }
+}
+
+/*   móvil: encoge ligeramente si quieres   */
+@media (max-width:600px){
+  .logo img{ height: 36px; }
+}

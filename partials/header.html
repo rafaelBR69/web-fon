@@ -1,0 +1,46 @@
+<header class="fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+    <div class="container-fluid">
+      <!-- LOGO -->
+      <a class="navbar-brand d-flex align-items-center" href="/index.html#hero">
+        <img id="main-logo" src="/images/logo.png" height="70"
+             data-i18n="[alt]header.logoAlt" alt="Infinity 8 (Lombok)" />
+      </a>
+
+      <button class="navbar-toggler border-0" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+              aria-controls="mainNavbar" aria-expanded="false"
+              data-i18n="[aria-label]header.toggler.label" aria-label="Open navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+        <div class="d-flex align-items-center gap-4 me-5 nav-right">
+          <ul class="navbar-nav text-uppercase align-items-center gap-3 mb-0">
+            <li class="nav-item"><a class="nav-link" href="/index.html#hero"                 data-i18n="nav.home">INFINITY 8</a></li>
+            <li class="nav-item"><a class="nav-link" href="/index.html#sec-villas"           data-i18n="nav.availability">VILLAS</a></li>
+            <li class="nav-item"><a class="nav-link" href="/index.html#detalles-financieros" data-i18n="nav.contact">INVERSIÓN</a></li>
+            <li class="nav-item"><a class="nav-link" href="/index.html#section-lombok-map"   data-i18n="nav.process">MAPA</a></li>
+          </ul>
+
+          <!-- valores en minúscula; etiquetas visibles en mayúscula -->
+          <select id="langSwitcher" class="form-select form-select-sm border-2 fw-semibold" style="width:auto">
+            <option value="es">ES</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#mainNavbar a')) return;
+  const nav = document.getElementById('mainNavbar');
+  if (nav.classList.contains('show')) {
+    const bsCollapse = bootstrap.Collapse.getOrCreateInstance(nav);
+    bsCollapse.hide();
+  }
+});
+</script>

@@ -1,0 +1,409 @@
+/* ==========================================================================
+   MAPA – ESTILOS AJUSTADOS AL HTML DADO
+   Scope: #section-lombok-map
+   ========================================================================== */
+
+/* ===== Variables del componente ===== */
+#section-lombok-map{
+  /* Colores y efectos */
+  --tint-color : rgba(20,160,255,.18);
+  --glow       : #9fe3ff;
+  --poi-fill   : #fff;
+
+  /* Panel */
+  --panel-bg   : rgba(12,16,22,.28);
+  --panel-bd   : rgba(255,255,255,.25);
+
+  /* Transform del mapa */
+  --map-zoom   : 1.82;     /* zoom inicial (tu JS puede sobreescribir) */
+  --tx         : 0px;      /* desplazamiento X */
+  --ty         : 0px;      /* desplazamiento Y */
+
+  /* Circuito */
+  --track-scale    : 0.30;
+  --track-stroke   : 3px;
+  --track-offset-y : -12px;
+
+  /* Layout */
+  --map-h      : 82vh;     /* altura del bloque visible (antes 68vh) */
+
+  /* Borde suave del rectángulo nítido */
+  --blur-band  : 36px;
+  --under-blur : 10px;
+
+  /* Underlay (fondo satélite difuminado) */
+  --underfill-zoom : 1;
+  --underfill-offx : 0px;
+  --underfill-offy : 0px;
+
+  /* Escalado de POIs (tu JS puede fijar --poi-scale = 1/zoom) */
+  --poi-scale     : 1;
+
+  /* Mínimo de seguridad de zoom para JS (si lo lees desde CSS) */
+  --map-min-zoom  : 1.2;
+}
+
+/* Box-sizing sólo dentro del bloque */
+#section-lombok-map,
+#section-lombok-map *{
+  box-sizing: border-box;
+}
+
+/* Tipografía y fondo del bloque (el fondo real lo pone el underlay) */
+#section-lombok-map{
+  color:#fff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+  background: transparent;
+}
+
+/* ===== Layout a pantalla completa ===== */
+#section-lombok-map .app{
+  width:100%;
+  max-width:100%;
+  padding:0;
+  margin:0;
+}
+
+#section-lombok-map .wrap{
+  position:relative;
+  width:100%;
+  height:var(--map-h);
+  border-radius:0;
+  background:none;
+  box-shadow:none;
+  overflow:hidden;
+  overscroll-behavior:contain;
+}
+
+/* Underlay: imagen satélite borrosa que rellena todo el ancho/alto */
+#section-lombok-map .wrap::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background-image: url("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/10/536/842");
+  background-repeat:no-repeat;
+  background-position: calc(50% + var(--underfill-offx)) calc(50% + var(--underfill-offy));
+  background-size: cover;
+  filter: blur(14px) saturate(.95) brightness(.95);
+  transform: scale(1.02);
+}
+
+/* La escena (SVG) ocupa todo el contenedor */
+#section-lombok-map .scene-mask{ position:relative; width:100%; height:100%; z-index:1; }
+#section-lombok-map svg{ width:100%; height:100%; display:block; }
+
+/* ===== Transform del mapa: translate + scale via variables ===== */
+#section-lombok-map .map{
+  transform-box: fill-box;         /* clave en SVG */
+  transform-origin: 50% 50%;
+  transform: translate(var(--tx), var(--ty)) scale(var(--map-zoom));
+  will-change: transform;
+}
+#section-lombok-map .map:hover{
+  filter: drop-shadow(0 0 14px var(--glow));
+}
+
+/* ===== Capas de teselas ===== */
+#section-lombok-map .tiles image{ width:256px; height:256px; }
+
+/* Debajo: continuación REAL borrosa (mismos tiles contiguos) */
+#section-lombok-map .tiles--under{
+  pointer-events:none;
+  filter: blur(var(--under-blur));
+  /* Si prefieres pixelado:
+     image-rendering: pixelated;
+     image-rendering: crisp-edges;
+  */
+}
+
+/* Arriba: centro nítido con máscara rectangular de borde suave */
+#section-lombok-map .tiles--sharp{
+  /* Estándar */
+  mask-image:
+    linear-gradient(to right,
+      transparent 0,
+      rgba(0,0,0,1) var(--blur-band),
+      rgba(0,0,0,1) calc(100% - var(--blur-band)),
+      transparent 100%),
+    linear-gradient(to bottom,
+      transparent 0,
+      rgba(0,0,0,1) var(--blur-band),
+      rgba(0,0,0,1) calc(100% - var(--blur-band)),
+      transparent 100%);
+  mask-composite: intersect;
+  mask-repeat: no-repeat, no-repeat;
+
+  /* WebKit/Blink */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0, #000 var(--blur-band), #000 calc(100% - var(--blur-band)), transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 var(--blur-band), #000 calc(100% - var(--blur-band)), transparent 100%);
+  -webkit-mask-composite: source-in, source-in;
+  -webkit-mask-repeat: no-repeat, no-repeat;
+}
+
+/* ===== Tinte (rect dentro del SVG) – ya lo tienes en el marcado */
+#section-lombok-map .vignette{ display:none; }
+
+/* ===== POIs ===== */
+#section-lombok-map #pois{ isolation:isolate; }  /* capa propia */
+
+#section-lombok-map .poi,
+#section-lombok-map .poi-hit,
+#section-lombok-map .poi-label{
+  transform-box: fill-box;
+  transform-origin: 25% 25%;
+  transform: scale(var(--poi-scale));
+}
+
+#section-lombok-map .poi{
+  fill: var(--poi-fill);
+  stroke:#0007;
+  stroke-width:1.5px;
+  cursor:pointer;
+}
+
+#section-lombok-map .poi-hit{
+  fill: transparent;            /* hitbox clicable */
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+#section-lombok-map .poi-label{
+  font-size:16px;
+  paint-order: stroke;
+  stroke:#000;
+  stroke-width:1.5px;             /* halo para legibilidad */
+  fill:#fff;
+  user-select:none;
+  pointer-events:none;
+}
+
+/* ===== Atribución ===== */
+#section-lombok-map .attr{
+  position:absolute;
+  left:12px; bottom:8px;
+  font-size:12px; color:#cfd6dd; opacity:.85;
+  text-shadow:0 1px 2px rgba(0,0,0,.6);
+  z-index:2;
+}
+#section-lombok-map .attr a{ color:#cfd6dd; text-decoration:underline dotted; }
+
+/* ===== PANEL OVERLAY (glass limpio, sin mosaico) ===== */
+#section-lombok-map .panel{
+  position:absolute;
+  right:16px; top:16px;
+  width:min(32%, 420px);
+  max-height:calc(100% - 32px);
+  overflow:auto;
+  z-index:3;
+  padding:16px;
+  display:flex; flex-direction:column; gap:12px;
+
+  color:#fff;
+  background: var(--panel-bg);
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
+
+  border:1px solid var(--panel-bd);
+  border-radius:18px;
+  box-shadow:0 18px 50px rgba(0,0,0,.55);
+  pointer-events:auto;
+  opacity:1;
+}
+#section-lombok-map .panel.hidden{ display:none; }
+
+#section-lombok-map .panel__header{
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+}
+#section-lombok-map .panel__title{
+  margin:0;
+  font-weight:700;
+  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+  letter-spacing:.2px;
+}
+
+/* Botón ⏯ acorde al glass */
+#section-lombok-map .btn-toggle{
+  width:38px; height:38px; border-radius:50%;
+  display:grid; place-items:center; cursor:pointer;
+  font-size:18px; line-height:0;
+
+  border: 1px solid rgba(255,255,255,.32);
+  background: rgba(255,255,255,.12);
+  color: #fff;
+}
+
+/* Texto del panel */
+#section-lombok-map .panel p,
+#section-lombok-map .panel li,
+#section-lombok-map .panel dt,
+#section-lombok-map .panel dd{
+  font-size: clamp(0.98rem, 1.2vw, 1.45rem);
+  line-height:1.6;
+  color:#fff;
+}
+
+/* Info breve (debajo del stage) */
+#section-lombok-map .track-info{
+  margin-top:10px;
+  border-top:1px dashed #2a344b;
+  padding-top:10px;
+}
+#section-lombok-map .track-info h4{
+  margin:0 0 6px 0; font-size:15px; font-weight:700;
+}
+#section-lombok-map .track-info dl{
+  margin:0; display:flex; flex-direction:column; gap:10px;
+}
+#section-lombok-map .track-info dl > div{
+  display:flex; flex-direction:column; align-items:flex-start;
+}
+#section-lombok-map .track-info dt{
+  margin:0; font-weight:600; opacity:1;
+}
+#section-lombok-map .track-info dd{ margin:2px 0 0 0; }
+
+/* ===== Escenario del circuito ===== */
+#section-lombok-map .stage{
+  position:relative;
+  aspect-ratio: 204 / 120;
+  min-height: 200px;
+  overflow:hidden;
+  padding:0;
+}
+#section-lombok-map .stage svg#trackSVG{
+  position:absolute; inset:0;
+  width:100%; height:100%; display:block;
+}
+
+/* Grosor del trazado del circuito (var CSS > atributo SVG) */
+#section-lombok-map #trackSVG #suzuka{
+  stroke-width: var(--track-stroke);
+  vector-effect: non-scaling-stroke;
+}
+
+/* Car (si usas un div posicionado que siga el path) */
+#section-lombok-map #svg-createmotionpath .car{
+  position:absolute;
+  width:16px; height:8px;
+  left:-8px; top:-5px;
+  background:#fff; border-radius:2px; box-shadow:0 0 8px rgba(0,0,0,.5);
+  transform: translateX(0) translateY(0) rotate(0deg);
+}
+
+/* ===== Responsive: panel abajo en móviles ===== */
+@media (max-width: 900px){
+  #section-lombok-map .panel{
+    left:12px; right:12px;
+    top:auto; bottom:12px;
+    width:auto; max-height:55%;
+  }
+}
+
+/* ===== Overrides mínimos contra Bootstrap que pueden afectarte ===== */
+.modal{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.modal.show{ display:flex !important; }
+
+/* ===== Utilidades ===== */
+html, body { overflow-x: hidden; }
+
+#section-lombok-map .panel-media{
+  margin: 8px 0 12px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+#section-lombok-map .panel-media img{
+  width: 100%;
+  display: block;
+  aspect-ratio: 12 / 6;    /* ajusta si quieres */
+  object-fit: cover;
+}
+#section-lombok-map .panel-media .caption{
+  font-size: .92rem;
+  opacity: .85;
+}
+
+#section-lombok-map #svg-createmotionpath .car{
+  display: none !important;
+}
+
+/* 2.1 – Fuente por defecto del bloque (opcional: ya afectará al panel) */
+#section-lombok-map{
+  color:#fff;
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+  background: transparent;
+}
+
+/* 2.2 – Asegura Montserrat en el título y textos del panel (la “card”) */
+#section-lombok-map .panel,
+#section-lombok-map .panel__title,
+#section-lombok-map .panel p,
+#section-lombok-map .panel li,
+#section-lombok-map .panel dt,
+#section-lombok-map .panel dd,
+#section-lombok-map .panel .caption{
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2.3 – (Opcional) también en las etiquetas de los POIs dentro del SVG */
+#section-lombok-map .poi-label{
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+  font-weight: 600;            /* Montserrat Semibold para mejor legibilidad */
+}
+
+/* Oculta el botón de pausa/reproducción en todas las cards */
+#section-lombok-map #btnToggle,
+#section-lombok-map .btn-toggle{
+  display: none !important;
+}
+
+/* Rótulos de regiones (LOMBOK / BALI) */
+.map-scope .poi-label--region{
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  fill: #ffffff;
+  stroke: rgba(0,0,0,.45);
+  stroke-width: 2.2px;
+  paint-order: stroke fill;
+  pointer-events: none; /* no capturan clicks */
+  user-select: none;
+  opacity: 0.96;
+}
+
+/* Ancla para navegación con offset del navbar fijo */
+#section-lombok-map { --nav-offset: 96px; } /* ajusta a la altura real de tu navbar */
+#section-lombok-map .map-anchor{ scroll-margin-top: var(--nav-offset); }
+
+/* Título flotante con glass/blur */
+#section-lombok-map .map-title{
+  position:absolute;
+  top:16px; left:50%;
+  transform: translateX(-50%);
+  z-index:4; /* por encima del panel (z:3) */
+  padding:10px 18px;
+  border-radius:16px;
+
+  color:#fff;
+  font: 500 clamp(1.1rem, 2.2vw, 2.6rem) "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+  letter-spacing:.02em;
+}
+
+/* Responsive: en móviles ocupa todo el ancho útil */
+@media (max-width: 900px){
+  #section-lombok-map .map-title{
+    left:12px; right:12px;
+    transform:none;
+    text-align:center;
+  }
+}
+
+/* (Opcional) scroll suave global */
+html { scroll-behavior: smooth; }

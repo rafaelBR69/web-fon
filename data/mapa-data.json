@@ -1,0 +1,251 @@
+{
+  "pois": [
+    {
+      "id": "poi-mandalika",
+      "label": "Mandalika Circuit",
+      "labelKey": "map.pois.mandalika.label",
+      "coords": { "cx": 722.1, "cy": 871.6, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Trazado moderno junto a la costa; rápido y fluido con secciones técnicas.",
+          "descripcionKey": "map.pois.mandalika.resumen.descripcion",
+          "historiaBreve": "Inaugurado en 2021; primera carrera de MotoGP en 2022.",
+          "historiaBreveKey": "map.pois.mandalika.resumen.historiaBreve",
+          "fechaHabitual": "Octubre (puede variar).",
+          "fechaHabitualKey": "map.pois.mandalika.resumen.fechaHabitual"
+        }
+      },
+      "photo": {
+        "src": "/images/poi/circuito.jpg",
+        "alt": "Circuito de Mandalika desde el aire",
+        "altKey": "map.pois.mandalika.photo.alt",
+        "caption": "Mandalika International Circuit",
+        "captionKey": "map.pois.mandalika.photo.caption"
+      },
+      "track": { "scale": 0.66, "offsetY": -130, "stroke": 6 }
+    },
+    {
+      "id": "poi-airport",
+      "label": "Aeropuerto Intl.",
+      "labelKey": "map.pois.airport.label",
+      "coords": { "cx": 701.2, "cy": 772.7, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Ubicación estratégica: a ~20–30 min de Kuta/Mandalika por la Bypass de aeropuerto; cerca de las principales zonas hoteleras del sur.",
+          "descripcionKey": "map.pois.airport.resumen.descripcion",
+          "historiaBreve": "Conexiones: vuelos diarios con los hubs de Jakarta (CGK/HLP), Bali (DPS) y Surabaya (SUB), con enlaces internacionales sencillos vía Bali/Jakarta.",
+          "historiaBreveKey": "map.pois.airport.resumen.historiaBreve"
+        }
+      },
+      "photo": {
+        "src": "/images/poi/aeropuerto.jpeg",
+        "alt": "Terminal del Aeropuerto Internacional de Lombok",
+        "altKey": "map.pois.airport.photo.alt",
+        "caption": "Aeropuerto Internacional de Lombok (BIZAM)",
+        "captionKey": "map.pois.airport.photo.caption"
+      }
+    },
+    {
+      "id": "poi-infinity",
+      "label": "Infinity 8",
+      "labelKey": "map.pois.infinity.label",
+      "coords": { "cx": 813.6, "cy": 818.6, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "POI añadido desde lat/lon.",
+          "descripcionKey": "map.pois.infinity.resumen.descripcion"
+        }
+      },
+      "photo": {
+        "src": "/images/poi/infinity.jpg",
+        "alt": "Complejo Infinity 8 en la ladera",
+        "altKey": "map.pois.infinity.photo.alt",
+        "caption": "Infinity 8",
+        "captionKey": "map.pois.infinity.photo.caption"
+      }
+    },
+    {
+      "id": "poi-rinjani",
+      "label": "Monte Rinjani",
+      "labelKey": "map.pois.rinjani.label",
+      "coords": { "cx": 818.3, "cy": 513.1, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Volcán activo (3.726 m) y principal imán turístico del norte de Lombok. Trekking 2–4 días con guía y permiso del Parque Nacional. Capacidad limitada; cierres frecuentes por lluvias o actividad volcánica.",
+          "descripcionKey": "map.pois.rinjani.resumen.descripcion",
+          "historiaBreve": "Accesos operativos: Senaru y Sembalun (los más demandados). Timbanuh y Aik Berik con menor afluencia. La economía local gira en guías, porteadores, homestays y transporte 4x4.",
+          "historiaBreveKey": "map.pois.rinjani.resumen.historiaBreve",
+          "fechaHabitual": "Mejor época: mayo–septiembre (estación seca). Temporada de lluvias y alertas volcánicas pueden cerrar rutas sin aviso.",
+          "fechaHabitualKey": "map.pois.rinjani.resumen.fechaHabitual"
+        }
+      },
+      "photo": {
+        "src": "/images/poi/rinjani.jpg",
+        "alt": "Cráter y lago del Monte Rinjani",
+        "altKey": "map.pois.rinjani.photo.alt",
+        "caption": "Parque Nacional del Monte Rinjani",
+        "captionKey": "map.pois.rinjani.photo.caption"
+      }
+    },
+    {
+      "id": "poi-gili-trawangan",
+      "label": "Gili Islands",
+      "labelKey": "map.pois.gili.label",
+      "coords": { "cx": 525.9, "cy": 469.8, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Trío al NO de Lombok sin coches (bicis/cidomo). Trawangan = ocio nocturno; Air = ambiente local/chill; Meno = muy tranquila. Snorkel con tortugas, arrecifes cercanos. Acceso en fast boat desde Bali o Bangsal (Lombok). ATMs limitados; tasa marina de acceso.",
+          "descripcionKey": "map.pois.gili.resumen.descripcion",
+          "historiaBreve": "De destino backpacker a oferta media-alta. Alta presión en residuos/agua; normas de construcción en zona costera. Ocupación fuerte en Trawangan, creciente en Air; Meno nicho de lujo/parejas.",
+          "historiaBreveKey": "map.pois.gili.resumen.historiaBreve",
+          "fechaHabitual": "Todo el año. Mejor visibilidad mayo-sept. Mar más movido dic-feb (posibles cancelaciones de barcos). Picos: julio-agosto y Navidad/Año Nuevo; reservar con antelación.",
+          "fechaHabitualKey": "map.pois.gili.resumen.fechaHabitual"
+        }
+      },
+      "photo": {
+        "src": "/images/poi/gili.webp",
+        "alt": "Playa y arrecife en las islas Gili",
+        "altKey": "map.pois.gili.photo.alt",
+        "caption": "Gili Trawangan · Gili Air · Gili Meno",
+        "captionKey": "map.pois.gili.photo.caption"
+      }
+    },
+    {
+      "id": "poi-selong-belanak",
+      "label": "Selong Belanak Beach",
+      "labelKey": "map.pois.selong.label",
+      "coords": { "cx": 618.4, "cy": 854.6, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Bahía amplia y segura para principiantes de surf. Arena fina, acceso sencillo por carretera desde Kuta (~30–40 min). Servicios básicos en playa (warungs, alquiler tablas, hamacas).",
+          "descripcionKey": "map.pois.selong.resumen.descripcion",
+          "historiaBreve": "De spot local a destino familiar consolidado; crecimiento de escuelas de surf y pequeños alojamientos en segunda línea.",
+          "historiaBreveKey": "map.pois.selong.resumen.historiaBreve",
+          "fechaHabitual": "Todo el año. Oleaje más dócil y aguas claras mayo–sept; vientos más fuertes ago–sept por las tardes.",
+          "fechaHabitualKey": "map.pois.selong.resumen.fechaHabitual"
+        }
+      },
+      "photo": {
+        "src": "/images/poi/selong.jpg",
+        "alt": "Bahía de Selong Belanak",
+        "altKey": "map.pois.selong.photo.alt",
+        "caption": "Selong Belanak",
+        "captionKey": "map.pois.selong.photo.caption"
+      }
+    },
+    {
+      "id": "poi-tanjung-aan-merese",
+      "label": "Tanjung Aan & Bukit Merese",
+      "labelKey": "map.pois.tanjung.label",
+      "coords": { "cx": 736.1, "cy": 881.1, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Dos calas de arena blanca y agua turquesa; zona apta para baño y paddle cerca de la orilla. Bukit Merese es el mirador clásico para atardeceres.",
+          "descripcionKey": "map.pois.tanjung.resumen.descripcion",
+          "historiaBreve": "A 10–15 min de Kuta y junto al distrito turístico Mandalika (MotoGP), con creciente presión de visitantes y servicios temporales en playa.",
+          "historiaBreveKey": "map.pois.tanjung.resumen.historiaBreve",
+          "fechaHabitual": "Todo el año. Mejor luz y mar mayo–sept; vientos más fuertes por la tarde en ago–sept. Poca sombra natural; llevar protección.",
+          "fechaHabitualKey": "map.pois.tanjung.resumen.fechaHabitual"
+        }
+      },
+      "photo": {
+        "src": "/images/poi/tanjung.jpg",
+        "alt": "Calas de Tanjung Aan y colina Merese",
+        "altKey": "map.pois.tanjung.photo.alt",
+        "caption": "Tanjung Aan · Bukit Merese",
+        "captionKey": "map.pois.tanjung.photo.caption"
+      }
+    },
+    {
+      "id": "poi-sendang-gile-tiu-kelep",
+      "label": "Sendang Gile & Tiu Kelep (Senaru)",
+      "labelKey": "map.pois.senaru.label",
+      "coords": { "cx": 798.1, "cy": 437.8, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Dos cascadas en selva al pie del Rinjani; sendero corto y señalizado desde Senaru. Entrada de pago y opción de guía local.",
+          "descripcionKey": "map.pois.senaru.resumen.descripcion",
+          "historiaBreve": "Senaru vive del trekking al Rinjani y de estas cascadas; buena infraestructura básica (parking, warungs, homestays).",
+          "historiaBreveKey": "map.pois.senaru.resumen.historiaBreve",
+          "fechaHabitual": "Todo el año. Más caudal dic–mar (lluvias) y mayor resbaladicidad; en seca (mayo–sept) agua más clara.",
+          "fechaHabitualKey": "map.pois.senaru.resumen.fechaHabitual"
+        }
+      },
+      "photo": {
+        "src": "/images/poi/cascada.jpg",
+        "alt": "Cascadas Sendang Gile y Tiu Kelep en la selva",
+        "altKey": "map.pois.senaru.photo.alt",
+        "caption": "Sendang Gile & Tiu Kelep",
+        "captionKey": "map.pois.senaru.photo.caption"
+      }
+    },
+    {
+      "id": "poi-pink-beach",
+      "label": "Pink Beach (Pantai Tangsi)",
+      "labelKey": "map.pois.pink.label",
+      "coords": { "cx": 909.8, "cy": 842.1, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Playa aislada al SE de Lombok; arena rosada por coral triturado. Snorkel desde orilla en días calmados. Acceso por carretera irregular o en barco; servicios muy básicos.",
+          "descripcionKey": "map.pois.pink.resumen.descripcion",
+          "historiaBreve": "Color ‘pink’ más intenso con sol alto y marea baja. Zona aún poco desarrollada frente a Kuta/Mandalika.",
+          "historiaBreveKey": "map.pois.pink.resumen.historiaBreve",
+          "fechaHabitual": "Todo el año. Mejor mar mayo–sept; efecto rosa óptimo 11:00–15:00 con cielo despejado. Atención a corrientes y viento por la tarde.",
+          "fechaHabitualKey": "map.pois.pink.resumen.fechaHabitual",
+          "notaInversion": "Baja densidad y escasa oferta F&B: oportunidad en day-trips organizados, quioscos eco y alquiler básico de equipo. Limita la logística (carreteras, agua/energía) y las servidumbres de costa; imprescindible validar permisos y áreas protegidas.",
+          "notaInversionKey": "map.pois.pink.resumen.notaInversion"
+        }
+      },
+      "photo": {
+        "src": "/images/poi/pantai.jpg",
+        "alt": "Arena rosada y aguas turquesas en Pink Beach",
+        "altKey": "map.pois.pink.photo.alt",
+        "caption": "Pink Beach (Pantai Tangsi)",
+        "captionKey": "map.pois.pink.photo.caption"
+      }
+    },
+    {
+      "id": "poi-senggigi",
+      "label": "Senggigi",
+      "labelKey": "map.pois.senggigi.label",
+      "coords": { "cx": 529.7, "cy": 573.8, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Franja turística histórica del oeste: hoteles, restaurantes, beach clubs y templos como Batu Bolong. Buen atardecer y acceso rápido a Bangsal (barcos a Gilis) y Mataram.",
+          "descripcionKey": "map.pois.senggigi.resumen.descripcion",
+          "historiaBreve": "Primer hub de Lombok antes del auge de Kuta/Mandalika y Gilis; oferta amplia, calidad dispar, áreas ya consolidadas.",
+          "historiaBreveKey": "map.pois.senggigi.resumen.historiaBreve",
+          "fechaHabitual": "Todo el año; mar más calmado en seca (mayo–sept) y más movimiento fines de semana.",
+          "fechaHabitualKey": "map.pois.senggigi.resumen.fechaHabitual"
+        }
+      },
+      "photo": {
+        "src": "/images/poi/senggigi.jpg",
+        "alt": "Costa y puesta de sol en Senggigi",
+        "altKey": "map.pois.senggigi.photo.alt",
+        "caption": "Senggigi",
+        "captionKey": "map.pois.senggigi.photo.caption"
+      }
+    },
+    {
+      "id": "poi-lombok-label",
+      "label": "LOMBOK",
+      "labelKey": "map.pois.lombok.label",
+      "coords": { "lon": 116.30, "lat": -8.60 },
+      "noDot": true,
+      "bigLabel": true,
+      "anchor": "middle",
+      "panel": { "resumen": {} }
+    },
+    {
+      "id": "poi-bali-label",
+      "label": "BALI",
+      "labelKey": "map.pois.bali.label",
+      "coords": { "lon": 115.56919615812996, "lat": -8.377235843694745 },
+      "noDot": true,
+      "bigLabel": true,
+      "anchor": "middle",
+      "panel": { "resumen": {} }
+    }
+  ]
+}

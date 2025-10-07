@@ -1,0 +1,459 @@
+{
+  "title": "Infinity 8 | Balcones del Pinillo",
+  "seo": {
+    "siteName": "Infinity 8",
+    "home": {
+      "title": "Infinity 8 | Vistas, privacidad y operación eficiente",
+      "description": "Proyecto residencial con vistas al mar, grandes terrazas y operación eficiente en la Costa del Sol. Contacte para disponibilidad y planos."
+    },
+    "og": {
+      "title": "Infinity 8 — Proyecto residencial en la Costa del Sol",
+      "description": "Viviendas con vistas al mar, terrazas amplias y operación eficiente. Solicite información y únase a la comunidad.",
+      "image": "/images/og-home.jpg",
+      "imageAlt": "Vista general del proyecto Infinity 8"
+    }
+  },
+
+  "brand": {
+    "project": "Infinity 8",
+    "owner": "Balcones del Pinillo"
+  },
+
+  "nav": {
+    "home": "INFINITY 8",
+    "contact": "INVERSIÓN",
+    "availability": "VILLAS",
+    "process": "MAPA LOMBOK"
+  },
+  "header": {
+    "logoAlt": "Infinity 8 (Lombok)",
+    "toggler": { "label": "Abrir navegación" }
+  },
+
+  "btn": {
+    "contact": "Contactar ahora",
+    "whatsapp": "Comunidad de WhatsApp"
+  },
+
+  "aria": {
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "openModal": "Abrir diálogo",
+    "closeModal": "Cerrar",
+    "slide": "Diapositiva {{num}}"
+  },
+
+  "hero": {
+    "welcome": "INFINITY 8",
+    "tagline": "Invierte en vistas, privacidad y operación eficiente",
+    "cta": "Comunidad de WhatsApp",
+    "slides": [
+      { "alt": "Render principal del proyecto Infinity 8" },
+      { "alt": "Detalle de zonas comunes y piscina" },
+      { "alt": "Terrazas con vistas al mar" }
+    ]
+  },
+
+  "home": {
+    "promo": {
+      "units": { "label": "viviendas", "value": 20 },
+      "parking": { "label": "plazas de garaje", "value": 40 },
+      "beds": { "label": "dormitorios (tipología base)", "value": 3 },
+      "plot": { "label": "m² de parcela", "value": 1803 },
+      "sunnydays": { "label": "días de sol/año", "value": 300 }
+    }
+  },
+
+  "popup": {
+    "title": "¿Le interesa el proyecto?",
+    "nameLabel": "Nombre",
+    "emailLabel": "Email",
+    "phoneLabel": "Teléfono",
+    "msgLabel": "Mensaje",
+    "msgPlaceholder": "Quiero más información…",
+    "send": "Enviar",
+    "thanksTitle": "¡Gracias por su interés!",
+    "thanksText": "Hemos recibido su solicitud. Nuestro equipo se pondrá en contacto con usted lo antes posible.",
+    "thanksBtn": "Cerrar"
+  },
+
+  "contact": {
+    "title": "Contacto | Infinity 8",
+    "heroTitle": "Póngase en contacto con nosotros",
+    "heroSub": "Estamos a un mensaje de distancia",
+    "imgAlt": "Persona rellenando un formulario",
+    "formTitle": "Rellene sus datos",
+    "infoTitle": "También puede llamarnos",
+    "infoText": "Teléfono: +34 621 28 34 45 · Email: info@blancareal.com"
+  },
+
+  "availability": {
+    "title": "Disponibilidad | Infinity 8",
+    "heroTitle": "Consulta la disponibilidad",
+    "heroSub": "Actualizamos la información en tiempo real",
+    "comingSoon": "Sección en construcción",
+    "comingSoonText": "Muy pronto podrá ver aquí los planos y precios actualizados."
+  },
+
+  "blockA": {
+    "title": "Bloque 1 · Planos",
+    "heroTitle": "Bloque 1",
+    "heroSub": "Seleccione una vivienda",
+    "infoTitle": "Elija planta y tipología",
+    "infoText": "Próximamente más detalles y fichas descargables.",
+    "clickHint": "Haga clic en una vivienda…",
+    "imgAlt": "Plano de viviendas Bloque 1"
+  },
+
+  "blockB": {
+    "title": "Bloque 2 · Planos",
+    "heroTitle": "Bloque 2",
+    "heroSub": "Seleccione una vivienda",
+    "infoTitle": "Elija planta y tipología",
+    "infoText": "Próximamente más detalles y fichas descargables.",
+    "clickHint": "Haga clic en una vivienda…",
+    "imgAlt": "Plano de viviendas Bloque 2"
+  },
+
+  "leadForm": {
+    "title": "¿Le interesa?",
+    "msgPlaceholderHousing": "Quiero más información sobre esta vivienda…"
+  },
+
+  "blockInfo": {
+    "noData": "Sin datos…",
+    "pdfUnavailable": "Plano no disponible",
+    "rooms_one": "{{count}} habitación",
+    "rooms_other": "{{count}} dormitorios",
+    "builtArea": "{{value}} m² construidos",
+    "terrace": "{{value}} m² terraza",
+    "orientation": "Orientación {{dir}}",
+    "status": {
+      "reservado": "Reservado",
+      "vendido": "Vendido",
+      "disponible": "Disponible"
+    }
+  },
+
+  "orientationMap": {
+    "N": "Norte",
+    "S": "Sur",
+    "E": "Este",
+    "O": "Oeste",
+    "NE": "Noreste",
+    "NO": "Noroeste",
+    "SE": "Sureste",
+    "SO": "Suroeste"
+  },
+
+  "footer": {
+    "contact": "info@blancareal.com | +34 621 28 34 45",
+    "follow": "Síganos",
+    "legal": "Aviso legal",
+    "cookies": "Política de cookies",
+    "privacy": "Política de privacidad",
+    "copyright": "©2025 | Balcones del Pinillo",
+    "developer": "Desarrollado por Marketing BlancaReal"
+  },
+
+  "legalNotice": {
+    "pageTitle": "Aviso legal | Infinity 8",
+    "content": "<h1>Aviso legal</h1><p><strong>Para dar cumplimiento a la Ley 34/2002 (LSSICE),</strong> a continuación se indican los datos de información general del sitio web <em>balconesdelpinillo.com</em>.</p><h2>Entidad</h2><p><strong>Nombre comercial:</strong> BLANCA REAL<br><strong>Denominación social:</strong> AZUGA SERVICIO GLOBAL INMOBILIARIO, S.L.<br><strong>CIF:</strong> B93153021<br><strong>Domicilio social:</strong> Calle Monte Calahonda 10, 29649 Mijas Costa<br><strong>Teléfono:</strong> 952 599 159<br><strong>Email:</strong> <a href='mailto:info@blancareal.com'>info@blancareal.com</a><br>Inscrita en el Registro Mercantil de Málaga, Hoja MA-00111198, Tomo 04941, Libro 3848</p><h2>Utilización del sitio web</h2><p>El sitio web se ofrece con fines promocionales, informando sobre los servicios prestados por AZUGA SERVICIO GLOBAL INMOBILIARIO.</p><h2>Privacidad</h2><p>Consulte nuestra <a href='/privacy-policy.html'>Política de Privacidad</a>.</p><h2>Vínculos a terceros</h2><p>El usuario quedará regido por los términos y la política de privacidad del nuevo sitio al que acceda mediante vínculos.</p><h2>Propiedad intelectual</h2><p>Todos los derechos reservados. Prohibida la reproducción, distribución o comunicación pública con fines comerciales.</p><h2>Condiciones de uso y responsabilidad</h2><ul><li>Uso no autorizado o fraudulento del sitio web.</li><li>Intentar accesos no autorizados.</li><li>Uso con fines ilícitos o lesivos.</li><li>Daños en los sistemas del sitio.</li></ul><h2>Modificaciones</h2><p>El titular podrá modificar contenidos y servicios sin previo aviso.</p><h2>Ley aplicable y jurisdicción</h2><p>Ley española. Juzgados y Tribunales competentes.</p>"
+  },
+
+  "cookiePolicy": {
+    "pageTitle": "Política de cookies | Infinity 8",
+    "content": "<h1>Política de cookies</h1><p>Este sitio web utiliza cookies técnicas y, previo consentimiento, analíticas, de acuerdo con la normativa aplicable.</p><h2>Tipos de cookies</h2><ul><li>Técnicas (necesarias para el funcionamiento).</li><li>Personalización.</li><li>Análisis.</li></ul><h2>Gestión</h2><p>Puede aceptar o rechazar cookies a través del módulo de preferencias o desde su navegador. Limitar cookies puede afectar a algunas funcionalidades.</p><h2>Más información</h2><p>Consulte las guías oficiales de su navegador para gestionar cookies.</p>"
+  },
+
+  "privacyPolicy": {
+    "pageTitle": "Política de privacidad | Infinity 8",
+    "content": "<h1>Política de privacidad</h1><p>AZUGA SERVICIO GLOBAL INMOBILIARIO, S.L. cumple con el RGPD y la LOPDGDD.</p><h2>Responsable</h2><p>AZUGA SERVICIO GLOBAL INMOBILIARIO, S.L. · CIF B93153021 · C/ Monte Calahonda 10, 29649 Mijas Costa · Tel. 952 599 159 · <a href='mailto:info@blancareal.com'>info@blancareal.com</a>.</p><h2>Finalidad</h2><p>Atender su solicitud y, en su caso, enviarle comunicaciones comerciales (previo consentimiento).</p><h2>Legitimación</h2><p>Relación precontractual/contractual y consentimiento del interesado.</p><h2>Destinatarios</h2><p>No se cederán datos salvo obligación legal.</p><h2>Derechos</h2><ul><li>Acceso, rectificación, supresión.</li><li>Limitación u oposición.</li><li>Portabilidad.</li><li>Retirada del consentimiento.</li></ul><h2>Reclamaciones</h2><p>Agencia Española de Protección de Datos: <a href='https://www.aepd.es' target='_blank' rel='noopener'>www.aepd.es</a>.</p>"
+  },
+
+  "process": {
+    "pageTitle": "Proceso de Compra | Infinity 8",
+    "heroTitle": "Proceso de Compra",
+    "heroAlt": "Esquema del proceso de compra de vivienda",
+    "faq": {
+      "q1": "¿Qué implica que la promoción sea una cooperativa?",
+      "a1": "<ul><li><strong>Participación del socio:</strong> vota acabados y hitos.</li><li><strong>Ahorro del 15–20 %</strong> respecto a promotor tradicional.</li><li><strong>Ventajas fiscales:</strong> exención de ITP/AJD en compra de suelo.</li><li><strong>Gestión profesional</strong> administrativa, comercial, técnica y financiera.</li><li><strong>Aportaciones custodiadas</strong> en cuenta notarial.</li><li><strong>Seguro/aval</strong> tras licencia según LOE.</li></ul>",
+      "q2": "¿Reserva y garantías?",
+      "a2": "<ul><li><strong>Reserva habitual:</strong> 3.000–5.000 € (según proyecto).</li><li><strong>Depósito notarial</strong> con acta que regula la disposición de fondos.</li><li><strong>Antes de licencia:</strong> no se exige aval por LOE; se usa cuenta notarial.</li></ul>",
+      "q3": "Calendario aproximado de obra",
+      "a3": "<ul><li>Constitución y organización de la cooperativa.</li><li>Solicitud y <strong>obtención de licencia</strong>.</li><li><strong>Inicio de construcción</strong> tras licencia y cierre financiero.</li><li><strong>Ejecución</strong> estimada: 12–24 meses.</li><li><strong>Escritura de adjudicación</strong> y entrega de llaves.</li></ul>",
+      "q4": "Gastos e impuestos",
+      "a4": "<ul><li><strong>IVA 10 %</strong> sobre pagos de la vivienda.</li><li><strong>Notaría y registro</strong> ~0,5–1 %.</li><li><strong>AJD</strong> 1,2 % en Andalucía.</li><li><strong>Comunidad</strong> desde la entrega.</li></ul>",
+      "q5": "No residentes",
+      "a5": "<ul><li>DNI/pasaporte vigente.</li><li><strong>NIE</strong> obligatorio.</li><li><strong>Poder notarial</strong> solo si no acude a firma; con Apostilla y traducción jurada si es extranjero.</li></ul>"
+    }
+  },
+  "gallery": {
+    "title": "Villas Infinity 8",
+    "subtitle": "Galería",
+    "items": {
+      "recepcion": {
+        "ribbon": "RECEPCIÓN",
+        "heading": "RECEPCIÓN",
+        "caption": "Infinity 8",
+        "alt": "Recepción del complejo Infinity 8"
+      },
+      "interior2": {
+        "ribbon": "INTERIOR II",
+        "heading": "INTERIOR",
+        "caption": "Infinity 8",
+        "alt": "Interior de vivienda con distribución abierta"
+      },
+      "noche1": {
+        "ribbon": "NOCHE I",
+        "heading": "NOCHE I",
+        "caption": "Infinity 8",
+        "alt": "Vista nocturna del conjunto Infinity 8"
+      },
+      "dia": {
+        "ribbon": "DÍA",
+        "heading": "DÍA",
+        "caption": "Infinity 8",
+        "alt": "Vista diurna del conjunto Infinity 8"
+      },
+      "posterior": {
+        "ribbon": "POSTERIOR",
+        "heading": "POSTERIOR",
+        "caption": "Infinity 8",
+        "alt": "Fachada posterior con zonas ajardinadas"
+      },
+      "interior1": {
+        "ribbon": "INTERIOR",
+        "heading": "INTERIOR",
+        "caption": "Infinity 8",
+        "alt": "Interior de vivienda — salón y cocina"
+      },
+      "terreno": {
+        "ribbon": "TERRENO",
+        "heading": "TERRENO",
+        "caption": "Infinity 8",
+        "alt": "Parcela del proyecto Infinity 8"
+      }
+    }
+  },
+  "charts": {
+    "scopeAria": "Panel de gráficos financieros",
+    "title": "Lombok — Indicadores clave de inversión",
+    "lead": "Comparativa rápida Indonesia vs España (fiscalidad, costes, crecimiento y demanda) y gráfico de llegadas internacionales al Aeropuerto de Lombok (BIZAM). 2024 y 2025 si hay datos disponibles.",
+
+    "common": {
+      "indonesia": "Indonesia",
+      "spain": "España"
+    },
+
+    "cards": {
+      "fiscalidad": {
+        "title": "Fiscalidad y beneficios",
+        "tagline": "Entorno de inversión y protección del activo.",
+        "indo": {
+          "li1": "Fiscalidad competitiva para inversión extranjera (PMA).",
+          "li2": "Incentivos e instrumentos de protección legal de la propiedad.",
+          "li3": "ROI anual estimado en Lombok del <b>15–20&nbsp;%</b> aprox."
+        },
+        "es": {
+          "li1": "Alta presión fiscal (IRPF, Plusvalía, ITP).",
+          "li2": "Rentabilidades medias más bajas (<b>4–6&nbsp;%</b>).",
+          "li3": "Mayor riesgo de ocupación ilegal."
+        }
+      },
+
+      "costes": {
+        "title": "Costes de entrada",
+        "tagline": "Ticket de acceso, construcción y mantenimiento.",
+        "indo": {
+          "li1": "Precio por m² significativamente más bajo que en España.",
+          "li2": "Mano de obra y mantenimiento más económicos.",
+          "li3": "Inversión inicial más accesible."
+        },
+        "es": {
+          "li1": "Alto coste de adquisición y construcción.",
+          "li2": "Burocracia y tasas municipales elevadas.",
+          "li3": "Licencias más exigentes y restrictivas."
+        }
+      },
+
+      "crecimiento": {
+        "title": "Crecimiento económico",
+        "tagline": "Momento macro y potencial de revalorización.",
+        "indo": {
+          "li1": "Economía emergente en pleno crecimiento.",
+          "li2": "Lombok y Mandalika en expansión turística.",
+          "li3": "Gran potencial de revalorización a medio plazo."
+        },
+        "es": {
+          "li1": "Mercado más maduro, con menor margen de crecimiento.",
+          "li2": "Saturación en destinos turísticos consolidados."
+        }
+      },
+
+      "demanda": {
+        "title": "Demanda turística",
+        "tagline": "Ocupación, estacionalidad y mercados emisores.",
+        "indo": {
+          "li1": "Turismo internacional en crecimiento.",
+          "li2": "Alta ocupación anual (≈ <b>70–80&nbsp;%</b> en polos turísticos).",
+          "li3": "Mercado diversificado: Australia, Europa y Asia."
+        },
+        "es": {
+          "li1": "Mercado turístico ya muy desarrollado.",
+          "li2": "Riesgo de saturación y sobreoferta en zonas maduras."
+        }
+      }
+    },
+
+    "airport": {
+      "heading": "Llegadas internacionales — Aeropuerto Lombok (BIZAM) 2024 vs 2025",
+      "meta": "Turistas internacionales (Wisman) por mes — BPS NTB. 2025 puede estar incompleto.",
+      "aria": "Llegadas internacionales a Lombok 2024 vs 2025",
+      "yLabel": "Personas",
+      "series": {
+        "y2024": "2024 — Llegadas (BIZAM)",
+        "y2025": "2025 — Llegadas (BIZAM)"
+      }
+    },
+
+    "months": ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"]
+  },
+  "infinity": {
+    "sectionAria": "Infinity 8 – Arquitectura en ladera",
+    "title": "Infinity 8: Arquitectura en ladera pensada para invertir",
+    "spec": {
+      "conceptTitle": "Infinity 8 · Terreno y concepto",
+      "location": {
+        "title": "Ubicación",
+        "li1": "Cima de montaña, entorno natural.",
+        "li2": "Disposición en <b>balcones</b>; proyecto en el <b>2.º superior</b>.",
+        "li3": "Vistas despejadas al valle y <b>orientación al atardecer</b>.",
+        "li4": "Superficie total ≈ <b>1.800 m²</b>."
+      },
+      "villas": {
+        "title": "Villas",
+        "li1": "Implantación lineal orientada a vistas.",
+        "li2": "<b>Nivel inferior</b>: cocina-salón-comedor, baño y gran terraza.",
+        "li3": "<b>Piscina infinita</b> privada.",
+        "li4": "<b>Nivel superior</b>: suite con grandes ventanales."
+      },
+      "amenities": {
+        "title": "Zonas comunes",
+        "li1": "Recepción y atención al huésped.",
+        "li2": "Servicios de limpieza y mantenimiento.",
+        "li3": "<b>Gimnasio + Cafetería/Brunch</b> (huéspedes y clientes)."
+      }
+    },
+    "carousel": {
+      "img1Alt": "Vista del valle al atardecer",
+      "img2Alt": "Dormitorio con vista al valle",
+      "img3Alt": "Salón principal con acceso a terraza",
+      "img4Alt": "Terrazas del terreno",
+      "img5Alt": "Terraza con zona lounge",
+      "img6Alt": "Vista aérea con dron",
+      "thumb": "Diapositiva {{num}}"
+    }
+  },
+  "map": {
+    "sectionAria": "Mapa — Lombok y Mandalika",
+    "panel": {
+      "titleFallback": "Detalle",
+      "summary": "Resumen",
+      "fields": {
+        "description": "Descripción",
+        "history": "Historia",
+        "usualDate": "Fecha habitual",
+        "generic": "Info",
+        "noData": "Sin datos para este punto."
+      },
+      "buttons": {
+        "play": "Reproducir",
+        "pause": "Pausar",
+        "playPause": "Reproducir/Pausar"
+      }
+    },
+    "pois": {
+      "mandalika": {
+        "label": "Circuito de Mandalika",
+        "photo": { "alt": "Circuito de Mandalika desde el aire", "caption": "Mandalika International Circuit" },
+        "resumen": {
+          "descripcion": "Trazado moderno junto a la costa; rápido y fluido con secciones técnicas.",
+          "historiaBreve": "Inaugurado en 2021; primera carrera de MotoGP en 2022.",
+          "fechaHabitual": "Octubre (puede variar)."
+        }
+      },
+      "airport": {
+        "label": "Aeropuerto Internacional de Lombok",
+        "photo": { "alt": "Terminal del Aeropuerto Internacional de Lombok", "caption": "Aeropuerto Internacional de Lombok (BIZAM)" },
+        "resumen": {
+          "descripcion": "Ubicación estratégica: a ~20–30 min de Kuta/Mandalika por la Bypass de aeropuerto; cerca de las principales zonas hoteleras del sur.",
+          "historiaBreve": "Conexiones: vuelos diarios con Jakarta, Bali y Surabaya; enlaces internacionales vía Bali/Jakarta."
+        }
+      },
+      "infinity": {
+        "label": "Infinity 8",
+        "photo": { "alt": "Complejo Infinity 8 en la ladera", "caption": "Infinity 8" },
+        "resumen": { "descripcion": "POI añadido desde lat/lon." }
+      },
+      "rinjani":  { "label": "Monte Rinjani", "photo": { "alt": "Cráter y lago del Monte Rinjani", "caption": "Parque Nacional del Monte Rinjani" } },
+      "gili":     { "label": "Islas Gili",    "photo": { "alt": "Playa y arrecife en las islas Gili", "caption": "Gili Trawangan · Gili Air · Gili Meno" } },
+      "selong":   { "label": "Playa Selong Belanak", "photo": { "alt": "Bahía de Selong Belanak", "caption": "Selong Belanak" } },
+      "tanjung":  { "label": "Tanjung Aan y Bukit Merese", "photo": { "alt": "Calas de Tanjung Aan y colina Merese", "caption": "Tanjung Aan · Bukit Merese" } },
+      "senaru":   { "label": "Sendang Gile y Tiu Kelep (Senaru)", "photo": { "alt": "Cascadas Sendang Gile y Tiu Kelep en la selva", "caption": "Sendang Gile & Tiu Kelep" } },
+      "pink":     { "label": "Pink Beach (Pantai Tangsi)", "photo": { "alt": "Arena rosada y aguas turquesas en Pink Beach", "caption": "Pink Beach (Pantai Tangsi)" } },
+      "senggigi": { "label": "Senggigi", "photo": { "alt": "Costa y puesta de sol en Senggigi", "caption": "Senggigi" } },
+      "lombok":   { "label": "LOMBOK" },
+      "bali":     { "label": "BALI" }
+    }
+  },
+  "modals": {
+    "common": {
+      "privacyHtml": "Acepto la <a href=\"/privacy-policy.html\" target=\"_blank\" rel=\"noopener\">Política de Privacidad</a>, <a href=\"/cookies-policy.html\" target=\"_blank\" rel=\"noopener\">Política de Cookies</a> y <a href=\"/legal-notice.html\" target=\"_blank\" rel=\"noopener\">Términos Legales</a>.",
+      "errorRequired": "Revisa los campos obligatorios y la aceptación de legales."
+    },
+    "wapp": {
+      "title": "Únete a la comunidad de WhatsApp",
+      "fields": {
+        "name": { "label": "Nombre", "ph": "" },
+        "email": { "label": "Email", "ph": "" },
+        "phone": { "label": "WhatsApp (móvil)", "ph": "+34 6XX..." },
+        "segment": {
+          "label": "Perfil",
+          "options": {
+            "inversor": "Inversor",
+            "comprador": "Comprador",
+            "agencia": "Agencia",
+            "otro": "Otro"
+          }
+        }
+      },
+      "hint": "Usaremos este número para invitarte al grupo.",
+      "confirm": "¡Listo! Hemos procesado tus datos.",
+      "footnote": "Tus datos se usarán para gestión de comunidad e información relevante. Puedes darte de baja cuando quieras.",
+      "btn": { "cancel": "Cancelar", "submit": "Unirme" }
+    },
+    "contact": {
+      "title": "Habla con nuestro equipo comercial",
+      "fields": {
+        "name": { "label": "Nombre", "ph": "" },
+        "email": { "label": "Email", "ph": "" },
+        "phone": { "label": "Teléfono", "ph": "" },
+        "topic": {
+          "label": "Interés",
+          "options": {
+            "compra": "Compra",
+            "inversion": "Inversión",
+            "alquiler": "Alquiler / rentabilidad",
+            "otro": "Otro"
+          }
+        },
+        "message": { "label": "Mensaje", "ph": "Cuéntanos en qué podemos ayudarte..." },
+        "joinWapp": "También quiero unirme a la comunidad de WhatsApp"
+      },
+      "confirm": "¡Gracias! Hemos procesado tus datos. Un asesor te contactará.",
+      "footnote": "Tu solicitud se asignará al comercial adecuado.",
+      "btn": { "cancel": "Cancelar", "submit": "Enviar" }
+    }
+  }
+}

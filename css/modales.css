@@ -1,0 +1,153 @@
+:root{
+  --brand: #dac670;
+  --ink: #fff;
+  --veil: rgba(0,0,0,.58);   /* fondo general más limpio */
+  --panel: rgba(0,0,0,.34);  /* panel translúcido */
+  --border: rgba(255,255,255,.18);
+  --shadow: 0 28px 72px rgba(0,0,0,.40);
+  --radius: 20px;
+  --blur: blur(8px) saturate(1.02);
+  --error: #ff6b6b;
+  --ok: #2fd17f;
+}
+
+html,body{height:100%; margin:0; font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--ink);}
+
+/* DEMO triggers */
+.demo-triggers{position:fixed; z-index:1; right:18px; bottom:18px; display:flex; gap:10px; flex-wrap:wrap;}
+.btn{
+  appearance:none; border:1px solid var(--border); color:#fff; background:rgba(0,0,0,.35);
+  padding:12px 16px; border-radius:14px; cursor:pointer; font-weight:450; backdrop-filter: blur(4px);
+}
+.btn:hover{ background:rgba(0,0,0,.48); }
+.btn.primary{ background: var(--brand); border-color: rgba(255,255,255,.18); color:#111; }
+.btn.primary[disabled]{ opacity:.5; cursor:not-allowed; }
+
+/* ===== MODAL OVERLAY ===== */
+.modal{
+  position:fixed; inset:0; z-index:9999; display:none; overflow:auto;
+}
+.modal.open{ display:block; }
+/* La capa de fondo NO bloquea clicks */
+.modal::before{
+  content:""; position:absolute; inset:0; background:var(--veil);
+  pointer-events:none;               /* ← importantísimo para que no tape inputs */
+}
+
+/* Contenedor */
+.modal__wrap{ position:relative; min-height:100%; display:grid; place-items:center; padding:28px 16px; }
+
+/* Panel con watermark (logo debajo de inputs) */
+.modal__panel{
+  position:relative;
+  width:min(860px, 96vw);
+  background: var(--panel);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: var(--blur);
+  overflow:hidden;
+}
+/* Marca de agua del logo: debajo de todo el contenido del panel */
+.modal__panel::before{
+  content:""; position:absolute; inset:0;
+  background: center / 240px no-repeat url("/images/logo.png");
+  opacity:.12; filter:grayscale(1) contrast(1.05);
+  pointer-events:none;
+  z-index:0;                         /* queda al fondo del panel */
+}
+/* Todo el contenido por encima de la marca de agua */
+.modal__head, .modal__body, .modal__foot{ position:relative; z-index:1; }
+
+.modal__head{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 20px;
+  border-bottom:1px solid var(--border);
+  background: linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.08));
+}
+.modal__title{ margin:0; font-weight:500; letter-spacing:.2px; font-size:1.85rem; }
+.modal__close{
+  appearance:none; border:1px solid var(--border); background:rgba(255,255,255,.08);
+  color:#fff; width:36px; height:36px; border-radius:10px; cursor:pointer; font-size:18px; font-weight:900;
+}
+
+.modal__body{
+  padding:22px 20px;
+  display:grid; gap:18px;
+}
+.modal__grid{ display:grid; gap:16px; grid-template-columns: 1fr 1fr; }
+@media (max-width: 860px){ .modal__grid{ grid-template-columns: 1fr; } }
+
+/* ===== FORM ===== */
+.field{ display:grid; gap:8px; }
+.label{ font-weight:450; font-size: 1.58rem; }
+.input, .select, .textarea{
+  width:100%; padding:14px 14px; border-radius:12px; border:1px solid var(--border);
+  background: rgba(0,0,0,.26); color:#fff; outline:none; font-size:1rem;
+  font-size: 1.5rem;
+}
+.textarea{ min-height:120px; resize:vertical; }
+.hint{ font-size:1.38rem; opacity:.9; margin-top:4px; }
+.row{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+.check{
+  display:flex; align-items:flex-start; gap:10px; padding:12px 10px; border-radius:12px;
+  background: rgba(255,255,255,.06); border:1px solid var(--border);
+}
+.check input{ width:18px; height:18px; margin-top:2px; }
+.check label{ line-height:1.4; }
+
+.error{ color:var(--error); font-weight:500; font-size:1.55rem; display:none; }
+.okline{ color:var(--ok); font-weight:500; display:none; }
+
+/* FOOTER */
+.modal__foot{
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+  border-top:1px solid var(--border); padding:14px 20px;
+  background: linear-gradient(0deg, rgba(0,0,0,.22), rgba(0,0,0,.08));
+}
+.muted{ opacity:.85; }
+
+/* Focus accesible */
+.input:focus, .textarea:focus, .select:focus{ outline:2px solid rgba(255,255,255,.22); }
+
+/* Confirmación */
+.confirm{
+  display:none; padding:12px 14px; border-radius:12px;
+  background: rgba(47, 209, 127, .16); border:1px solid rgba(47, 209, 127, .38);
+  font-weight:800;
+}
+.confirm.show{ display:block; }
+
+/* --- Overlay de fondo: no intercepta clics --- */
+.modal::before{
+  content:""; position:absolute; inset:0; background:var(--veil);
+  pointer-events:none;
+}
+
+/* --- Panel con marca de agua (logo bajo inputs, sin filtros) --- */
+.modal__panel{
+  position:relative;
+  width:min(860px, 96vw);
+  background: var(--panel);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: var(--blur);
+  overflow:hidden;
+}
+
+/* Marca de agua: colores reales, sin oscurecer, y sin mezclar */
+.modal__panel::before{
+  content:""; position:absolute; inset:0;
+  background: center / 260px no-repeat url("/images/logo.png");
+  opacity:1;                  /* ← muestra el logo tal cual */
+  filter:none;                /* ← sin filtros */
+  mix-blend-mode: normal;     /* ← sin mezclas con fondos */
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Asegura que el header y el botón están por encima de todo */
+.modal__head, .modal__body, .modal__foot{ position:relative; z-index:1; }
+.modal__head{ z-index:2; }
+.modal__close{ z-index:3; }

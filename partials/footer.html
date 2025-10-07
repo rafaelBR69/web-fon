@@ -1,0 +1,62 @@
+<!-- /partials/footer.html -->
+<footer class="footer pt-5 pb-5">
+  <div class="container">
+    <!-- ⬇️ fila principal SIN WRAP en lg+ -->
+    <div class="row main-row g-4 align-items-center flex-lg-nowrap">
+
+      <!-- 1) LOGO -->
+      <div class="col-12 col-lg-3 col-logo d-flex justify-content-center justify-content-lg-start">
+        <a href="/index.html#hero" class="footer-brand d-inline-flex align-items-center gap-2">
+          <img src="/images/logo.png" alt="Infinity (Lombok)" class="footer-logo" />
+          <span class="visually-hidden">Infinity Lombok</span>
+        </a>
+      </div>
+
+      <!-- 2) REDES + LEGALES (centrado) -->
+      <div class="col-12 col-lg-3 col-center d-flex flex-column align-items-center justify-content-center text-center">
+        <div class="d-flex justify-content-center gap-3 social mb-3">
+          <a href="https://www.instagram.com/blancarealspain/?hl=es" class="fs-4" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram fa-fw"></i></a>
+          <a href="https://es.linkedin.com/company/blancareal-real-estate" class="fs-4" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin fa-fw"></i></a>
+          <a href="https://www.blancareal.com/" class="fs-4" target="_blank" aria-label="Official website"><i class="fa-solid fa-globe fa-fw"></i></a>
+          <a href="https://www.youtube.com/@BlancaRealSpain" class="fs-4" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube fa-fw"></i></a>
+        </div>
+        <ul class="list-inline legal-links mb-0">
+          <li class="list-inline-item"><a href="/legal-notice.html">Aviso legal</a></li>
+          <li class="list-inline-item">·</li>
+          <li class="list-inline-item"><a href="/cookie-policy.html">Política de cookies</a></li>
+          <li class="list-inline-item">·</li>
+          <li class="list-inline-item"><a href="/privacy-policy.html">Política de privacidad</a></li>
+        </ul>
+      </div>
+
+      <!-- 3) FORMULARIO (pegado a la derecha) -->
+      <div class="col-12 col-lg-6 col-form d-flex justify-content-lg-end">
+        <form class="footer-form" method="post" action="#">
+          <div class="mb-2">
+            <label for="f-name" class="form-label mb-1">Nombre</label>
+            <input id="f-name" name="name" type="text" class="form-control form-control-sm" placeholder="Tu nombre" required>
+          </div>
+          <div class="mb-2">
+            <label for="f-email" class="form-label mb-1">Email</label>
+            <input id="f-email" name="email" type="email" class="form-control form-control-sm" placeholder="tucorreo@ejemplo.com" required>
+          </div>
+          <div class="mb-3">
+            <label for="f-msg" class="form-label mb-1">Mensaje</label>
+            <textarea id="f-msg" name="message" rows="3" class="form-control form-control-sm" placeholder="¿En qué podemos ayudarte?" required></textarea>
+          </div>
+          <div class="d-grid d-lg-flex justify-content-lg-end">
+            <button type="submit" class="btn btn-footer">Enviar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Fila inferior -->
+    <div class="row mt-4">
+      <div class="col text-center">
+        <p class="mb-0 footer-text1">© Infinity Lombok — Todos los derechos reservados</p>
+      </div>
+    </div>
+  </div>
+</footer>

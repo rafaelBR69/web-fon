@@ -1,0 +1,118 @@
+###############################################
+#  .htaccess – Infinity 8
+#  URLs limpias + detección ES / EN
+###############################################
+
+### 1) Activar mod_rewrite
+RewriteEngine On
+
+# ─────────────────────────────────────────────
+# BYPASS estáticos  →  si el archivo o directorio existe,
+#                      NO aplicar más reglas de reescritura.
+#                     (evita que /style.css, /js/app.js, /images/…,
+#                      etc. se reescriban como /js/style.css)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+# ─────────────────────────────────────────────
+
+### 2) Redirección automática de /
+RewriteCond %{REQUEST_URI} ^/$
+RewriteCond %{HTTP:Accept-Language} ^en [NC]
+RewriteRule ^$ /en/home   [R=302,L]
+
+RewriteCond %{REQUEST_URI} ^/$
+RewriteRule ^$ /es/inicio [R=302,L]
+
+#################################################################
+# 3) RUTAS ESPAÑOLAS
+#################################################################
+RewriteRule ^es/inicio/?$               /index.html            [L]
+RewriteRule ^es/disponibilidad/?$       /availability.html     [L]
+RewriteRule ^es/bloque-1/?$             /bloque-a.html         [L]
+RewriteRule ^es/bloque-2/?$             /bloque-b.html         [L]
+RewriteRule ^es/contacto/?$             /contact.html          [L]
+
+# Páginas legales
+RewriteRule ^es/aviso-legal/?$          /legal-notice.html     [L]
+RewriteRule ^es/politica-cookies/?$     /cookies-policy.html   [L]
+RewriteRule ^es/politica-privacidad/?$  /privacy-policy.html   [L]
+
+#################################################################
+# 4) RUTAS INGLESAS
+#################################################################
+RewriteRule ^en/home/?$                 /index.html            [L]
+RewriteRule ^en/availability/?$         /availability.html     [L]
+RewriteRule ^en/building-1/?$           /bloque-a.html         [L]
+RewriteRule ^en/building-2/?$           /bloque-b.html         [L]
+RewriteRule ^en/contact/?$              /contact.html          [L]
+
+# Páginas legales
+RewriteRule ^en/legal-notice/?$         /legal-notice.html     [L]
+RewriteRule ^en/cookie-policy/?$        /cookies-policy.html   [L]
+RewriteRule ^en/privacy-policy/?$       /privacy-policy.html   [L]
+
+#################################################################
+# 5) CANONICALIZACIÓN – Redirige *.html a sus slugs
+#################################################################
+
+# index.html
+RewriteCond %{THE_REQUEST} \s/index\.html\s [NC]
+RewriteCond %{HTTP:Accept-Language} ^en [NC]
+RewriteRule ^index\.html$ /en/home   [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/index\.html\s [NC]
+RewriteRule  ^index\.html$ /es/inicio [R=301,L]
+
+# availability.html
+RewriteCond %{THE_REQUEST} \s/availability\.html\s [NC]
+RewriteCond %{HTTP:Accept-Language} ^en [NC]
+RewriteRule ^availability\.html$ /en/availability [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/availability\.html\s [NC]
+RewriteRule ^availability\.html$ /es/disponibilidad [R=301,L]
+
+# bloque-a.html / bloque-b.html
+RewriteCond %{THE_REQUEST} \s/bloque-a\.html\s [NC]
+RewriteRule ^bloque-a\.html$ /es/bloque-1 [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/bloque-b\.html\s [NC]
+RewriteRule ^bloque-b\.html$ /es/bloque-2 [R=301,L]
+
+# contact.html
+RewriteCond %{THE_REQUEST} \s/contact\.html\s [NC]
+RewriteCond %{HTTP:Accept-Language} ^en [NC]
+RewriteRule ^contact\.html$ /en/contact [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/contact\.html\s [NC]
+RewriteRule ^contact\.html$ /es/contacto [R=301,L]
+
+# legal-notice.html
+RewriteCond %{THE_REQUEST} \s/legal-notice\.html\s [NC]
+RewriteCond %{HTTP:Accept-Language} ^en [NC]
+RewriteRule ^legal-notice\.html$ /en/legal-notice [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/legal-notice\.html\s [NC]
+RewriteRule  ^legal-notice\.html$ /es/aviso-legal [R=301,L]
+
+# cookies-policy.html
+RewriteCond %{THE_REQUEST} \s/cookies-policy\.html\s [NC]
+RewriteCond %{HTTP:Accept-Language} ^en [NC]
+RewriteRule ^cookies-policy\.html$ /en/cookie-policy [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/cookies-policy\.html\s [NC]
+RewriteRule ^cookies-policy\.html$ /es/politica-cookies [R=301,L]
+
+# privacy-policy.html
+RewriteCond %{THE_REQUEST} \s/privacy-policy\.html\s [NC]
+RewriteCond %{HTTP:Accept-Language} ^en [NC]
+RewriteRule ^privacy-policy\.html$ /en/privacy-policy [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/privacy-policy\.html\s [NC]
+RewriteRule ^privacy-policy\.html$ /es/politica-privacidad [R=301,L]
+
+#################################################################
+# 6) Cabeceras y seguridad opcionales
+# Header set Vary "Accept-Language"
+# Options -Indexes
+#################################################################

@@ -1,0 +1,292 @@
+<!-- ===================== MODAL · WHATSAPP ===================== -->
+<section class="modal" id="modal-wapp" aria-hidden="true" role="dialog" aria-labelledby="wapp-title">
+  <div class="modal__wrap" role="document">
+    <div class="modal__panel">
+      <header class="modal__head">
+        <h3 class="modal__title" id="wapp-title" data-i18n="modals.wapp.title">Únete a la comunidad de WhatsApp</h3>
+        <button class="modal__close" data-close type="button" aria-label="Cerrar" data-i18n-attr="aria-label|aria.close">&times;</button>
+      </header>
+
+      <div class="modal__body">
+        <div class="modal__grid">
+          <div class="field">
+            <label class="label" for="wapp-name" data-i18n="modals.wapp.fields.name.label">Nombre</label>
+            <input class="input" id="wapp-name" name="name" autocomplete="name" required
+                   data-i18n-attr="placeholder|modals.wapp.fields.name.ph">
+          </div>
+          <div class="field">
+            <label class="label" for="wapp-email" data-i18n="modals.wapp.fields.email.label">Email</label>
+            <input class="input" id="wapp-email" type="email" name="email" autocomplete="email" required
+                   data-i18n-attr="placeholder|modals.wapp.fields.email.ph">
+          </div>
+          <div class="field">
+            <label class="label" for="wapp-phone" data-i18n="modals.wapp.fields.phone.label">WhatsApp (móvil)</label>
+            <input class="input" id="wapp-phone" type="tel" name="phone" placeholder="+34 6XX..." autocomplete="tel" required
+                   data-i18n-attr="placeholder|modals.wapp.fields.phone.ph">
+            <small class="hint" data-i18n="modals.wapp.hint">Usaremos este número para invitarte al grupo.</small>
+          </div>
+          <div class="field">
+            <label class="label" for="wapp-segment" data-i18n="modals.wapp.fields.segment.label">Perfil</label>
+            <select class="select" id="wapp-segment" name="segment">
+              <option value="inversor"  data-i18n="modals.wapp.fields.segment.options.inversor">Inversor</option>
+              <option value="comprador" data-i18n="modals.wapp.fields.segment.options.comprador">Comprador</option>
+              <option value="agencia"   data-i18n="modals.wapp.fields.segment.options.agencia">Agencia</option>
+              <option value="otro"      data-i18n="modals.wapp.fields.segment.options.otro">Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="check">
+          <input type="checkbox" id="wapp-pp" required>
+          <label for="wapp-pp" class="muted" data-i18n="modals.common.privacyHtml">
+            Acepto la <a href="/privacy-policy.html" target="_blank" rel="noopener">Política de Privacidad</a>,
+            <a href="/cookies-policy.html" target="_blank" rel="noopener">Política de Cookies</a> y
+            <a href="/legal-notice.html" target="_blank" rel="noopener">Términos Legales</a>.
+          </label>
+        </div>
+
+        <div class="error" id="wapp-error" data-i18n="modals.common.errorRequired">
+          Revisa los campos obligatorios y la aceptación de legales.
+        </div>
+        <div class="confirm" id="wapp-confirm" data-i18n="modals.wapp.confirm">¡Listo! Hemos procesado tus datos.</div>
+      </div>
+
+      <footer class="modal__foot">
+        <small class="muted" data-i18n="modals.wapp.footnote">
+          Tus datos se usarán para gestión de comunidad e información relevante. Puedes darte de baja cuando quieras.
+        </small>
+        <div class="row">
+          <button class="btn" data-close type="button" data-i18n="modals.wapp.btn.cancel">Cancelar</button>
+          <button class="btn primary" id="wapp-submit" type="button" data-i18n="modals.wapp.btn.submit">Unirme</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MODAL · CONTACTO ===================== -->
+<section class="modal" id="modal-contacto" aria-hidden="true" role="dialog" aria-labelledby="contact-title">
+  <div class="modal__wrap" role="document">
+    <div class="modal__panel">
+      <header class="modal__head">
+        <h3 class="modal__title" id="contact-title" data-i18n="modals.contact.title">Habla con nuestro equipo comercial</h3>
+        <button class="modal__close" data-close type="button" aria-label="Cerrar" data-i18n-attr="aria-label|aria.close">&times;</button>
+      </header>
+
+      <div class="modal__body">
+        <div class="modal__grid">
+          <div class="field">
+            <label class="label" for="c-name" data-i18n="modals.contact.fields.name.label">Nombre</label>
+            <input class="input" id="c-name" name="name" autocomplete="name" required
+                   data-i18n-attr="placeholder|modals.contact.fields.name.ph">
+          </div>
+          <div class="field">
+            <label class="label" for="c-email" data-i18n="modals.contact.fields.email.label">Email</label>
+            <input class="input" id="c-email" type="email" name="email" autocomplete="email" required
+                   data-i18n-attr="placeholder|modals.contact.fields.email.ph">
+          </div>
+          <div class="field">
+            <label class="label" for="c-phone" data-i18n="modals.contact.fields.phone.label">Teléfono</label>
+            <input class="input" id="c-phone" type="tel" name="phone" autocomplete="tel"
+                   data-i18n-attr="placeholder|modals.contact.fields.phone.ph">
+          </div>
+          <div class="field">
+            <label class="label" for="c-topic" data-i18n="modals.contact.fields.topic.label">Interés</label>
+            <select class="select" id="c-topic" name="topic">
+              <option value="compra"    data-i18n="modals.contact.fields.topic.options.compra">Compra</option>
+              <option value="inversion" data-i18n="modals.contact.fields.topic.options.inversion">Inversión</option>
+              <option value="alquiler"  data-i18n="modals.contact.fields.topic.options.alquiler">Alquiler / rentabilidad</option>
+              <option value="otro"      data-i18n="modals.contact.fields.topic.options.otro">Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="c-msg" data-i18n="modals.contact.fields.message.label">Mensaje</label>
+          <textarea class="textarea" id="c-msg" name="message" placeholder="Cuéntanos en qué podemos ayudarte..."
+                    data-i18n-attr="placeholder|modals.contact.fields.message.ph"></textarea>
+        </div>
+
+        <div class="check">
+          <input type="checkbox" id="c-join-wapp">
+          <label for="c-join-wapp" data-i18n="modals.contact.fields.joinWapp">También quiero unirme a la comunidad de WhatsApp</label>
+        </div>
+
+        <div class="check">
+          <input type="checkbox" id="c-pp" required>
+          <label for="c-pp" class="muted" data-i18n="modals.common.privacyHtml">
+            Acepto la <a href="/privacy-policy.html" target="_blank" rel="noopener">Política de Privacidad</a>,
+            <a href="/cookies-policy.html" target="_blank" rel="noopener">Política de Cookies</a> y
+            <a href="/legal-notice.html" target="_blank" rel="noopener">Términos Legales</a>.
+          </label>
+        </div>
+
+        <div class="error" id="c-error" data-i18n="modals.common.errorRequired">
+          Revisa los campos obligatorios y la aceptación de legales.
+        </div>
+        <div class="confirm" id="c-confirm" data-i18n="modals.contact.confirm">
+          ¡Gracias! Hemos procesado tus datos. Un asesor te contactará.
+        </div>
+      </div>
+
+      <footer class="modal__foot">
+        <small class="muted" data-i18n="modals.contact.footnote">Tu solicitud se asignará al comercial adecuado.</small>
+        <div class="row">
+          <button class="btn" data-close type="button" data-i18n="modals.contact.btn.cancel">Cancelar</button>
+          <button class="btn primary" id="c-submit" type="button" data-i18n="modals.contact.btn.submit">Enviar</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Script aislado (módulo) ====== -->
+<script type="module">
+  // Evita doble inicialización si el parcial se recarga:
+  if (!window.__MODALS_INIT__) {
+    window.__MODALS_INIT__ = true;
+
+    /* ============ CONFIG ============ */
+    const GAS = {
+      WAPP:    'GAS_WEBAPP_URL_WHATSAPP',
+      CONTACT: 'GAS_WEBAPP_URL_CONTACT'
+    };
+
+    /* ============ Utils locales (no globales) ============ */
+    const qs = (s, c=document) => c.querySelector(s);
+
+    const openM = (sel) => {
+      const m = qs(sel);
+      if (!m) return;
+      m.classList.add('open');
+      m.setAttribute('aria-hidden','false');
+    };
+    const closeM = (node) => {
+      const m = node?.closest?.('.modal') || qs('.modal.open');
+      if (!m) return;
+      m.classList.remove('open');
+      m.setAttribute('aria-hidden','true');
+    };
+
+    /* ============ Delegación global abrir/cerrar ============ */
+    document.addEventListener('click', (e) => {
+      const openBtn = e.target.closest?.('[data-open]');
+      if (openBtn){
+        e.preventDefault();
+        openM(openBtn.getAttribute('data-open'));
+        return;
+      }
+      const closeBtn = e.target.closest?.('[data-close]');
+      if (closeBtn){
+        e.preventDefault();
+        closeM(closeBtn);
+        return;
+      }
+      const wrap = e.target;
+      if (wrap.classList?.contains('modal__wrap')){
+        e.preventDefault();
+        closeM(wrap);
+      }
+    });
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeM();
+    });
+
+    /* ============ Cola offline (retry) ============ */
+    const STORAGE_KEY = 'formQueueV1';
+    const readQueue  = () => { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; } };
+    const writeQueue = (arr) => localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+    async function flushQueue(){
+      const q = readQueue();
+      if (!q.length || !navigator.onLine) return;
+      const left = [];
+      for (const item of q){
+        try { await postJSON(item.url, item.payload); }
+        catch { left.push(item); }
+      }
+      writeQueue(left);
+    }
+    window.addEventListener('online', flushQueue);
+
+    /* ============ Fetch helper ============ */
+    async function postJSON(url, data){
+      const res = await fetch(url, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(data)
+      });
+      if (!res.ok) throw new Error('HTTP '+res.status);
+      return await res.json();
+    }
+
+    /* ============ Submit: WhatsApp ============ */
+    qs('#wapp-submit')?.addEventListener('click', async () => {
+      const name = qs('#wapp-name').value.trim();
+      const email = qs('#wapp-email').value.trim();
+      const phone = qs('#wapp-phone').value.trim();
+      const segment = qs('#wapp-segment').value;
+      const ok = qs('#wapp-pp').checked;
+
+      const err = qs('#wapp-error'), done = qs('#wapp-confirm');
+      err.style.display = 'none'; done.classList.remove('show');
+
+      if (!name || !email || !phone || !ok){
+        err.style.display = 'block';
+        return;
+      }
+
+      const payload = { ts:new Date().toISOString(), type:'whatsapp', name, email, phone, segment, privacy: ok };
+
+      try{
+        const res = await postJSON(GAS.WAPP, payload);
+        if (res?.success === false) throw new Error('API error');
+        done.classList.add('show');
+      }catch(e){
+        const q = readQueue(); q.push({ url: GAS.WAPP, payload }); writeQueue(q);
+        done.classList.add('show');
+      }finally{
+        flushQueue();
+      }
+    });
+
+    /* ============ Submit: Contacto ============ */
+    qs('#c-submit')?.addEventListener('click', async () => {
+      const name = qs('#c-name').value.trim();
+      const email = qs('#c-email').value.trim();
+      const phone = qs('#c-phone').value.trim();
+      const topic = qs('#c-topic').value;
+      const message = qs('#c-msg').value.trim();
+      const joinW = qs('#c-join-wapp').checked;
+      const ok = qs('#c-pp').checked;
+
+      const err = qs('#c-error'), done = qs('#c-confirm');
+      err.style.display = 'none'; done.classList.remove('show');
+
+      if (!name || !email || !ok){
+        err.style.display = 'block';
+        return;
+      }
+
+      const payload = {
+        ts:new Date().toISOString(),
+        type:'contact',
+        name, email, phone, topic, message,
+        join_whatsapp: joinW,
+        privacy: ok
+      };
+
+      try{
+        const res = await postJSON(GAS.CONTACT, payload);
+        if (res?.success === false) throw new Error('API error');
+        done.classList.add('show');
+      }catch(e){
+        const q = readQueue(); q.push({ url: GAS.CONTACT, payload }); writeQueue(q);
+        done.classList.add('show');
+      }finally{
+        flushQueue();
+      }
+    });
+  }
+</script>

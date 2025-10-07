@@ -1,0 +1,517 @@
+/* =========================================================
+   INFINITY – Hero expandible (fondo + 2 columnas en hover)
+   ========================================================= */
+
+/* ===== 1) TOKENS / LÍMITES ===== */
+#infinity.infinity-hero{
+  --hdr: var(--header-h, 88px);          /* alto del header fijo */
+  --h-closed: 420px;                      /* altura visible cerrado */
+  --h-open:   calc(100vh - var(--hdr));   /* abierto ≈ una pantalla */
+  --max-w:    1800px;
+  --pad-x:    min(5vw, 36px);
+  --speed:    1200ms cubic-bezier(.22,.61,.36,1); /* suave */
+
+  position: relative;
+  height: var(--h-closed);
+  max-height: var(--h-open);
+  isolation: isolate;
+  overflow: hidden;
+  transition: height var(--speed);
+}
+
+/* Abre al hover en desktop */
+@media (hover:hover){
+  #infinity.infinity-hero:hover{ height: var(--h-open); }
+}
+
+/* ===== 2) FONDO + OVERLAY ===== */
+#infinity .infinity-bg{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; object-position:center;
+  transform: scale(1) translateY(0);
+  transition: transform var(--speed), filter var(--speed);
+  z-index:-2;
+}
+#infinity .infinity-overlay{
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.55) 70%, rgba(0,0,0,.66));
+  pointer-events:none; z-index:-1;
+  transition: opacity var(--speed), background-color var(--speed);
+  opacity:.9;
+}
+@media (hover:hover){
+  #infinity:hover .infinity-bg{ transform: scale(1.06) translateY(-2%); filter: contrast(1.04) saturate(1.02); }
+  #infinity:hover .infinity-overlay{ opacity:1; }
+}
+
+/* ===== 3) CONTENEDORES ===== */
+#infinity,
+#infinity .infinity-inner,
+#infinity .infinity-container,
+#infinity .intro{ background: transparent !important; }
+
+#infinity .infinity-inner{
+  position:relative; width:100%; height:100%;
+  display:flex; justify-content:center;
+  padding-inline: var(--pad-x);
+  color:#fff;
+}
+#infinity .infinity-container{
+  width:100%; max-width: var(--max-w);
+  margin-inline:auto;
+  display:flex; flex-direction:column; gap:10px;
+  padding-top: 0; /* no empujar en cerrado */
+}
+
+/* ===== 4) TÍTULO (visible en cerrado) ===== */
+#infinity .intro{
+  position: absolute;
+  left: 0; right: 0;
+  top: calc(var(--hdr) - 6px);  /* justo bajo el header */
+  display:grid; place-items:center;
+  height: calc(var(--h-closed) - var(--hdr));
+  padding-inline: var(--pad-x);
+  z-index: 2;
+  pointer-events: none;         /* no bloquea hover */
+}
+
+#infinity .infinity-title{
+  margin:0;
+  color:#fff !important;
+  text-shadow: 0 4px 18px rgba(0,0,0,.36);
+  font-family:"Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+  font-weight:400; line-height:1.12;
+  letter-spacing:.2px;
+  text-align:center; text-wrap:balance;
+  font-size: clamp(2.4rem, 4.0vw, 3.8rem);
+  max-width: 22ch;
+  margin-inline:auto;
+  opacity:1; transform:none;
+  transition: opacity var(--speed), transform var(--speed);
+}
+
+/* Al abrir: el título vuelve al flujo para dejar sitio al grid */
+@media (hover:hover){
+  #infinity:hover .intro{
+    position: static;
+    height: auto;
+    padding-inline: 0;
+    margin-bottom: 10px;
+    pointer-events: auto;
+  }
+}
+
+/* ===========================
+   INFINITY – Título sin “card”
+   =========================== */
+
+/* Nada de cajas detrás del título */
+#infinity .intro{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  /* un poco más arriba, justo bajo el header fijo */
+  top: calc(var(--hdr) - 6px);
+}
+
+
+
+/* ===== 5) GRID INTERNO (texto + galería) ===== */
+#infinity .io-grid{
+  display:grid; align-items:stretch;
+  grid-template-columns: minmax(380px, 0.95fr) minmax(520px, 1.05fr);
+  gap: clamp(20px, 3.4vw, 34px);
+
+  /* cerrado */
+  opacity:0; transform: translateY(16px);
+  max-height: 0; overflow: clip; pointer-events:none;
+
+  transition: opacity var(--speed), transform var(--speed), max-height var(--speed);
+  margin-bottom: 10px;
+}
+@media (hover:hover){
+  #infinity:hover .io-grid{
+    opacity:1; transform: translateY(0);
+    max-height: calc(var(--h-open) - 120px);
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable both-edges;
+    pointer-events:auto;
+  }
+}
+
+/* ===== 6) BLOQUE IZQUIERDO (texto) – sin “card” ===== */
+.infinity-hero .io-card,
+.infinity-hero .io-carousel{ background:transparent !important; box-shadow:none !important; border-radius:0 !important; }
+.infinity-hero .io-card{ padding: 0 !important; }
+
+/* Colores y legibilidad */
+.infinity-hero .io-title,
+.infinity-hero .io-subtitle,
+.infinity-hero .io-text,
+.infinity-hero .io-meta,
+.infinity-hero .io-list,
+.infinity-hero .io-list li{
+  color:#fff !important;
+  text-shadow:0 2px 10px rgba(0,0,0,.35);
+}
+.infinity-hero .io-title{ font-weight:800; line-height:1.15; margin:0 0 .6rem; }
+.infinity-hero .io-subtitle{ margin:.9rem 0 .4rem; font-weight:700; }
+.infinity-hero .io-text,.infinity-hero .io-meta{ margin:0 0 .6rem; }
+.infinity-hero .io-list{ list-style:disc; margin:.1rem 0 .6rem 1.1rem; padding:0; }
+.infinity-hero .io-list li{ margin:.28rem 0; }
+
+/* ===== 7) GALERÍA DERECHA ===== */
+.infinity-hero .io-carousel-wrap{ position:relative; }
+.infinity-hero .io-carousel{ position:relative; overflow:hidden; }
+.infinity-hero .io-img{ display:block; width:100%; height: clamp(300px, 40vw, 520px); object-fit:cover; border-radius:0 !important; }
+.infinity-hero .io-overlay{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.00), rgba(0,0,0,.18) 75%); pointer-events:none; }
+.infinity-hero .carousel-indicators.thumbnails{
+  position:absolute; bottom:10px; left:50%; transform:translateX(-50%);
+  display:flex; gap:4px; margin:0; padding:0;
+}
+.infinity-hero .carousel-indicators.thumbnails button{
+  width:52px; height:36px; background-size:cover; background-position:center;
+  border:2px solid rgba(255,255,255,.9) !important; border-radius:6px; opacity:.85;
+}
+.infinity-hero .carousel-indicators.thumbnails button.active{ opacity:1; }
+
+/* ===== 8) RESPONSIVE ===== */
+@media (max-width: 991.98px){
+  #infinity.infinity-hero{ height:auto; max-height:none; padding-block: 42px; }
+  #infinity .intro{ position:static; height:auto; padding-inline: var(--pad-x); margin-bottom:10px; pointer-events:auto; }
+  #infinity .io-grid{ grid-template-columns: 1fr; gap:16px; opacity:1; transform:none; max-height:none; overflow:visible; pointer-events:auto; }
+  .infinity-hero .io-img{ height: clamp(220px, 56vw, 380px); }
+  #infinity .infinity-title{ max-width: 26ch; }
+}
+
+/* ===== 9) ACCESIBILIDAD ===== */
+@media (prefers-reduced-motion: reduce){
+  #infinity.infinity-hero,
+  #infinity .infinity-bg,
+  #infinity .infinity-title,
+  #infinity .io-grid{ transition: none !important; }
+}
+
+/* =========================================================
+   OVERRIDES FINALES (tamaños + separación) – GANA LA CASCADA
+   ========================================================= */
+
+/* Tipografías del bloque izquierdo (MÁS GRANDES) */
+#infinity.infinity-hero .io-title{
+  font-size: clamp(1.55rem, 2.2vw, 2.10rem) !important;  /* h3 */
+}
+#infinity.infinity-hero .io-subtitle{
+  font-size: clamp(1.20rem, 1.8vw, 1.45rem) !important;  /* h4 */
+}
+#infinity.infinity-hero .io-text,
+#infinity.infinity-hero .io-meta,
+#infinity.infinity-hero .io-list li{
+  font-size: clamp(1.15rem, 1.70vw, 1.35rem) !important; /* párrafo/lista */
+  line-height: 1.60 !important;
+}
+
+/* Más separación entre columnas */
+#infinity.infinity-hero .io-grid{
+  gap: clamp(26px, 4.0vw, 46px) !important;
+  grid-template-columns: minmax(420px, 0.9fr) minmax(560px, 1.1fr) !important;
+}
+
+/* Ajuste fino del carrusel en pantallas grandes */
+@media (min-width: 1200px){
+  #infinity.infinity-hero .io-carousel-wrap{ margin-left: 2px; }
+}
+
+/* El wrapper apila imagen + thumbnails en columna */
+.infinity-hero .io-carousel-wrap{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Indicadores debajo de la imagen (posicionamiento estático) */
+.infinity-hero .carousel-indicators.thumbnails{
+  position: static;             /* antes: absolute */
+  transform: none;              /* elimina el translateX */
+  left: auto;
+  bottom: auto;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 12px 0 0;             /* separa de la imagen */
+  padding: 0;
+}
+
+/* Botoncitos */
+.infinity-hero .carousel-indicators.thumbnails button{
+  width: 60px;
+  height: 40px;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid rgba(255,255,255,.9) !important;
+  border-radius: 6px;
+  opacity: .85;
+}
+.infinity-hero .carousel-indicators.thumbnails button.active{
+  opacity: 1;
+  outline: 2px solid #fff;
+}
+
+/* Si quieres que NO tapen la imagen en la versión overlay */
+.infinity-hero .io-overlay{ pointer-events: none; }
+
+/* =========================
+   OVERRIDES DE ESPACIADO + TIPOGRAFÍA
+   (pégalos al final del CSS)
+   ========================= */
+
+/* 1) Mucho más espacio entre columnas */
+#infinity.infinity-hero .io-grid{
+  /* antes: clamp(36px, 4vw, 56px) */
+  gap: clamp(42px, 7vw, 80px) !important;
+}
+
+/* 2) Título de la columna izquierda (h3) más grande y peso 400 */
+#infinity.infinity-hero .io-title{
+  /* antes: clamp(1.55rem, 2.2vw, 2.10rem) */
+  font-size: clamp(2.6rem, 3.2vw, 3.1rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.18 !important;
+  margin-bottom: 1.2rem !important;
+}
+
+/* 3) Subtítulos (h4) más grandes, peso 400 */
+#infinity.infinity-hero .io-subtitle{
+  /* antes: clamp(1.20rem, 1.8vw, 1.45rem) */
+  font-size: clamp(2.0rem, 2.6vw, 2.4rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.35 !important;
+  margin: 1.4rem 0 .6rem !important;
+}
+
+/* 4) Contenido (p, meta y li) muy aumentado y peso 250 */
+#infinity.infinity-hero .io-text,
+#infinity.infinity-hero .io-meta,
+#infinity.infinity-hero .io-list li{
+  /* antes: clamp(1.15rem, 1.70vw, 1.35rem) */
+  font-size: clamp(1.9rem, 2.2vw, 1.8rem) !important;
+  font-weight: 250 !important;            /* requiere fuente variable (p.ej. Montserrat VF) */
+  line-height: 1.52 !important;
+}
+
+/* 5) Lista: más aire entre bullets */
+#infinity.infinity-hero .io-list{
+  margin: .6rem 0 1.2rem 1.4rem !important;
+}
+#infinity.infinity-hero .io-list li{
+  margin: .32rem 0 !important;
+}
+
+/* 6) Opcional: separa aún más la columna de texto del borde */
+#infinity.infinity-hero .io-card{
+  padding-right: clamp(0px, 1.6vw, 24px) !important;
+}
+
+/* Título en UNA sola línea */
+#infinity .infinity-title{
+  max-width: 100% !important;     /* elimina el límite de 22ch */
+  white-space: nowrap !important;  /* no permitir saltos de línea */
+  text-wrap: nowrap;               /* (extra, por si el navegador lo usa) */
+  hyphens: none;
+  overflow: hidden;                /* evita desbordes raros */
+  text-overflow: clip;
+
+  /* tamaño fluido para que quepa en una línea */
+  font-size: clamp(1.6rem, 3.2vw, 3.4rem) !important;
+  letter-spacing: .2px;            /* puedes bajarlo a 0 si aún no cabe */
+}
+
+/* Opcional: da un poco más de ancho útil al título en cabecera */
+#infinity .intro{
+  padding-inline: clamp(12px, 3vw, 48px) !important;
+}
+
+/* En móviles muy estrechos, ajusta un poco más para que no desborde */
+@media (max-width: 575.98px){
+  #infinity .infinity-title{
+    font-size: clamp(1.2rem, 5.2vw, 2.2rem) !important;
+    letter-spacing: 0;
+  }
+}
+
+/* Quitar la reserva del canal de scroll */
+#infinity:hover .io-grid{
+  scrollbar-gutter: auto !important; /* o directamente: initial */
+}
+
+/* Ocultar la barra de scroll visualmente, manteniendo el scroll con rueda/touch */
+#infinity .io-grid{
+  -ms-overflow-style: none;      /* IE/Edge antiguos */
+  scrollbar-width: none;         /* Firefox */
+}
+#infinity .io-grid::-webkit-scrollbar{
+  width: 0; height: 0;           /* Chrome/Safari */
+}
+
+/* Por si el scroll lo estuviera mostrando el carrusel o su wrapper */
+.infinity-hero .io-carousel,
+.infinity-hero .io-carousel-wrap{
+  overflow: hidden;              /* asegura que la galería no muestre barras */
+}
+
+/* ---- A. Asegurar clics: que nada tape las miniaturas ---- */
+.infinity-hero .io-carousel-wrap{
+  position: relative;
+  z-index: 1;
+}
+.infinity-hero .carousel-indicators.thumbnails{
+  position: static;          /* ya lo tienes, por si acaso */
+  z-index: 3;                /* por encima de overlays */
+  pointer-events: auto;      /* asegúrate de que recibe clics */
+}
+
+/* Por si algún overlay las tapaba */
+.infinity-hero .io-overlay{
+  pointer-events: none !important;
+  z-index: 0;
+}
+
+/* ---- B. Miniaturas más GRANDES y área de clic generosa ---- */
+.infinity-hero .carousel-indicators.thumbnails{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 4px 0;
+}
+
+.infinity-hero .carousel-indicators.thumbnails button{
+  display: inline-block;
+  width: 88px;                 /* antes 60px */
+  height: 58px;                /* antes 40px */
+  background-size: cover;
+  background-position: center;
+  border: 2px solid rgba(255,255,255,.65) !important;
+  border-radius: 8px;
+  opacity: .95;
+  cursor: pointer;
+  outline: none;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, opacity .2s ease;
+  position: relative;          /* por si queremos pseudo-elementos */
+}
+
+.infinity-hero .carousel-indicators.thumbnails button:hover{
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 6px 22px rgba(0,0,0,.28);
+  border-color: rgba(255,255,255,.9) !important;
+}
+
+.infinity-hero .carousel-indicators.thumbnails button:focus-visible{
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Activo MUY claro (borde más grueso + brillo) */
+.infinity-hero .carousel-indicators.thumbnails button.active{
+  border-width: 3px !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.55), 0 6px 22px rgba(0,0,0,.35);
+  opacity: 1;
+}
+
+/* ---- C. Responsive: más grandes también en móvil ---- */
+@media (max-width: 575.98px){
+  .infinity-hero .carousel-indicators.thumbnails{
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .infinity-hero .carousel-indicators.thumbnails button{
+    width: min(28vw, 130px);
+    height: calc(min(28vw, 130px) * 0.66); /* mantiene ratio aprox */
+  }
+}
+
+/* Las miniaturas no cambian al estar activas: mismo look siempre */
+.infinity-hero .carousel-indicators.thumbnails button.active{
+  border-width: 2px !important;         /* igual que normal */
+  border-color: rgba(255,255,255,.65) !important;
+  box-shadow: none !important;
+  opacity: .95 !important;
+  outline: none !important;
+}
+/* Y por si Bootstrap pinta aria-current */
+.infinity-hero .carousel-indicators.thumbnails button[aria-current="true"]{
+  border-width: 2px !important;
+  border-color: rgba(255,255,255,.65) !important;
+  box-shadow: none !important;
+}
+
+/* ===== IO-SPEC: 2 columnas con separadores ===== */
+#infinity.infinity-hero .io-card.io-spec{ padding-right:0 !important; }
+
+#infinity.infinity-hero .io-spec .spec-row{
+  display:grid;
+  grid-template-columns: minmax(160px, 0.36fr) 1fr;
+  gap: clamp(12px, 1.8vw, 18px);
+  padding: clamp(10px, 1.6vw, 16px) 0;
+  position: relative;
+}
+
+/* separador horizontal entre secciones */
+#infinity.infinity-hero .io-spec .spec-row + .spec-row{
+  border-top: 1px solid rgba(255,255,255,.22);
+}
+
+/* columna izquierda: títulos */
+#infinity.infinity-hero .io-spec .spec-title{
+  font-weight: 400;
+  line-height: 1.35;
+  font-size: 1.9rem;
+}
+
+/* columna derecha: datos + línea vertical blanca fina */
+#infinity.infinity-hero .io-spec .spec-data{
+  border-left: 1px solid rgba(255,255,255,.35);
+  padding-left: clamp(12px, 1.8vw, 18px);
+}
+
+/* listas ordenadas compactas */
+#infinity.infinity-hero .io-spec ol{
+  margin: 0;
+  padding-left: 1.25em;
+}
+#infinity.infinity-hero .io-spec ol li{
+  margin: .2rem 0;
+  font-size: 1.6rem;
+}
+
+/* responsive: apilar y convertir la línea vertical en superior */
+@media (max-width: 575.98px){
+  #infinity.infinity-hero .io-spec .spec-row{
+    grid-template-columns: 1fr;
+  }
+  #infinity.infinity-hero .io-spec .spec-data{
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid rgba(255,255,255,.22);
+    margin-top: 8px;
+    padding-top: 10px;
+  }
+}
+/* Quitar numeración y bullets en las listas de la ficha */
+#infinity.infinity-hero .io-spec ol{
+  list-style: none !important;   /* sin números */
+  counter-reset: none !important;
+  margin: 0;                     /* ya controlamos el espacio con row-gap */
+  padding-left: 0;               /* sin sangría */
+  display: grid;                 /* espaciar elementos de forma uniforme */
+  row-gap: .32rem;               /* ajusta a tu gusto */
+}
+
+/* Asegurar que no aparezca marcador de ningún tipo */
+#infinity.infinity-hero .io-spec ol li::marker{ content: ''; }
+#infinity.infinity-hero .io-spec ol li{
+  margin: .2rem 0;               /* mismo look que tenías */
+  padding-left: 0;               /* sin espacio para numeración */
+}

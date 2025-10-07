@@ -1,0 +1,229 @@
+/* =========================================================
+   GRAFICOS.CSS  –  Panel 2×2 con cards centradas (tuneado)
+   ========================================================= */
+
+/* ============ 1) SCOPE GLOBAL / TOKENS ============ */
+.charts-scope{
+  --bg: transparent;
+  --ink: #ffffff;
+  --muted: #E6EEF8;
+
+  /* Colores series (sin cambios) */
+  --brand:  #32c1ff;
+  --brand2: #ff7a59;
+  --brand3: #9d7bff;
+  --brand4: #3ad29f;
+
+  /* Grid y fondos translúcidos */
+  --grid: rgba(255,255,255,.26);
+  --card-bg: rgba(0,0,0,.22);      /* MÁS OSCURO: para texto y charts */
+  --chart-bg: rgba(0,0,0,.16);     /* base para área del gráfico */
+
+  --radius: 16px;
+
+  /* Escala global (ligeramente ↑) */
+  --mul: 1.22;
+  --h: 240px;
+
+  color: var(--ink);
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+  position: relative;
+  background: var(--bg);
+  isolation: isolate;
+
+  /* Sombra blanca mínima para *todo* el texto dentro del scope */
+  text-shadow: 0 0 6px rgba(255,255,255,.12);
+}
+
+/* ============ 2) FONDO A DOS COLUMNAS (full-bleed) ============ */
+.charts-scope .bg-cols{
+  position:absolute; inset:0; left:50%; width:100vw; transform:translateX(-50%);
+  pointer-events:none; z-index:0;
+}
+.charts-scope .bg-col{
+  position:absolute; top:0; bottom:0; background-position:center; background-size:cover;
+  filter: grayscale(.06) saturate(.98) brightness(1.0) contrast(1.02) blur(.2px);
+}
+.charts-scope .bg-col.left  { left:0;    width:50vw; background-image: var(--bg-col-1, none); }
+.charts-scope .bg-col.right { left:50vw; width:50vw; background-image: var(--bg-col-2, none); }
+@media (max-width: 991.98px){ .charts-scope .bg-cols{ display:none; } }
+
+/* ============ 3) CABECERA ============ */
+.charts-scope .charts-head{
+  position:relative; z-index:1;
+  display:flex; justify-content:center; text-align:center; gap:14px; margin-bottom:16px;
+  padding-inline: 12px;
+}
+.charts-scope .charts-head > div{ max-width:1140px; }
+.charts-scope .title{
+  margin:0; font-weight:900; letter-spacing:.2px;
+  font-size: calc(2.18rem * var(--mul)); line-height:1.12; color:#fff;
+}
+.charts-scope .lead{
+  color:var(--muted); margin:.35rem 0 0;
+  font-size: calc(1.14rem * var(--mul)); font-weight:600;
+}
+
+/* ============ 4) GRID 2×2 – CADA CELDA CENTRADA ============ */
+.charts-quad{
+  position:relative; z-index:1;
+  max-width:2140px; margin-inline:auto; padding-inline:12px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: minmax(360px, auto);
+  gap: 18px;
+  place-items: center;
+}
+
+/* ============ 5) CARDS (TEXTO y GRÁFICO) ============ */
+.card{
+  background: var(--card-bg);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: var(--radius);
+  padding: 16px 16px 12px;
+  box-shadow: 0 16px 36px rgba(0,0,0,.20);
+}
+
+/* Texto: ahora sobre fondo translúcido oscuro y tipografía blanca */
+.text-card{
+  width: min(560px, 92%);
+  background: var(--card-bg);
+  color:#fff;
+}
+.text-card *{ color:#fff; }
+.text-card .punch{
+  margin:0 0 .5rem; font-weight:450;
+  font-size: calc(1.62rem * var(--mul));
+  line-height:1.18;
+}
+.text-card .tagline{
+  margin:.25rem 0 .8rem; font-weight:350;
+  font-size: calc(1.42rem * var(--mul));
+  color:#f3f6fb;
+}
+.text-card .bullets{
+  margin:0; padding-left:1.55rem; display:grid; gap:.45rem;
+  font-size: calc(1.22rem * var(--mul)); color:#eaf0f7;
+}
+.text-card .bullets li{ line-height:1.38; }
+
+/* Gráficos */
+.chart-card{ width: min(640px, 96%); }
+.chart-card h3{
+  margin:0 0 .5rem; font-weight:900; color:#fff;
+  font-size: calc(1.24rem * var(--mul));
+}
+.chart-card .meta{
+  font-size: calc(1.02rem * var(--mul)); color:#E6EEF8; margin-bottom:10px; font-weight:500;
+}
+.chart{
+  height: var(--h);
+  background: linear-gradient(180deg, var(--card-bg), var(--chart-bg));
+  border-radius: 14px;
+  backdrop-filter: blur(.6px) saturate(1.02);
+}
+
+/* ============ 6) SVG (ejes, ticks, series, leyenda, tooltip) ============ */
+svg{ width:100%; height:100%; display:block; }
+.gridline{ stroke: var(--grid); }
+
+/* Garantiza etiquetas de meses SIEMPRE BLANCAS y sin contorno pesado */
+.tick, .tick text, .axis-label{
+  fill:#ffffff !important;
+  stroke: rgba(255,255,255,.10);     /* “halo” blanco MUY sutil */
+  stroke-width: 1.4px;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
+  font-weight: 450;
+}
+.tick text{ font-size: calc(1.04rem * var(--mul)); }
+.axis-label{ font-size: calc(1.10rem * var(--mul)); }
+
+.serie{ fill:none; stroke-width: calc(2.8px * var(--mul)); stroke-linecap:round; }
+.point{ cursor:pointer; }
+
+/* Leyenda: oscura translúcida + texto blanco */
+.legend{
+  display:flex; gap:12px; align-items:center; margin-top:10px; flex-wrap:wrap;
+  font-size: calc(1.00rem * var(--mul));
+}
+.legend .item{
+  display:flex; align-items:center; gap:8px; color:#fff; font-weight:520;
+  background: rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.12);
+  border-radius:10px; padding:4px 8px;
+}
+.legend .sw{ width:18px; height:6px; border-radius:4px; opacity:.9; }
+.legend .check{
+  appearance:none; width:18px; height:18px; border:1px solid rgba(255,255,255,.45);
+  border-radius:4px; position:relative; cursor:pointer; background: rgba(255,255,255,.06);
+}
+.legend .check:checked{ background:rgba(255,255,255,.12); }
+.legend .check:checked::after{ content:""; position:absolute; inset:3px; background:#fff; }
+
+/* Tooltip: lo dejo claro para contraste (puedes oscurecer si quieres) */
+.tool{
+  position:absolute; min-width:190px; pointer-events:none; z-index:5;
+  padding:12px 14px; background:rgba(255,255,255,.98);
+  border:1px solid rgba(0,0,0,.10); border-radius:12px; box-shadow:0 12px 28px rgba(0,0,0,.15);
+  color:#0f172a; font-weight:700; font-size: calc(1.04rem * var(--mul));
+}
+.tool .t{ font-weight:900; color:#0f172a; letter-spacing:.2px; margin-bottom:2px; }
+.tool .s{ display:flex; align-items:center; gap:8px; margin-top:6px; color:#334155; }
+.tool .s b{ color:#0f172a; font-weight:900; }
+
+.insight{
+  margin:8px 2px 0; color:#f1f5f9;
+  font-size: calc(1.06rem * var(--mul)); font-weight:750;
+}
+.insight b{ color:#ffffff; }
+
+/* ============ 7) RESPONSIVE ============ */
+@media (max-width: 1199.98px){
+  .charts-scope{ --mul: 1.15; --h: 230px; }
+}
+@media (max-width: 991.98px){
+  .charts-scope{ --mul: 1.10; --h: 210px; }
+  .charts-quad{ grid-template-columns: 1fr; grid-auto-rows: auto; gap:14px; }
+  .text-card, .chart-card{ width: 100%; }
+}
+@media (max-width: 575.98px){
+  .charts-scope{ --mul: 1.04; --h: 200px; }
+}
+
+/* ==== Ajustes específicos del dashboard ==== */
+#dashboard-lombok{
+  --mul: 1.34;   /* ↑ tipografías y grosores un poco más */
+  --h: 260px;
+}
+#dashboard-lombok .text-card{  width: min(680px, 96%); }
+#dashboard-lombok .chart-card{ width: min(680px, 96%); }
+#dashboard-lombok .chart-card{ border-radius: 14px; padding: 16px 16px 12px; }
+#dashboard-lombok .chart-card h3{ font-size: calc(1.26rem * var(--mul)); }
+#dashboard-lombok .chart-card .meta{ font-size: calc(1.02rem * var(--mul)); }
+#dashboard-lombok .legend{ font-size: calc(1.00rem * var(--mul)); gap: 10px; }
+
+@media (max-width: 991.98px){
+  #dashboard-lombok{ --mul: 1.20; --h: 230px; }
+}
+@media (max-width: 575.98px){
+  #dashboard-lombok{ --mul: 1.10; --h: 210px; }
+}
+/* En tu bloque .chart existente, añade: */
+.chart{ position: relative; }  /* <- para posicionar el tooltip dentro de la tarjeta */
+
+/* =========================================================
+   GRAFICOS.CSS  –  Panel 2×2 con cards centradas (tuneado)
+   ========================================================= */
+
+/* … (todo tu CSS tal cual) … */
+
+/* En tu bloque .chart existente, añade: */
+.chart{ position: relative; }  /* <- para posicionar el tooltip dentro de la tarjeta */
+
+/* ===== Añadidos para la 5ª sección (gráfico inferior en fila completa) ===== */
+.charts-row{
+  position: relative; z-index: 1;
+  max-width: 2140px; margin: 6px auto 0; padding-inline: 12px;
+  display: flex; justify-content: center;
+}
+#dashboard-lombok .chart-card.wide{ width: min(1140px, 98%); }

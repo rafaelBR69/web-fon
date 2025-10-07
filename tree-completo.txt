@@ -1,0 +1,100 @@
+Listado de rutas de carpetas
+El número de serie del volumen es 4C0F-5C24
+C:.
+|   .htaccess
+|   app.js
+|   cookie-policy.html
+|   index.html
+|   legal-notice.html
+|   lista-archivos.txt
+|   lista-carpetas.txt
+|   mediaquaries.css
+|   privacy-policy.html
+|   prueba.txt
+|   README.md
+|   sitemap.xml
+|   style.css
+|   tree-completo.txt
+|   
++---.vscode
+|       settings.json
+|       
++---css
+|       footer.css
+|       galeria-dia-noche.css
+|       galeria-infinity.css
+|       graficos.css
+|       header.css
+|       infinity.css
+|       mapa.css
+|       modales.css
+|       ruleta.css
+|       
++---data
+|       mapa-data.json
+|       
++---fonts
+|       Junge-Regular.ttf
+|       
++---images
+|   |   aerea.png
+|   |   aeropuerto.jpg
+|   |   animales.jpg
+|   |   casa.jpg
+|   |   cuarto.png
+|   |   cultivo.jpg
+|   |   dron.png
+|   |   fachada.jpg
+|   |   logo.png
+|   |   montana.webp
+|   |   rul-1.jpg
+|   |   rul-3.jpg
+|   |   rul-4.jpg
+|   |   salon.png
+|   |   surf.jpg
+|   |   tardeo.jpg
+|   |   terraza.png
+|   |   terreno.jpg
+|   |   
+|   +---galeria-infinity
+|   |       bg3.jpg
+|   |       detras-dcha.jpg
+|   |       dia-dcha.jpg
+|   |       general-plano.jpg
+|   |       interior-plano.jpg
+|   |       interior-plano2.jpg
+|   |       noche-dcha.jpg
+|   |       noche-izq.jpg
+|   |       piso_1200.webp
+|   |       recepcion.jpg
+|   |       terreno.jpg
+|   |       
+|   \---poi
+|           aeropuerto.jpeg
+|           cascada.jpg
+|           circuito.jpg
+|           gili.webp
+|           pantai.jpg
+|           rinjani.jpg
+|           selong.jpg
+|           senggigi.jpg
+|           tanjung.jpg
+|           
++---js
+|       galeria-infinity.js
+|       i18n.js
+|       mapa.js
+|       
++---langs
+|       en.json
+|       es.json
+|       
+\---partials
+        footer.html
+        galeria-infinity.html
+        graficos.html
+        header.html
+        infinity.html
+        map.html
+        modales.html
+        
