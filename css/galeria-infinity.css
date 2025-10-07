@@ -5,7 +5,7 @@
 
 #galeria-infinity.gi-slider{
   /* ===== Tokens / Personaliza aquí ===== */
-  --gi-bg: url('/images/galeria-infinity/bg3.webp');
+  --gi-bg: url('/images/galeria-infinity/bg.jpg');
   --gi-gap: 21px;
   --gi-card-radius: 8px;
 
@@ -20,7 +20,7 @@
   --gi-speed: 700ms cubic-bezier(.22,1,.36,1);
 
   /* Altura del título superior (mover header) */
-  --gi-header-top: 18px;
+  --gi-header-top: 0px;
 
   /* Posición base del rótulo vertical */
   --gi-ribbon-x: 26px;
@@ -28,7 +28,7 @@
 
   /* Lienzo */
   width: 100%;
-  min-height: 100vh;
+  min-height: 110vh;
   background: var(--gi-bg) center/cover no-repeat, #0d1117;
   display: grid;
   place-items: center;
@@ -178,8 +178,9 @@
 #galeria-infinity .gi-subtitle{
   margin: .25rem 0 0;
   color: inherit;
-  font: 500 14px/1.2 "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font: 600 28px/1.2 "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   letter-spacing: .08em;
+  color: #092B3F;
 }
 
 /* ===== Responsive ===== */
