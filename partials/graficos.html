@@ -253,9 +253,9 @@
 
       function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
 
-      svg.addEventListener('mousemove',ev=>{
-        const rect=svg.getBoundingClientRect();
-        const mx=ev.clientX-rect.left, my=ev.clientY-rect.top;
+      svg.addEventListener('mousemove', ev => {
+        const rect = svg.getBoundingClientRect();
+        const mx   = ev.clientX - rect.left, my = ev.clientY - rect.top;
 
         if (mx < pad.l || mx > pad.l+plotW || my < pad.t || my > pad.t+plotH) {
           tip.style.display='none'; guide.style.opacity = 0; return;
@@ -264,24 +264,36 @@
         const ratio = (mx - pad.l) / (plotW || 1);
         const i = clamp(Math.round(xMin + ratio * (xMax - xMin)), xMin, xMax);
 
-        const rows = cfg.series.map(s=>{
-          const v = s.data[i];
-          const val = (v == null || Number.isNaN(v)) ? 's/d' : v.toLocaleString('es-ES');
-          return { name:s.name, val, raw:v };
-        });
+        // locale según i18n (es-ES / en-US)
+        const locale = (window.i18next?.resolvedLanguage || 'es').startsWith('en') ? 'en-US' : 'es-ES';
+        const fmt = v => (v == null || Number.isNaN(v)) ? '—' : v.toLocaleString(locale);
 
-        const ys = rows.filter(r=>r.raw!=null).map(r=>y(r.raw));
+        // filas del tooltip (nombre izquierda, valor derecha)
+        const seriesRows = cfg.series.map(s => {
+          const v = s.data[i];
+          return `<div class="r"><span class="n">${s.name}:</span><span class="v">${fmt(v)}</span></div>`;
+        }).join('');
+
+        // y para colocar el tooltip a la altura del punto más alto pintado ese mes
+        const ys = cfg.series.map(s => s.data[i]).filter(v => v != null).map(y);
         const yTip = ys.length ? Math.min(...ys) : (pad.t + plotH/2);
 
-        tip.innerHTML = `<div class="t">${cfg.labels[i]}</div>` +
-          `<div class="s">${rows.map(r=>`${r.name}: <b>${r.val}</b>`).join('<br>')}</div>`;
-        tip.style.display='block';
-        tip.style.left = Math.min(x(i)+16, W-240)+'px';
-        tip.style.top  = Math.max(yTip-42, 0)+'px';
+        tip.innerHTML = `
+          <div class="t">${cfg.labels[i]}</div>
+          <div class="s">${seriesRows}</div>
+        `;
+        tip.style.display = 'block';
 
-        guide.setAttribute('x1', x(i)); guide.setAttribute('x2', x(i));
+        // Evita que se corte: usa el ancho real del tooltip
+        const tipW = tip.offsetWidth || 260;
+        tip.style.left = Math.min(x(i) + 16, W - tipW - 8) + 'px';
+        tip.style.top  = Math.max(yTip - 46, 0) + 'px';
+
+        guide.setAttribute('x1', x(i));
+        guide.setAttribute('x2', x(i));
         guide.style.opacity = 1;
       });
+
       svg.addEventListener('mouseleave',()=>{ tip.style.display='none'; guide.style.opacity = 0; });
 
       // leyenda

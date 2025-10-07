@@ -314,8 +314,8 @@
       "aria": "International arrivals to Lombok 2024 vs 2025",
       "yLabel": "People",
       "series": {
-        "y2024": "2024 — Arrivals (BIZAM)",
-        "y2025": "2025 — Arrivals (BIZAM)"
+        "y2024": "2024 — Arrivals",
+        "y2025": "2025 — Arrivals"
       }
     },
 

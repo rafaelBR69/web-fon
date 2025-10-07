@@ -312,8 +312,8 @@
       "aria": "Llegadas internacionales a Lombok 2024 vs 2025",
       "yLabel": "Personas",
       "series": {
-        "y2024": "2024 — Llegadas (BIZAM)",
-        "y2025": "2025 — Llegadas (BIZAM)"
+        "y2024": "2024 — Llegadas",
+        "y2025": "2025 — Llegadas"
       }
     },
 
