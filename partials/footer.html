@@ -15,10 +15,7 @@
       <!-- 2) REDES + LEGALES (centrado) -->
       <div class="col-12 col-lg-3 col-center d-flex flex-column align-items-center justify-content-center text-center">
         <div class="d-flex justify-content-center gap-3 social mb-3">
-          <a href="https://www.instagram.com/blancarealspain/?hl=es" class="fs-4" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram fa-fw"></i></a>
-          <a href="https://es.linkedin.com/company/blancareal-real-estate" class="fs-4" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin fa-fw"></i></a>
-          <a href="https://www.blancareal.com/" class="fs-4" target="_blank" aria-label="Official website"><i class="fa-solid fa-globe fa-fw"></i></a>
-          <a href="https://www.youtube.com/@BlancaRealSpain" class="fs-4" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube fa-fw"></i></a>
+          <a href="https://www.instagram.com/infinity8lmbk?igsh=ajV4cHR5ZGp5b2Uw" class="fs-4" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram fa-fw"></i></a>
         </div>
         <ul class="list-inline legal-links mb-0">
           <li class="list-inline-item"><a href="/legal-notice.html">Aviso legal</a></li>
@@ -30,8 +27,8 @@
       </div>
 
       <!-- 3) FORMULARIO (pegado a la derecha) -->
-      <div class="col-12 col-lg-6 col-form d-flex justify-content-lg-end">
-        <form class="footer-form" method="post" action="#">
+      <div class="col-12 col-form">
+        <form class="footer-form" method="post" action="#" novalidate>
           <div class="mb-2">
             <label for="f-name" class="form-label mb-1">Nombre</label>
             <input id="f-name" name="name" type="text" class="form-control form-control-sm" placeholder="Tu nombre" required>
@@ -44,6 +41,25 @@
             <label for="f-msg" class="form-label mb-1">Mensaje</label>
             <textarea id="f-msg" name="message" rows="3" class="form-control form-control-sm" placeholder="¿En qué podemos ayudarte?" required></textarea>
           </div>
+
+          <!-- Aceptación de términos -->
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="f-pp" required>
+            <label class="form-check-label" for="f-pp">
+              Acepto la <a href="/privacy-policy.html" target="_blank" rel="noopener">Política de Privacidad</a>,
+              <a href="/cookie-policy.html" target="_blank" rel="noopener">Política de Cookies</a> y
+              <a href="/legal-notice.html" target="_blank" rel="noopener">Términos Legales</a>.
+            </label>
+          </div>
+
+          <!-- Mensajes -->
+          <div id="f-error" class="alert alert-danger d-none small" role="alert" aria-live="polite">
+            Revisa los campos obligatorios y la aceptación de legales.
+          </div>
+          <div id="f-confirm" class="alert alert-success d-none small" role="status" aria-live="polite">
+            ¡Gracias! Hemos procesado tus datos.
+          </div>
+
           <div class="d-grid d-lg-flex justify-content-lg-end">
             <button type="submit" class="btn btn-footer">Enviar</button>
           </div>
@@ -60,3 +76,95 @@
     </div>
   </div>
 </footer>
+
+<!-- ===== Script para enviar a Google Apps Script (misma URL) ===== -->
+<script type="module">
+(() => {
+  const FORM = document.querySelector('.footer-form');
+  if (!FORM) return;
+
+  // Usa tu mismo endpoint de Apps Script:
+  const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxCxEd6BhagF41sQ_XkfDaYsFXfVxqSTUzVlTAHxbgEdZwZpkxaWmMJyxyxKNik6tyh/exec';
+
+  // Cola offline mínima (igual que en modals)
+  const STORAGE_KEY = 'formQueueV1';
+  const readQueue  = () => { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; } };
+  const writeQueue = (arr) => localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+  async function flushQueue(){
+    const q = readQueue();
+    if (!q.length || !navigator.onLine) return;
+    const left = [];
+    for (const item of q){
+      try { await postJSON(item.url, item.payload); }
+      catch { left.push(item); }
+    }
+    writeQueue(left);
+  }
+  window.addEventListener('online', flushQueue);
+
+  async function postJSON(url, data){
+    try{
+      // Enviamos como text/plain y sin CORS para evitar preflight
+      await fetch(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(data)
+      });
+      // La respuesta será "opaque"; no se puede leer, pero el servidor recibe el POST
+      return { success: true, opaque: true };
+    }catch(e){
+      return { success: false, error: String(e) };
+    }
+  }
+
+  const $ = (sel) => FORM.querySelector(sel);
+  const show = (sel, on=true) => {
+    const el = $(sel);
+    if (!el) return;
+    el.classList.toggle('d-none', !on);
+  };
+
+  FORM.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    show('#f-error', false);
+    show('#f-confirm', false);
+
+    const name    = $('#f-name')?.value.trim();
+    const email   = $('#f-email')?.value.trim();
+    const message = $('#f-msg')?.value.trim();
+    const ok      = $('#f-pp')?.checked;
+
+    if (!name || !email || !message || !ok){
+      show('#f-error', true);
+      return;
+    }
+
+    // Reutilizamos el "type: contact" para que el GAS lo guarde en la hoja Contact.
+    // topic: 'footer' te permite rutearlo fácilmente en Apps Script si quieres.
+    const payload = {
+      ts: new Date().toISOString(),
+      type: 'contact',
+      name, email,
+      phone: '',                 // sin teléfono en footer
+      topic: 'footer',
+      message,
+      join_whatsapp: false,      // no aplica en footer
+      privacy: ok
+    };
+
+    try {
+      const res = await postJSON(GAS_WEBAPP_URL, payload);
+      if (res?.success === false) throw new Error('API error');
+      show('#f-confirm', true);
+      FORM.reset();
+    } catch (err) {
+      // Guardamos en cola offline y mostramos confirm para no perder el lead
+      const q = readQueue(); q.push({ url: GAS_WEBAPP_URL, payload }); writeQueue(q);
+      show('#f-confirm', true);
+    } finally {
+      flushQueue();
+    }
+  });
+})();
+</script>

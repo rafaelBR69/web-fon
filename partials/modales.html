@@ -49,6 +49,20 @@
           Revisa los campos obligatorios y la aceptación de legales.
         </div>
         <div class="confirm" id="wapp-confirm" data-i18n="modals.wapp.confirm">¡Listo! Hemos procesado tus datos.</div>
+
+        <!-- ★ Card con enlace tras unirse -->
+        <div class="join-card" id="wapp-join-card" hidden>
+          <h4 data-i18n="modals.wapp.card.title">Acceso al grupo de WhatsApp</h4>
+          <p data-i18n="modals.wapp.card.text">
+            Hemos tratado tus datos conforme a la Política de Privacidad. Puedes unirte ahora:
+          </p>
+          <div class="row">
+            <a class="btn primary" data-wapp-link target="_blank" rel="noopener"
+               data-i18n="modals.wapp.card.joinBtn">Entrar al grupo</a>
+            <button class="btn" type="button" data-copy-link
+                    data-i18n="modals.wapp.card.copyBtn">Copiar enlace</button>
+          </div>
+        </div>
       </div>
 
       <footer class="modal__foot">
@@ -127,6 +141,20 @@
         <div class="confirm" id="c-confirm" data-i18n="modals.contact.confirm">
           ¡Gracias! Hemos procesado tus datos. Un asesor te contactará.
         </div>
+
+        <!-- ★ Card con enlace si marcó unirse a WhatsApp -->
+        <div class="join-card" id="contact-join-card" hidden>
+          <h4 data-i18n="modals.contact.card.title">Te damos acceso a la comunidad</h4>
+          <p data-i18n="modals.contact.card.text">
+            Como has solicitado unirte a WhatsApp, aquí tienes el enlace directo:
+          </p>
+          <div class="row">
+            <a class="btn primary" data-wapp-link target="_blank" rel="noopener"
+               data-i18n="modals.contact.card.joinBtn">Entrar al grupo</a>
+            <button class="btn" type="button" data-copy-link
+                    data-i18n="modals.contact.card.copyBtn">Copiar enlace</button>
+          </div>
+        </div>
       </div>
 
       <footer class="modal__foot">
@@ -147,10 +175,13 @@
     window.__MODALS_INIT__ = true;
 
     /* ============ CONFIG ============ */
+    const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxCxEd6BhagF41sQ_XkfDaYsFXfVxqSTUzVlTAHxbgEdZwZpkxaWmMJyxyxKNik6tyh/exec';
     const GAS = {
-      WAPP:    'GAS_WEBAPP_URL_WHATSAPP',
-      CONTACT: 'GAS_WEBAPP_URL_CONTACT'
+      WAPP:    GAS_WEBAPP_URL, // mismo endpoint para ambos
+      CONTACT: GAS_WEBAPP_URL
     };
+    // Enlace del grupo de WhatsApp
+    const WAPP_LINK = 'https://chat.whatsapp.com/HieyG4zGltE9EJaiM804Eo';
 
     /* ============ Utils locales (no globales) ============ */
     const qs = (s, c=document) => c.querySelector(s);
@@ -160,7 +191,13 @@
       if (!m) return;
       m.classList.add('open');
       m.setAttribute('aria-hidden','false');
+
+      // Reset estados visuales al abrir
+      m.querySelectorAll('.confirm').forEach(el => el.classList.remove('show'));
+      m.querySelectorAll('.error').forEach(el => el.style.display='none');
+      m.querySelectorAll('.join-card').forEach(el => { el.hidden = true; el.classList.remove('show'); });
     };
+
     const closeM = (node) => {
       const m = node?.closest?.('.modal') || qs('.modal.open');
       if (!m) return;
@@ -212,13 +249,44 @@
 
     /* ============ Fetch helper ============ */
     async function postJSON(url, data){
-      const res = await fetch(url, {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify(data)
-      });
-      if (!res.ok) throw new Error('HTTP '+res.status);
-      return await res.json();
+      try{
+        // Enviamos como text/plain y sin CORS para evitar preflight
+        await fetch(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(data)
+        });
+        // La respuesta será "opaque"; no se puede leer, pero el servidor recibe el POST
+        return { success: true, opaque: true };
+      }catch(e){
+        return { success: false, error: String(e) };
+      }
+    }
+
+    /* ============ Helper: mostrar card con enlace WhatsApp ============ */
+    function showJoinCard(cardSel){
+      const card = qs(cardSel);
+      if (!card) return;
+
+      const link = card.querySelector('[data-wapp-link]');
+      if (link) link.href = WAPP_LINK;
+
+      const copyBtn = card.querySelector('[data-copy-link]');
+      if (copyBtn) {
+        copyBtn.onclick = () => {
+          navigator.clipboard?.writeText(WAPP_LINK)
+            .then(() => {
+              const old = copyBtn.textContent;
+              copyBtn.textContent = 'Copiado';
+              setTimeout(() => copyBtn.textContent = old, 1800);
+            })
+            .catch(() => { prompt('Copia el enlace:', WAPP_LINK); });
+        };
+      }
+
+      card.hidden = false;
+      card.classList.add('show');
     }
 
     /* ============ Submit: WhatsApp ============ */
@@ -248,6 +316,8 @@
         done.classList.add('show');
       }finally{
         flushQueue();
+        // ★ Mostrar card con enlace
+        showJoinCard('#wapp-join-card');
       }
     });
 
@@ -286,6 +356,8 @@
         done.classList.add('show');
       }finally{
         flushQueue();
+        // ★ Si pidió unirse, enseñamos la card con el enlace
+        if (joinW) showJoinCard('#contact-join-card');
       }
     });
   }

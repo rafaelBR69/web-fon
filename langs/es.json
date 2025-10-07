@@ -431,7 +431,13 @@
       "hint": "Usaremos este número para invitarte al grupo.",
       "confirm": "¡Listo! Hemos procesado tus datos.",
       "footnote": "Tus datos se usarán para gestión de comunidad e información relevante. Puedes darte de baja cuando quieras.",
-      "btn": { "cancel": "Cancelar", "submit": "Unirme" }
+      "btn": { "cancel": "Cancelar", "submit": "Unirme" },
+      "card": {
+        "title": "Acceso al grupo de WhatsApp",
+        "text": "Hemos tratado tus datos conforme a la Política de Privacidad. Puedes unirte ahora:",
+        "joinBtn": "Entrar al grupo",
+        "copyBtn": "Copiar enlace"
+      }
     },
     "contact": {
       "title": "Habla con nuestro equipo comercial",
@@ -453,7 +459,13 @@
       },
       "confirm": "¡Gracias! Hemos procesado tus datos. Un asesor te contactará.",
       "footnote": "Tu solicitud se asignará al comercial adecuado.",
-      "btn": { "cancel": "Cancelar", "submit": "Enviar" }
+      "btn": { "cancel": "Cancelar", "submit": "Enviar" },
+      "card": {
+        "title": "Te damos acceso a la comunidad",
+        "text": "Como has solicitado unirte a WhatsApp, aquí tienes el enlace directo:",
+        "joinBtn": "Entrar al grupo",
+        "copyBtn": "Copiar enlace"
+      }
     }
-  }
+  }  
 }

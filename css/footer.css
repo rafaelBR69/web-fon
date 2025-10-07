@@ -1,4 +1,4 @@
-/* /css/footer.css – overrides para el pie */
+/* /css/footer.css – Footer 3 columnas (logo / centro / formulario) con imagen de fondo */
 :root{
   --brand-crema : #F4EBDD;
   --brand-blue  : #092B3F;
@@ -7,185 +7,175 @@
 
 /* ===== Base ===== */
 .footer{
-  background: var(--brand-blue) !important;
-  color: #ffffff !important;
+  background-color: var(--brand-blue) !important;
+  background-image: url("/images/footer.jpg") !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: #fff !important;
   font-family: 'Montserrat', sans-serif;
   position: relative;
   isolation: isolate;
   -webkit-backdrop-filter: blur(4px) saturate(115%);
   backdrop-filter: blur(4px) saturate(115%);
   box-shadow: 0 -8px 18px rgba(0,0,0,.08);
-  font-size: clamp(1rem, 0.98rem + 0.28vw, 1.12rem);
-  line-height: 1.5;
+
+  /* ⬇️ Tamaño global a 2rem */
+  font-size: 1.5rem;
+  line-height: 1.45;
+
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
 }
 
-/* Capa pixelada (arreglada: sin coma colgante) */
+/* Velo + grano encima de la imagen */
 .footer::before{
   content: "";
   position: absolute; inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(1px 1px at 12% 22%, rgba(255,255,255,.03), transparent 60%),
-    radial-gradient(1px 1px at 68% 46%, rgba(255,255,255,.025), transparent 60%),
-    radial-gradient(1px 1px at 34% 84%, rgba(255,255,255,.02), transparent 60%);
-  opacity: .22;
-  border-top: 1px solid rgba(255,255,255,.18);
+    linear-gradient(180deg, rgba(12,16,20,.40), rgba(12,16,20,.50)),
+    radial-gradient(1.5px 1.5px at 12% 22%, rgba(0,0,0,.22), transparent 60%),
+    radial-gradient(1.2px 1.2px at 68% 46%, rgba(0,0,0,.18), transparent 60%),
+    radial-gradient(1.1px 1.1px at 34% 84%, rgba(0,0,0,.16), transparent 60%),
+    radial-gradient(1.0px 1.0px at 82% 76%, rgba(255,255,255,.04), transparent 60%);
+  filter: blur(.25px);
+  opacity: 1;
+  border-top: 1px solid rgba(255,255,255,.12);
   z-index: 0;
 }
 .footer > * { position: relative; z-index: 1; }
 
-/* ===== Layout columnas ===== */
-.main-row{ align-items: start; } /* top-aligned */
+/* ===== Grid 3 columnas centradas en desktop ===== */
 @media (min-width: 992px){
-  .col-logo  { display:flex; align-items:center; } /* centra vertical el logo */
-  .col-center{ display:flex; flex-direction:column; align-items:center; justify-content:center; }
-  .col-form  { display:flex; }
+  .footer .main-row{
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    column-gap: 40px;
+    min-height: 360px;
+  }
+  .footer .col-logo   { justify-self: start;  text-align: left;  }
+  .footer .col-center { justify-self: center; text-align: center;}
 }
 
-/* Logo más grande en desktop */
+/* ===== Logo (más grande) ===== */
 .footer-logo{
-  height: 84px;                /* ↑ */
+  height: 240px; /* ↑ */
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,.25));
 }
-@media (max-width: 991.98px){
-  .footer-logo{ height: 64px; }
+@media (max-width: 1199.98px){ .footer-logo{ height: 120px; } }
+@media (max-width: 991.98px) { .footer-logo{ height: 90px; } }
+@media (max-width: 575.98px) { .footer-logo{ height: 72px; } }
+
+/* ===== Centro: redes + enlaces en UNA sola línea ===== */
+.footer .social a{
+  transition: opacity .25s;
+  font-size: 3em; /* = 2rem por el font-size global */
+}
+.footer .social a:hover{ opacity: .85; }
+
+.legal-links{
+  margin-top: .4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  white-space: nowrap;     /* una sola línea */
+  font-weight: 500;
+}
+.legal-links .list-inline-item{ color:#fff; opacity:.95; }
+/* En móvil permitimos que parta si no cabe */
+@media (max-width: 575.98px){
+  .legal-links{ white-space: normal; flex-wrap: wrap; row-gap: .25rem; }
 }
 
-/* Enlaces / texto */
+/* ===== Enlaces generales ===== */
 .footer a{
-  color: #ffffff;
+  color: #fff;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
 }
 .footer a:hover{ text-decoration: underline; }
 
-/* Sociales */
-.footer .social a{ transition: opacity .25s; }
-.footer .social a:hover{ opacity: .85; }
-
-/* Legales */
-.legal-links{ margin-top: .25rem; }
-.legal-links .list-inline-item{ color:#ffffff; opacity:.95; }
-
-/* Formulario: ancho controlado y a la derecha en lg+ */
-.footer-form{
-  width: 100%;
-}
+/* ===== Formulario (inputs más grandes) ===== */
+.footer-form{ width: 100%; }
 @media (min-width: 992px){
-  .footer-form{ max-width: 480px; margin-left: auto; } /* pega a la derecha */
+  .footer-form{ max-width: 720px; } /* ↑ más ancho en escritorio */
 }
 
-/* Campos */
 .footer-form .form-label{
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 1rem;
-}
-.footer-form .form-control{
-  background: rgba(255,255,255,.10);
-  border: 1px solid rgba(255,255,255,.28);
-  color: #ffffff;
-  box-shadow: none;
-}
-.footer-form .form-control::placeholder{ color: rgba(255,255,255,.75); }
-.footer-form .form-control:focus{
-  border-color: rgba(255,255,255,.55);
-  outline: 0;
-  box-shadow: 0 0 0 .18rem rgba(255,255,255,.18);
+  color: #fff;
+  font-weight: 500;
+  font-size: 1em; /* = 2rem */
+  margin-bottom: .3rem;
 }
 
-/* Botón */
+.footer-form .form-control{
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.32);
+  color: #fff;
+  box-shadow: none;
+
+  font-size: 1em;         /* = 2rem */
+  padding: .7em .8em;     /* proporcional (≈ 1.4rem × 1.6rem) */
+  min-height: 3.2em;      /* ≈ 6.4rem de alto */
+  border-radius: .5em;    /* ≈ 1rem */
+}
+.footer-form .form-control::placeholder{ color: rgba(255,255,255,.78); }
+.footer-form .form-control:focus{
+  border-color: rgba(255,255,255,.60);
+  outline: 0;
+  box-shadow: 0 0 0 .12em rgba(255,255,255,.18);
+}
+.footer-form textarea.form-control{ min-height: 10em; }
+
+/* Botón (acompaña el tamaño global) */
 .btn-footer{
-  background: #ffffff;
+  background: #fff;
   color: #0f172a;
   border: 1px solid rgba(255,255,255,.85);
-  font-weight: 800;
-  padding: .6rem 1.05rem;
-  border-radius: .6rem;
+  font-weight: 500;
+  font-size: 1em;       /* = 2rem */
+  padding: .6em 1em;    /* grande y cómodo */
+  border-radius: .6em;
 }
 .btn-footer:hover{ background:#f8fafc; color:#0f172a; }
 
-/* Pie */
+/* ===== Texto inferior ===== */
 .footer-text1{
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 1em;    /* = 2rem */
+  font-weight: 500;
+  color: #fff;
 }
 
-/* Responsive extra */
+/* ===== Responsive ===== */
 @media (max-width: 991.98px){
-  .footer-form{ max-width: 520px; margin-inline: auto; }
-}
-@media (max-width: 575.98px){
-  .footer-logo{ height: 52px; }
-}
-
-/* Mantén el resto tal cual; solo añade/ajusta esto */
-
-/* NO wrap en desktop para que las 3 columnas se queden en una fila */
-@media (min-width: 992px){
-  .main-row { flex-wrap: nowrap; }
-}
-
-/* Alturas y centrados */
-.col-logo  { min-height: 84px; }
-.col-center{ min-height: 84px; }
-.col-form  { min-height: 84px; }
-
-/* Logo más visible en desktop */
-.footer-logo{ height: 84px; }
-@media (max-width: 991.98px){
-  .footer-logo{ height: 64px; }
-}
-
-/* Formulario: ancho controlado y pegado a la derecha en lg+ */
-.footer-form{ width: 100%; }
-@media (min-width: 992px){
-  .footer-form{ max-width: 520px; }
-}
-
-/* Pequeños márgenes de la columna central para no empujar al form */
-.col-center .legal-links { margin-top: .25rem; }
-
-/* ===== Footer en 3 columnas centradas (solo desktop) ===== */
-@media (min-width: 992px){
-  /* Pasamos la fila principal a Grid (overridea el flex de .row de Bootstrap) */
-  .footer .main-row{
-    display: grid !important;
-    grid-template-columns: 1fr auto 1fr; /* izquierda | centro (auto) | derecha */
-    align-items: center;
-    column-gap: 32px;
-    min-height: 260px; /* ↑ más alto si hace falta */
-  }
-
-  /* Colocación precisa de cada bloque */
-  .footer .col-logo   { justify-self: start;  text-align: left;  }
-  .footer .col-center { justify-self: center; text-align: center;}
-  .footer .col-form   { justify-self: end; }  /* el form se pega a la derecha */
-
-  /* Reducimos el tamaño del cuestionario */
-  .footer .footer-form{
-    max-width: 420px;   /* antes 480–520 */
-    width: 100%;
-  }
-
-  /* Un poquito más de aire vertical al footer (sobre-escribe pt/pb) */
-  .footer{
-    padding-top: 3.75rem !important;
-    padding-bottom: 3.25rem !important;
-  }
-}
-
-/* En móvil/tablet sigue apilado y centrado */
-@media (max-width: 991.98px){
-  .footer .footer-form{ max-width: 520px; margin-inline: auto; }
   .footer .col-logo,
   .footer .col-center,
   .footer .col-form{ text-align: center; }
+  .footer .footer-form{ max-width: 90%; margin-inline: auto; }
 }
 
-/* Detalles visuales del bloque central (opcional) */
-.footer .legal-links{ margin-top: .35rem; }
-.footer .social a{ font-size: 1.4rem; } /* iconos un pelín mayores */
+/* Neutraliza cualquier ancho de Bootstrap en el formulario del footer */
+@media (min-width: 992px){
+  .footer .col-form{
+    max-width: none !important;
+    width: auto !important;
+    flex: initial !important; /* por si se aplicara el display:flex de .row */
+  }
+}
+
+/* (Opcional) Si quieres ignorar TODOS los anchos col-lg-* dentro del footer: */
+/*
+@media (min-width: 992px){
+  .footer .main-row > [class*="col-lg-"]{
+    max-width: none !important;
+    width: auto !important;
+    flex: initial !important;
+  }
+}
+*/

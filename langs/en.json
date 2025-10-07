@@ -218,10 +218,10 @@
         "alt": "Daytime view of the Infinity 8 complex"
       },
       "posterior": {
-        "ribbon": "REAR",
-        "heading": "REAR",
+        "ribbon": "BACK",
+        "heading": "BACK",
         "caption": "Infinity 8",
-        "alt": "Rear façade with landscaped areas"
+        "alt": "Rear facade with landscaped areas"
       },
       "interior1": {
         "ribbon": "INTERIOR",
@@ -414,15 +414,15 @@
 
   "modals": {
     "common": {
-      "privacyHtml": "I accept the <a href=\"/privacy-policy.html\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a>, <a href=\"/cookies-policy.html\" target=\"_blank\" rel=\"noopener\">Cookies Policy</a> and <a href=\"/legal-notice.html\" target=\"_blank\" rel=\"noopener\">Legal Terms</a>.",
-      "errorRequired": "Please check required fields and accept the legal terms."
+      "privacyHtml": "I accept the <a href=\"/privacy-policy.html\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a>, <a href=\"/cookies-policy.html\" target=\"_blank\" rel=\"noopener\">Cookies Policy</a>, and <a href=\"/legal-notice.html\" target=\"_blank\" rel=\"noopener\">Legal Terms</a>.",
+      "errorRequired": "Please check the required fields and accept the legal terms."
     },
     "wapp": {
       "title": "Join the WhatsApp community",
       "fields": {
         "name": { "label": "Name", "ph": "" },
         "email": { "label": "Email", "ph": "" },
-        "phone": { "label": "WhatsApp (mobile)", "ph": "+44 7XXX..." },
+        "phone": { "label": "WhatsApp (mobile)", "ph": "+34 6XX..." },
         "segment": {
           "label": "Profile",
           "options": {
@@ -433,32 +433,44 @@
           }
         }
       },
-      "hint": "We'll use this number to invite you to the group.",
-      "confirm": "Done! Your data has been processed.",
+      "hint": "We’ll use this number to invite you to the group.",
+      "confirm": "All set! We’ve processed your data.",
       "footnote": "Your data will be used for community management and relevant information. You can unsubscribe at any time.",
-      "btn": { "cancel": "Cancel", "submit": "Join" }
+      "btn": { "cancel": "Cancel", "submit": "Join" },
+      "card": {
+        "title": "WhatsApp group access",
+        "text": "We have processed your data in accordance with the Privacy Policy. You can join now:",
+        "joinBtn": "Join the group",
+        "copyBtn": "Copy link"
+      }
     },
     "contact": {
-      "title": "Talk to our sales team",
+      "title": "Speak with our sales team",
       "fields": {
         "name": { "label": "Name", "ph": "" },
         "email": { "label": "Email", "ph": "" },
         "phone": { "label": "Phone", "ph": "" },
         "topic": {
-          "label": "Topic",
+          "label": "Interest",
           "options": {
             "compra": "Purchase",
             "inversion": "Investment",
-            "alquiler": "Rent / yield",
+            "alquiler": "Rental / yield",
             "otro": "Other"
           }
         },
         "message": { "label": "Message", "ph": "Tell us how we can help..." },
         "joinWapp": "I also want to join the WhatsApp community"
       },
-      "confirm": "Thanks! Your request has been processed. An advisor will contact you.",
-      "footnote": "Your request will be assigned to the right sales agent.",
-      "btn": { "cancel": "Cancel", "submit": "Send" }
+      "confirm": "Thanks! We’ve processed your data. An advisor will contact you.",
+      "footnote": "Your request will be assigned to the appropriate sales representative.",
+      "btn": { "cancel": "Cancel", "submit": "Send" },
+      "card": {
+        "title": "We’re giving you access to the community",
+        "text": "Since you requested to join WhatsApp, here’s the direct link:",
+        "joinBtn": "Join the group",
+        "copyBtn": "Copy link"
+      }
     }
   }
 }
