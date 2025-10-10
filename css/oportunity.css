@@ -223,3 +223,7 @@
 
 /* (Recomendado) ancla suave si navegas con #oportunity en el menú */
 #oportunity{ scroll-margin-top: 90px; }
+
+/* Ajustes para Áreas & Métricas */
+.opty__areas .opty__list b{ font-weight:700; }
+.opty__areas .opty__card-text + .opty__card-text{ margin-top:6px; }
