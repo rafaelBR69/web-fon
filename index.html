@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
     <link rel="stylesheet" href="/css/infinity.css" />
+    <link rel="stylesheet" href="/css/oportunity.css">
 
     <!-- CSS y fuentes -->
     <link rel="stylesheet" href="/style.css" />
@@ -222,6 +223,9 @@
       </div>
     </section>
 
+    <!-- ========== OPORTUNIDAD LOMBOK (partial host) ========== -->
+    <div id="oportunityHost"></div>
+
     <!-- ========== MAPA LOMBOK (partial host) ========== -->
     <div id="lombokMapHost" class="map-scope"></div>
 
@@ -370,7 +374,8 @@
           loadPartial("infinityHost","/partials/infinity.html", { executeScripts: false }),
           loadPartial("siteCharts", "/partials/graficos.html",{ executeScripts: true  }),
           loadPartial("galeriaInfinityHost","/partials/galeria-infinity.html",{ executeScripts: false }),
-          loadPartial("modalHost", "/partials/modales.html", { executeScripts: true })
+          loadPartial("modalHost", "/partials/modales.html", { executeScripts: true }),
+          loadPartial("oportunityHost","/partials/oportunity.html",{ executeScripts: false }),
         ]);
 
         // 👇 fuerza traducción de lo que acaba de inyectarse (header, etc.)

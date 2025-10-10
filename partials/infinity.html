@@ -1,156 +1,419 @@
-<!-- INFINITY – Sección única con fondo + expansión al hover -->
-<section id="infinity" class="infinity-hero"
-  aria-label="Infinity 8 – Arquitectura en ladera"
-  data-i18n-attr="aria-label|infinity.sectionAria">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Fondo e overlay (decorativos) -->
-  <img src="/images/montana.webp" alt="" class="infinity-bg" aria-hidden="true">
-  <div class="infinity-overlay" aria-hidden="true"></div>
+  <!-- ─── i18next (CDN) ─── -->
+  <script src="https://unpkg.com/i18next@23/i18next.min.js"></script>
+  <script src="https://unpkg.com/i18next-http-backend@2/i18nextHttpBackend.min.js"></script>
+  <script src="https://unpkg.com/i18next-browser-languagedetector@8/i18nextBrowserLanguageDetector.min.js"></script>
 
-  <!-- Contenido -->
-  <div class="infinity-inner">
-    <div class="infinity-container">
+  <!-- ─── SEO ─── -->
+  <title data-i18n="infinity.pageTitle">Infinity 8 – Arquitectura en ladera</title>
+  <meta name="description" content="Infinity 8: Arquitectura en ladera pensada para invertir. Vistas al valle, terrazas y progreso de obra por fases." />
+  <link rel="canonical" href="https://whitehillsvillas.com/infinity.html" />
 
-      <!-- Cabecera -->
-      <header class="intro">
-        <h2 class="infinity-title" data-i18n="infinity.title">
-          Infinity 8: Arquitectura en ladera pensada para invertir
-        </h2>
-      </header>
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Infinity 8 – Arquitectura en ladera">
+  <meta property="og:description" content="Infinity 8: vistas al valle, terrazas y progreso de obra por fases.">
+  <meta property="og:url" content="https://whitehillsvillas.com/infinity.html">
+  <meta property="og:image" content="https://whitehillsvillas.com/images/og-infinity.jpg">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Infinity 8 – Arquitectura en ladera">
+  <meta name="twitter:description" content="Progreso de obra, galería y especificaciones del proyecto.">
+  <meta name="twitter:image" content="https://whitehillsvillas.com/images/og-infinity.jpg">
 
-      <!-- GRID 2 columnas -->
-      <div class="io-grid">
-        <!-- Columna izquierda: texto -->
-        <div class="io-card io-spec">
-          <h3 class="io-title mb-3" data-i18n="infinity.spec.conceptTitle">Infinity 8 · Terreno y concepto</h3>
+  <!-- ─── FAVICON & PWA ─── -->
+  <link rel="icon" type="image/png" sizes="96x96"  href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/web-app-manifest-192x192.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="manifest" href="/site.webmanifest">
 
-          <!-- Ubicación -->
-          <div class="spec-row">
-            <div class="spec-title" data-i18n="infinity.spec.location.title">Ubicación</div>
-            <div class="spec-data">
-              <ol>
-                <li data-i18n="infinity.spec.location.li1">Cima de montaña, entorno natural.</li>
-                <li data-i18n="infinity.spec.location.li2">Disposición en <b>balcones</b>; proyecto en el <b>2.º superior</b>.</li>
-                <li data-i18n="infinity.spec.location.li3">Vistas despejadas al valle y <b>orientación al atardecer</b>.</li>
-                <li data-i18n="infinity.spec.location.li4">Superficie total ≈ <b>1.800 m²</b>.</li>
-              </ol>
+  <!-- ─── CSS de terceros ─── -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+
+  <!-- ─── Iconos / Fuentes ─── -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Poppins:wght@100;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- ─── CSS propio ─── -->
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/mediaquaries.css" />
+  <!-- Tu hoja específica para Infinity (incluye el bloque de progreso) -->
+  <link rel="stylesheet" href="/css/infinity.css" />
+
+  <style>.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
+</head>
+
+<body class="infinity-page">
+  <!-- Skip link -->
+  <a class="visually-hidden" href="#main-content">Saltar al contenido</a>
+
+  <!--*** Header dinámico ***-->
+  <div id="header-placeholder"></div>
+
+  <!-- ===== MAIN ===== -->
+  <main id="main-content" role="main">
+
+    <!-- INFINITY – Sección única con fondo + expansión al hover -->
+    <section id="infinity" class="infinity-hero"
+      aria-label="Infinity 8 – Arquitectura en ladera"
+      data-i18n-attr="aria-label|infinity.sectionAria">
+
+      <!-- Fondo e overlay (decorativos) -->
+      <img src="/images/montana.webp" alt="" class="infinity-bg" aria-hidden="true">
+      <div class="infinity-overlay" aria-hidden="true"></div>
+
+      <!-- Contenido -->
+      <div class="infinity-inner">
+        <div class="infinity-container">
+
+          <!-- Cabecera -->
+          <header class="intro">
+            <h2 class="infinity-title" data-i18n="infinity.title">
+              Infinity 8: Arquitectura en ladera pensada para invertir
+            </h2>
+          </header>
+
+          <!-- GRID 2 columnas -->
+          <div class="io-grid">
+            <!-- Columna izquierda: texto -->
+            <div class="io-card io-spec">
+              <h3 class="io-title mb-3" data-i18n="infinity.spec.conceptTitle">Infinity 8 · Terreno y concepto</h3>
+
+              <!-- Ubicación -->
+              <div class="spec-row">
+                <div class="spec-title" data-i18n="infinity.spec.location.title">Ubicación</div>
+                <div class="spec-data">
+                  <ol>
+                    <li data-i18n="infinity.spec.location.li1">Cima de montaña, entorno natural.</li>
+                    <li data-i18n="infinity.spec.location.li2">Disposición en <b>balcones</b>; proyecto en el <b>2.º superior</b>.</li>
+                    <li data-i18n="infinity.spec.location.li3">Vistas despejadas al valle y <b>orientación al atardecer</b>.</li>
+                    <li data-i18n="infinity.spec.location.li4">Superficie total ≈ <b>1.800 m²</b>.</li>
+                  </ol>
+                </div>
+              </div>
+
+              <!-- Villas -->
+              <div class="spec-row">
+                <div class="spec-title" data-i18n="infinity.spec.villas.title">Villas</div>
+                <div class="spec-data">
+                  <ol>
+                    <li data-i18n="infinity.spec.villas.li1">Implantación lineal orientada a vistas.</li>
+                    <li data-i18n="infinity.spec.villas.li2"><b>Nivel inferior</b>: cocina-salón-comedor, baño y gran terraza.</li>
+                    <li data-i18n="infinity.spec.villas.li3"><b>Piscina infinita</b> privada.</li>
+                    <li data-i18n="infinity.spec.villas.li4"><b>Nivel superior</b>: suite con grandes ventanales.</li>
+                  </ol>
+                </div>
+              </div>
+
+              <!-- Zonas comunes -->
+              <div class="spec-row">
+                <div class="spec-title" data-i18n="infinity.spec.amenities.title">Zonas comunes</div>
+                <div class="spec-data">
+                  <ol>
+                    <li data-i18n="infinity.spec.amenities.li1">Recepción y atención al huésped.</li>
+                    <li data-i18n="infinity.spec.amenities.li2">Servicios de limpieza y mantenimiento.</li>
+                    <li data-i18n="infinity.spec.amenities.li3"><b>Gimnasio + Cafetería/Brunch</b> (huéspedes y clientes).</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna derecha: carrusel -->
+            <div class="io-carousel-wrap">
+              <div id="infinityCarousel" class="carousel slide carousel-fade io-carousel" data-bs-ride="false" data-bs-touch="true">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="/images/fachada.jpg" class="d-block w-100 io-img"
+                         alt="Vista del valle al atardecer"
+                         data-i18n-attr="alt|infinity.carousel.img1Alt" loading="eager">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/images/cuarto.png" class="d-block w-100 io-img"
+                         alt="Dormitorio con vista al valle"
+                         data-i18n-attr="alt|infinity.carousel.img2Alt" loading="lazy">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/images/salon.png" class="d-block w-100 io-img"
+                         alt="Salón principal con acceso a terraza"
+                         data-i18n-attr="alt|infinity.carousel.img3Alt" loading="lazy">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/images/terreno.jpg" class="d-block w-100 io-img"
+                         alt="Terrazas del terreno"
+                         data-i18n-attr="alt|infinity.carousel.img4Alt" loading="lazy">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/images/terraza.png" class="d-block w-100 io-img"
+                         alt="Terraza con zona lounge"
+                         data-i18n-attr="alt|infinity.carousel.img5Alt" loading="lazy">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/images/dron.png" class="d-block w-100 io-img"
+                         alt="Vista aérea con dron"
+                         data-i18n-attr="alt|infinity.carousel.img6Alt" loading="lazy">
+                  </div>
+                </div>
+
+                <!-- Flechas -->
+                <button class="carousel-control-prev" type="button"
+                        data-bs-target="#infinityCarousel" data-bs-slide="prev"
+                        aria-label="Anterior" data-i18n-attr="aria-label|aria.prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden" data-i18n="aria.prev">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button"
+                        data-bs-target="#infinityCarousel" data-bs-slide="next"
+                        aria-label="Siguiente" data-i18n-attr="aria-label|aria.next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden" data-i18n="aria.next">Siguiente</span>
+                </button>
+
+                <div class="io-overlay"></div>
+              </div>
+
+              <!-- Thumbnails -->
+              <div class="carousel-indicators thumbnails">
+                <button type="button" data-bs-target="#infinityCarousel" data-bs-slide-to="0" class="active"
+                  aria-current="true" aria-label="Diapositiva 1"
+                  data-i18n-attr="aria-label|infinity.carousel.thumb" data-i18n-opts='{"num":1}'
+                  style="background-image:url('/images/fachada.jpg');"></button>
+
+                <button type="button" data-bs-target="#infinityCarousel" data-bs-slide-to="1"
+                  aria-label="Diapositiva 2"
+                  data-i18n-attr="aria-label|infinity.carousel.thumb" data-i18n-opts='{"num":2}'
+                  style="background-image:url('/images/cuarto.png');"></button>
+
+                <button type="button" data-bs-target="#infinityCarousel" data-bs-slide-to="2"
+                  aria-label="Diapositiva 3"
+                  data-i18n-attr="aria-label|infinity.carousel.thumb" data-i18n-opts='{"num":3}'
+                  style="background-image:url('/images/salon.png');"></button>
+
+                <button type="button" data-bs-target="#infinityCarousel" data-bs-slide-to="3"
+                  aria-label="Diapositiva 4"
+                  data-i18n-attr="aria-label|infinity.carousel.thumb" data-i18n-opts='{"num":4}'
+                  style="background-image:url('/images/terreno.jpg');"></button>
+
+                <button type="button" data-bs-target="#infinityCarousel" data-bs-slide-to="4"
+                  aria-label="Diapositiva 5"
+                  data-i18n-attr="aria-label|infinity.carousel.thumb" data-i18n-opts='{"num":5}'
+                  style="background-image:url('/images/terraza.png');"></button>
+
+                <button type="button" data-bs-target="#infinityCarousel" data-bs-slide-to="5"
+                  aria-label="Diapositiva 6"
+                  data-i18n-attr="aria-label|infinity.carousel.thumb" data-i18n-opts='{"num":6}'
+                  style="background-image:url('/images/dron.png');"></button>
+              </div>
             </div>
           </div>
+          <!-- /io-grid -->
 
-          <!-- Villas -->
-          <div class="spec-row">
-            <div class="spec-title" data-i18n="infinity.spec.villas.title">Villas</div>
-            <div class="spec-data">
-              <ol>
-                <li data-i18n="infinity.spec.villas.li1">Implantación lineal orientada a vistas.</li>
-                <li data-i18n="infinity.spec.villas.li2"><b>Nivel inferior</b>: cocina-salón-comedor, baño y gran terraza.</li>
-                <li data-i18n="infinity.spec.villas.li3"><b>Piscina infinita</b> privada.</li>
-                <li data-i18n="infinity.spec.villas.li4"><b>Nivel superior</b>: suite con grandes ventanales.</li>
-              </ol>
-            </div>
+          <!-- ====== PROGRESO (línea recta) ====== -->
+          <div class="io-progress-wrap">
+            <section id="estado-obra" class="obra-progress simple" data-current="4" aria-label="Estado de obra">
+              <div class="legend" aria-hidden="true">
+                <b>Progreso de obra</b>
+                <span class="sr-live visually-hidden"></span>
+              </div>
+
+              <!-- Recta horizontal: arranca en x=80, termina en x=1120 -->
+              <svg class="obra__svg" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+                <line class="obra__rail" x1="80" y1="22" x2="1120" y2="22" />
+                <line class="obra__prog" x1="80" y1="22" x2="520"  y2="22" />
+              </svg>
+
+              <!-- Pasos: --x unitario (sin px) -->
+              <div class="obra__step" data-step="1" style="--x:80;">
+                <img class="obra__icon" src="/images/iconos/suelo.svg" alt="" aria-hidden="true" />
+                <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+                  <circle cx="18" cy="18" r="12" class="dot" />
+                  <path d="M12 18 l4 4 8-8" class="check" />
+                </svg>
+                <div class="obra__labels"><div class="label">Suelo</div><div class="sublabel">Viabilidad</div></div>
+              </div>
+
+              <div class="obra__step" data-step="2" style="--x:228.57;">
+                <img class="obra__icon" src="/images/iconos/arquitecto.png" alt="" aria-hidden="true" />
+                <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+                  <circle cx="18" cy="18" r="12" class="dot" />
+                  <path d="M12 18 l4 4 8-8" class="check" />
+                </svg>
+                <div class="obra__labels"><div class="label">Proyecto</div><div class="sublabel">Diseño</div></div>
+              </div>
+
+              <div class="obra__step" data-step="3" style="--x:377.14;">
+                <img class="obra__icon" src="/images/iconos/permisos.svg" alt="" aria-hidden="true" />
+                <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+                  <circle cx="18" cy="18" r="12" class="dot" />
+                  <path d="M12 18 l4 4 8-8" class="check" />
+                </svg>
+                <div class="obra__labels"><div class="label">Permisos</div><div class="sublabel">Licencia</div></div>
+              </div>
+
+              <div class="obra__step" data-step="4" style="--x:525.71;">
+                <img class="obra__icon" src="/images/iconos/terreno.svg" alt="" aria-hidden="true" />
+                <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+                  <circle cx="18" cy="18" r="12" class="dot" />
+                  <path d="M12 18 l4 4 8-8" class="check" />
+                </svg>
+                <div class="obra__labels"><div class="label">Terreno</div><div class="sublabel">Preparación</div></div>
+              </div>
+
+              <div class="obra__step" data-step="5" style="--x:674.29;">
+                <img class="obra__icon" src="/images/iconos/cimentacion.svg" alt="" aria-hidden="true" />
+                <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+                  <circle cx="18" cy="18" r="12" class="dot" />
+                  <path d="M12 18 l4 4 8-8" class="check" />
+                </svg>
+                <div class="obra__labels"><div class="label">Cimentación</div><div class="sublabel">Base</div></div>
+              </div>
+
+              <div class="obra__step" data-step="6" style="--x:822.86;">
+                <img class="obra__icon" src="/images/iconos/estructura.svg" alt="" aria-hidden="true" />
+                <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+                  <circle cx="18" cy="18" r="12" class="dot" />
+                  <path d="M12 18 l4 4 8-8" class="check" />
+                </svg>
+                <div class="obra__labels"><div class="label">Estructura</div><div class="sublabel">Esqueleto</div></div>
+              </div>
+
+              <div class="obra__step" data-step="7" style="--x:971.43;">
+                <img class="obra__icon" src="/images/iconos/envolvente.svg" alt="" aria-hidden="true" />
+                <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+                  <circle cx="18" cy="18" r="12" class="dot" />
+                  <path d="M12 18 l4 4 8-8" class="check" />
+                </svg>
+                <div class="obra__labels"><div class="label">Envolvente</div><div class="sublabel">&amp; Instalaciones</div></div>
+              </div>
+
+              <div class="obra__step" data-step="8" style="--x:1120;">
+                <img class="obra__icon" src="/images/iconos/acabados.svg" alt="" aria-hidden="true" />
+                <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+                  <circle cx="18" cy="18" r="12" class="dot" />
+                  <path d="M12 18 l4 4 8-8" class="check" />
+                </svg>
+                <div class="obra__labels"><div class="label">Acabados</div><div class="sublabel">&amp; Entrega</div></div>
+              </div>
+            </section>
           </div>
 
-          <!-- Zonas comunes -->
-          <div class="spec-row">
-            <div class="spec-title" data-i18n="infinity.spec.amenities.title">Zonas comunes</div>
-            <div class="spec-data">
-              <ol>
-                <li data-i18n="infinity.spec.amenities.li1">Recepción y atención al huésped.</li>
-                <li data-i18n="infinity.spec.amenities.li2">Servicios de limpieza y mantenimiento.</li>
-                <li data-i18n="infinity.spec.amenities.li3"><b>Gimnasio + Cafetería/Brunch</b> (huéspedes y clientes).</li>
-              </ol>
-            </div>
-          </div>
-        </div>
-
-        <!-- Columna derecha: carrusel -->
-        <div class="io-carousel-wrap">
-          <div id="infinityCarousel" class="carousel slide carousel-fade io-carousel" data-bs-ride="false" data-bs-touch="true">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="/images/fachada.jpg" class="d-block w-100 io-img"
-                     alt="Vista del valle al atardecer"
-                     data-i18n-attr="alt|infinity.carousel.img1Alt" loading="eager">
-              </div>
-              <div class="carousel-item">
-                <img src="/images/cuarto.png" class="d-block w-100 io-img"
-                     alt="Dormitorio con vista al valle"
-                     data-i18n-attr="alt|infinity.carousel.img2Alt" loading="lazy">
-              </div>
-              <div class="carousel-item">
-                <img src="/images/salon.png" class="d-block w-100 io-img"
-                     alt="Salón principal con acceso a terraza"
-                     data-i18n-attr="alt|infinity.carousel.img3Alt" loading="lazy">
-              </div>
-              <div class="carousel-item">
-                <img src="/images/terreno.jpg" class="d-block w-100 io-img"
-                     alt="Terrazas del terreno"
-                     data-i18n-attr="alt|infinity.carousel.img4Alt" loading="lazy">
-              </div>
-              <div class="carousel-item">
-                <img src="/images/terraza.png" class="d-block w-100 io-img"
-                     alt="Terraza con zona lounge"
-                     data-i18n-attr="alt|infinity.carousel.img5Alt" loading="lazy">
-              </div>
-              <div class="carousel-item">
-                <img src="/images/dron.png" class="d-block w-100 io-img"
-                     alt="Vista aérea con dron"
-                     data-i18n-attr="alt|infinity.carousel.img6Alt" loading="lazy">
-              </div>
-            </div>
-
-            <!-- Flechas -->
-            <button class="carousel-control-prev" type="button"
-                    data-bs-target="#infinityCarousel" data-bs-slide="prev"
-                    aria-label="Anterior" data-i18n-attr="aria-label|aria.prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden" data-i18n="aria.prev">Anterior</span>
-            </button>
-            <button class="carousel-control-next" type="button"
-                    data-bs-target="#infinityCarousel" data-bs-slide="next"
-                    aria-label="Siguiente" data-i18n-attr="aria-label|aria.next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden" data-i18n="aria.next">Siguiente</span>
-            </button>
-
-            <div class="io-overlay"></div>
-          </div>
-
-          <!-- Thumbnails -->
-          <div class="carousel-indicators thumbnails">
-            <button type="button" data-bs-target="#infinityCarousel" data-bs-slide-to="0" class="active"
-              aria-current="true" aria-label="Diapositiva 1"
-              data-i18n-attr="aria-label|infinity.carousel.thumb" data-i18n-opts='{"num":1}'
-              style="background-image:url('/images/fachada.jpg');"></button>
-
-            <button type="button" data-bs-target="#infinityCarousel" data-bs-slide-to="1"
-              aria-label="Diapositiva 2"
-              data-i18n-attr="aria-label|infinity.carousel.thumb" data-i18n-opts='{"num":2}'
-              style="background-image:url('/images/cuarto.png');"></button>
-
-            <button type="button" data-bs-target="#infinityCarousel" data-bs-slide-to="2"
-              aria-label="Diapositiva 3"
-              data-i18n-attr="aria-label|infinity.carousel.thumb" data-i18n-opts='{"num":3}'
-              style="background-image:url('/images/salon.png');"></button>
-
-            <button type="button" data-bs-target="#infinityCarousel" data-bs-slide-to="3"
-              aria-label="Diapositiva 4"
-              data-i18n-attr="aria-label|infinity.carousel.thumb" data-i18n-opts='{"num":4}'
-              style="background-image:url('/images/terreno.jpg');"></button>
-
-            <button type="button" data-bs-target="#infinityCarousel" data-bs-slide-to="4"
-              aria-label="Diapositiva 5"
-              data-i18n-attr="aria-label|infinity.carousel.thumb" data-i18n-opts='{"num":5}'
-              style="background-image:url('/images/terraza.png');"></button>
-
-            <button type="button" data-bs-target="#infinityCarousel" data-bs-slide-to="5"
-              aria-label="Diapositiva 6"
-              data-i18n-attr="aria-label|infinity.carousel.thumb" data-i18n-opts='{"num":6}'
-              style="background-image:url('/images/dron.png');"></button>
-          </div>
         </div>
       </div>
-      <!-- /io-grid -->
-    </div>
-  </div>
-</section>
+    </section>
+
+  </main>
+
+  <!--*** Footer dinámico ***-->
+  <div id="footer-placeholder"></div>
+
+  <!-- ─── JS de terceros ─── -->
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+
+  <!-- i18n init + tu app -->
+  <script src="/js/i18n.js"></script>
+
+  <!-- Carga de /partials y comportamiento del header -->
+  <script>
+    /* Header desde /partials */
+    fetch('/partials/header.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('header-placeholder').innerHTML = html;
+
+        const header = document.querySelector('header');
+        const hero   = document.querySelector('#infinity'); // observamos Infinity
+        if (header && hero) {
+          const io = new IntersectionObserver(
+            ([entry]) => header.classList.toggle('scrolled', !entry.isIntersecting),
+            { threshold: 0 }
+          );
+          io.observe(hero);
+        }
+
+        // Availability apunta a index cuando no estás en home
+        const linkAvail = document.querySelector('header a.nav-link[href="#availability"]');
+        const onHome = location.pathname === '/' || location.pathname.endsWith('/index.html') || location.pathname.endsWith('index.html');
+        if (linkAvail && !onHome) linkAvail.setAttribute('href', '/index.html#availability');
+
+        // Marca activo Infinity (+ aria-current)
+        const path = location.pathname.replace(/\/+$/, '');
+        document.querySelectorAll('header a[href]').forEach(a => {
+          const href = a.getAttribute('href')?.replace(/\/+$/, '');
+          if (!href || href === '#') return;
+          if (href === path || href.endsWith('infinity.html') && path.endsWith('infinity.html')) {
+            a.classList.add('active');
+            a.setAttribute('aria-current','page');
+          }
+        });
+
+        // Re-aplicar i18n al header si ya está inicializado
+        window.applyI18nAndRoutes && window.applyI18nAndRoutes();
+      });
+
+    /* Footer desde /partials */
+    fetch('/partials/footer.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('footer-placeholder').innerHTML = html;
+        window.applyI18nAndRoutes && window.applyI18nAndRoutes();
+      });
+  </script>
+
+  <!-- Progreso: estados + barra (recta) -->
+  <script>
+    (function(){
+      const RAIL_Y = 42;
+
+      function layout(root){
+        const steps = Array.from(root.querySelectorAll('.obra__step'));
+        const prog  = root.querySelector('.obra__prog');
+        if (!steps.length || !prog) return;
+
+        const total = steps.length;
+        const n = Math.max(1, Math.min(total, parseInt(root.dataset.current || '1', 10)));
+
+        // estados visuales
+        steps.forEach((el, i) => {
+          el.classList.toggle('is-done',    i+1 <  n);
+          el.classList.toggle('is-active',  i+1 === n);
+          el.classList.toggle('is-pending', i+1 >  n);
+        });
+
+        // línea de progreso (coordenadas de diseño)
+        const xs = steps.map(el => parseFloat(getComputedStyle(el).getPropertyValue('--x')));
+        if (Number.isFinite(xs[0]) && Number.isFinite(xs[n-1])) {
+          prog.setAttribute('x1', xs[0]);
+          prog.setAttribute('y1', RAIL_Y);
+          prog.setAttribute('x2', xs[n-1]);
+          prog.setAttribute('y2', RAIL_Y);
+        }
+
+        const live = root.querySelector('.sr-live');
+        if (live) live.textContent = `Fase ${n} de ${total}`;
+      }
+
+      function boot(){
+        document.querySelectorAll('.obra-progress.simple').forEach(root => {
+          layout(root);
+          addEventListener('resize', () => layout(root), { passive:true });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot, { once:true });
+      } else { boot(); }
+    })();
+  </script>
+</body>
+</html>

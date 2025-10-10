@@ -47,7 +47,6 @@ header{
   height: var(--header-h);
   padding: 2rem 1rem;
   background: var(--header-bg);
-  box-shadow: var(--shadow-hdr);
   z-index: 10;
 }
 header, header *{ font-family: var(--ff-body); }
