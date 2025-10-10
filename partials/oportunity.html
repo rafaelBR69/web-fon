@@ -1,14 +1,13 @@
-<!-- FILE: partial/oportunity.html -->
 <section id="oportunity" class="oportunity-section" aria-label="Lombok (Indonesia) — Oportunidad de inversión en 8 villas boutique">
   <div class="opty__container">
 
-    <!-- Encabezado -->
-    <header class="opty__header">
+    <!-- Intro -->
+    <div class="opty__intro">
       <h2 class="opty__title">Lombok, Indonesia — Oportunidad de inversión</h2>
       <p class="opty__subtitle">Promoción boutique de ~8 villas cerca de las mejores playas del sur de Lombok. Diseño eficiente para explotación turística y revalorización a medio plazo.</p>
-    </header>
+    </div>
 
-    <!-- KPIs / Métricas de inversión (placeholders para que tu app los calcule) -->
+    <!-- KPIs / Métricas de inversión -->
     <section class="opty__kpis" aria-labelledby="opty-kpi-title">
       <h3 id="opty-kpi-title" class="opty__h3">Rentabilidad estimada <small class="opty__muted">(calculable sin precio cerrado)</small></h3>
       <p class="opty__note">Introduce precio de parcela, coste de obra, ADR y ocupación en tu modelo. Estos campos admiten <code>data-kpi</code> para auto-relleno por JS.</p>
@@ -39,6 +38,37 @@
         <li>Ingresos: ADR × ocupación × noches vendibles − comisiones OTA − costes operativos.</li>
         <li class="opty__muted">*Los resultados dependen del modelo; cifras a validar en due diligence.*</li>
       </ul>
+    </section>
+
+    <!-- NUEVO: Áreas & Métricas (conexión directa al JS v2) -->
+    <section class="opty__areas" aria-labelledby="opty-areas-title">
+      <h3 id="opty-areas-title" class="opty__h3">Áreas & Métricas</h3>
+      <div class="opty__cards opty__cards--3">
+        <article class="opty__card">
+          <h4 class="opty__card-title">Superficies</h4>
+          <ul class="opty__list">
+            <li>Parcela: <b data-area="land-plot">—</b></li>
+            <li>Landscape: <b data-area="landscape">—</b></li>
+            <li>Interior total: <b data-area="indoor">—</b></li>
+            <li>Exterior total: <b data-area="outdoor">—</b></li>
+            <li>GFA (construida): <b data-area="gfa">—</b></li>
+          </ul>
+        </article>
+        <article class="opty__card">
+          <h4 class="opty__card-title">Métricas del sitio</h4>
+          <ul class="opty__list">
+            <li>FAR (GFA/Parcela): <b data-metric="far">—</b></li>
+            <li>Cobertura planta baja: <b data-metric="coverage">—</b></li>
+            <li>Eficiencia (Interior/GFA): <b data-metric="efficiency">—</b></li>
+          </ul>
+        </article>
+        <article class="opty__card">
+          <h4 class="opty__card-title">Coste de obra</h4>
+          <p class="opty__card-text">Estimación total (directos + soft + contingencia):</p>
+          <p class="opty__card-text"><b data-build-total>—</b></p>
+          <p class="opty__muted">Edita costes por m² en <code>opportunity-data.js</code>.</p>
+        </article>
+      </div>
     </section>
 
     <!-- Comparativa con Bali -->
@@ -154,7 +184,6 @@
         </article>
       </div>
     </section>
-
 
     <!-- CTA -->
     <footer class="opty__cta">

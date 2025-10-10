@@ -49,10 +49,50 @@
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/mediaquaries.css" />
-  <!-- Tu hoja específica para Infinity (incluye el bloque de progreso) -->
+  <!-- Hoja específica para Infinity -->
   <link rel="stylesheet" href="/css/infinity.css" />
 
-  <style>.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
+  <style>
+    .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* ===== Overrides locales para el bloque de progreso ===== */
+    .obra-progress-title{
+      margin: 0 0 10px 0;
+      font-family: "Montserrat",system-ui,sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.6rem, 3.8vw, 3.2rem);
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,.35);
+    }
+    .io-progress-wrap{ margin-top: 20px; }
+
+    .obra-progress.simple{
+      /* Puedes redefinir estos valores inline en el HTML del wrapper */
+      --rail-y: 70;        /* posición vertical de la barra dentro del SVG */
+      --icon-size: 40px;   /* tamaño del icono encima de cada punto */
+      --dot-r: 14px;       /* radio del punto */
+      --label-size: 13px;  /* tamaño de la etiqueta principal */
+    }
+    /* Reposicionar steps en función de --rail-y */
+    .obra__step{
+      transform: translate(-50%, calc(var(--rail-y) + 8px)) !important;
+    }
+    /* Iconos escalables */
+    .obra__icon{
+      width: var(--icon-size) !important;
+      height: var(--icon-size) !important;
+      margin: calc(-1 * var(--icon-size)) auto 2px !important;
+      transform: none;
+    }
+    /* Punto con radio variable */
+    .obra__dot .dot{ r: var(--dot-r); }
+    /* Etiquetas un poco mayores */
+    .obra__labels .label{ font-size: var(--label-size); }
+    .obra__labels .sublabel{ font-size: calc(var(--label-size) - 2px); }
+    /* Activo algo más notorio para acomodar icono grande */
+    .obra-progress.simple .is-active .obra__dot{ transform: scale(1.4); transform-origin: 50% 50%; }
+    .obra-progress.simple .is-active .obra__icon{ transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(34,197,94,.45)); }
+  </style>
 </head>
 
 <body class="infinity-page">
@@ -65,7 +105,7 @@
   <!-- ===== MAIN ===== -->
   <main id="main-content" role="main">
 
-    <!-- INFINITY – Sección única con fondo + expansión al hover -->
+    <!-- INFINITY – Sección única con fondo -->
     <section id="infinity" class="infinity-hero"
       aria-label="Infinity 8 – Arquitectura en ladera"
       data-i18n-attr="aria-label|infinity.sectionAria">
@@ -220,22 +260,22 @@
           <!-- /io-grid -->
 
           <!-- ====== PROGRESO (línea recta) ====== -->
-          <div class="io-progress-wrap">
-            <section id="estado-obra" class="obra-progress simple" data-current="4" aria-label="Estado de obra">
-              <div class="legend" aria-hidden="true">
-                <b>Progreso de obra</b>
-                <span class="sr-live visually-hidden"></span>
-              </div>
+          <!-- Valores por defecto (ajusta a tu gusto): --rail-y: 120; --icon-size: 52px; --dot-r: 16px -->
+          <div class="io-progress-wrap" style="--rail-y: 120; --icon-size: 52px; --dot-r: 1px;">
+            <!-- Título FUERA del contenedor de la barra (muévelo donde quieras) -->
+            <h3 id="obraTitle" class="obra-progress-title">Progreso de obra</h3>
 
-              <!-- Recta horizontal: arranca en x=80, termina en x=1120 -->
+            <!-- Barra -->
+            <section id="estado-obra" class="obra-progress simple" data-current="4" aria-labelledby="obraTitle">
+              <!-- Línea recta; el JS actualizará y1/y2 a --rail-y -->
               <svg class="obra__svg" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
-                <line class="obra__rail" x1="80" y1="22" x2="1120" y2="22" />
-                <line class="obra__prog" x1="80" y1="22" x2="520"  y2="22" />
+                <line class="obra__rail" x1="140" y1="12" x2="1320" y2="12" />
+                <line class="obra__prog" x1="740" y1="12" x2="130"   y2="12" />
               </svg>
 
-              <!-- Pasos: --x unitario (sin px) -->
+              <!-- Pasos: --x = coordenada de diseño (base 1200) -->
               <div class="obra__step" data-step="1" style="--x:80;">
-                <img class="obra__icon" src="/images/iconos/suelo.svg" alt="" aria-hidden="true" />
+                <img class="obra__icon" src="/images/iconos/terreno.png" alt="" aria-hidden="true" />
                 <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
                   <circle cx="18" cy="18" r="12" class="dot" />
                   <path d="M12 18 l4 4 8-8" class="check" />
@@ -253,7 +293,7 @@
               </div>
 
               <div class="obra__step" data-step="3" style="--x:377.14;">
-                <img class="obra__icon" src="/images/iconos/permisos.svg" alt="" aria-hidden="true" />
+                <img class="obra__icon" src="/images/iconos/permiso.png" alt="" aria-hidden="true" />
                 <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
                   <circle cx="18" cy="18" r="12" class="dot" />
                   <path d="M12 18 l4 4 8-8" class="check" />
@@ -262,7 +302,7 @@
               </div>
 
               <div class="obra__step" data-step="4" style="--x:525.71;">
-                <img class="obra__icon" src="/images/iconos/terreno.svg" alt="" aria-hidden="true" />
+                <img class="obra__icon" src="/images/iconos/terreno.png" alt="" aria-hidden="true" />
                 <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
                   <circle cx="18" cy="18" r="12" class="dot" />
                   <path d="M12 18 l4 4 8-8" class="check" />
@@ -271,7 +311,7 @@
               </div>
 
               <div class="obra__step" data-step="5" style="--x:674.29;">
-                <img class="obra__icon" src="/images/iconos/cimentacion.svg" alt="" aria-hidden="true" />
+                <img class="obra__icon" src="/images/iconos/cimentacion.png" alt="" aria-hidden="true" />
                 <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
                   <circle cx="18" cy="18" r="12" class="dot" />
                   <path d="M12 18 l4 4 8-8" class="check" />
@@ -280,7 +320,7 @@
               </div>
 
               <div class="obra__step" data-step="6" style="--x:822.86;">
-                <img class="obra__icon" src="/images/iconos/estructura.svg" alt="" aria-hidden="true" />
+                <img class="obra__icon" src="/images/iconos/estructura.png" alt="" aria-hidden="true" />
                 <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
                   <circle cx="18" cy="18" r="12" class="dot" />
                   <path d="M12 18 l4 4 8-8" class="check" />
@@ -289,7 +329,7 @@
               </div>
 
               <div class="obra__step" data-step="7" style="--x:971.43;">
-                <img class="obra__icon" src="/images/iconos/envolvente.svg" alt="" aria-hidden="true" />
+                <img class="obra__icon" src="/images/iconos/instalacion.png" alt="" aria-hidden="true" />
                 <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
                   <circle cx="18" cy="18" r="12" class="dot" />
                   <path d="M12 18 l4 4 8-8" class="check" />
@@ -298,13 +338,16 @@
               </div>
 
               <div class="obra__step" data-step="8" style="--x:1120;">
-                <img class="obra__icon" src="/images/iconos/acabados.svg" alt="" aria-hidden="true" />
+                <img class="obra__icon" src="/images/iconos/villa.png" alt="" aria-hidden="true" />
                 <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
                   <circle cx="18" cy="18" r="12" class="dot" />
                   <path d="M12 18 l4 4 8-8" class="check" />
                 </svg>
                 <div class="obra__labels"><div class="label">Acabados</div><div class="sublabel">&amp; Entrega</div></div>
               </div>
+
+              <!-- Live region accesible -->
+              <span class="sr-live visually-hidden"></span>
             </section>
           </div>
 
@@ -370,15 +413,24 @@
       });
   </script>
 
-  <!-- Progreso: estados + barra (recta) -->
+  <!-- Progreso: estados + barra (recta) (versión con --rail-y) -->
   <script>
     (function(){
-      const RAIL_Y = 42;
+      function getRailY(root){
+        const v = getComputedStyle(root).getPropertyValue('--rail-y').trim();
+        const n = parseFloat(v);
+        return Number.isFinite(n) ? n : 42;
+        }
 
       function layout(root){
         const steps = Array.from(root.querySelectorAll('.obra__step'));
+        const rail  = root.querySelector('.obra__rail');
         const prog  = root.querySelector('.obra__prog');
-        if (!steps.length || !prog) return;
+        if (!steps.length || !prog || !rail) return;
+
+        const railY = getRailY(root);
+        rail.setAttribute('y1', railY);
+        rail.setAttribute('y2', railY);
 
         const total = steps.length;
         const n = Math.max(1, Math.min(total, parseInt(root.dataset.current || '1', 10)));
@@ -390,13 +442,13 @@
           el.classList.toggle('is-pending', i+1 >  n);
         });
 
-        // línea de progreso (coordenadas de diseño)
+        // línea de progreso (x desde --x; y = railY)
         const xs = steps.map(el => parseFloat(getComputedStyle(el).getPropertyValue('--x')));
         if (Number.isFinite(xs[0]) && Number.isFinite(xs[n-1])) {
           prog.setAttribute('x1', xs[0]);
-          prog.setAttribute('y1', RAIL_Y);
+          prog.setAttribute('y1', railY);
           prog.setAttribute('x2', xs[n-1]);
-          prog.setAttribute('y2', RAIL_Y);
+          prog.setAttribute('y2', railY);
         }
 
         const live = root.querySelector('.sr-live');

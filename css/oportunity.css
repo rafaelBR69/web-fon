@@ -1,79 +1,225 @@
-/* FILE: public/css/oportunity.css
-   Sección "Oportunidad Lombok"
-   Tipografía: Montserrat. Si tu CSP bloquea @import, añade el <link> a Google Fonts en tu layout. */
+/* FILE: /css/oportunity.css  — versión XL
+   Montserrat (puedes quitar @import si ya lo cargas en <head>) */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-:root {
-  --opty-bg: #ffffff;
-  --opty-fg: #0a1f2b;
-  --opty-muted: #5f6b76;
-  --opty-accent: #092B3F; /* tu brand */
-  --opty-border: #e5eaef;
-  --opty-card: #f7fafc;
-  --opty-radius: 16px;
-  --opty-shadow: 0 10px 30px rgba(0,0,0,.06);
-  --opty-maxw: 1100px;
+:root{
+  --opty-bg:#ffffff;
+  --opty-fg:#0a1f2b;
+  --opty-muted:#5f6b76;
+  --opty-accent:#092B3F;
+  --opty-border:#e5eaef;
+  --opty-card:#f7fafc;
+  --opty-radius:20px;
+  --opty-shadow:0 14px 40px rgba(0,0,0,.07);
+  /* ↑ MÁS ANCHO: ocupa casi todo el viewport sin tocar bordes */
+  --opty-maxw: min(96vw, 1320px);
 }
 
-.oportunity-section { background: var(--opty-bg); color: var(--opty-fg); font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-.opty__container { max-width: var(--opty-maxw); margin: 0 auto; padding: clamp(20px, 3vw, 40px) 16px; }
+.oportunity-section{
+  background:var(--opty-bg);
+  color:var(--opty-fg);
+  font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  /* un pelín más grande el tamaño base del texto */
+  font-size: 1.0625rem; /* ~17px */
+}
 
-/* Encabezado */
-.opty__title { font-size: clamp(26px, 3.2vw, 36px); line-height: 1.15; margin: 0 0 8px; font-weight: 700; letter-spacing: .2px; }
-.opty__subtitle { margin: 0; color: var(--opty-muted); font-weight: 500; }
-.opty__h3 { font-size: clamp(18px, 2.2vw, 22px); margin: 28px 0 12px; font-weight: 700; letter-spacing: .2px; }
-.opty__muted { color: var(--opty-muted); }
-.opty__note { margin: 6px 0 16px; color: var(--opty-muted); font-size: .95rem; }
+.opty__container{
+  max-width:var(--opty-maxw);
+  margin:0 auto;
+  padding: clamp(28px, 4vw, 56px) 20px;
+}
 
-/* KPI grid */
-.opty__kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-.opty__kpi { background: var(--opty-card); border: 1px solid var(--opty-border); border-radius: var(--opty-radius); padding: 16px; box-shadow: var(--opty-shadow); }
-.opty__kpi-label { margin: 0 0 6px; font-size: .95rem; font-weight: 600; color: var(--opty-accent); text-transform: uppercase; letter-spacing: .4px; }
-.opty__kpi-value { margin: 0; font-size: clamp(22px, 3vw, 28px); font-weight: 700; }
-.opty__kpi-hint { margin: 6px 0 0; font-size: .9rem; color: var(--opty-muted); }
+/* Encabezados más grandes */
+.opty__title{
+  font-size: clamp(32px, 4vw, 48px);
+  line-height:1.15;
+  margin: 0 0 10px;
+  font-weight:700;
+  letter-spacing:.2px;
+}
+.opty__subtitle{
+  margin:0;
+  color:var(--opty-muted);
+  font-weight:500;
+  font-size: clamp(16px, 1.4vw, 18px);
+}
+.opty__h3{
+  font-size: clamp(22px, 2.4vw, 28px);
+  margin: 34px 0 16px;
+  font-weight:700;
+  letter-spacing:.2px;
+}
+.opty__muted{ color:var(--opty-muted); }
+.opty__note{ margin:8px 0 18px; color:var(--opty-muted); font-size:1rem; }
 
-/* Bullets debajo de KPIs */
-.opty__bullets { margin: 12px 0 0 18px; color: var(--opty-fg); }
-.opty__bullets li { margin: 4px 0; }
+/* KPIs más grandes y su grid con más aire */
+.opty__kpi-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap: 20px;
+}
+.opty__kpi{
+  background:var(--opty-card);
+  border:1px solid var(--opty-border);
+  border-radius:var(--opty-radius);
+  padding: 22px;
+  box-shadow:var(--opty-shadow);
+}
+.opty__kpi-label{
+  margin:0 0 8px;
+  font-size:1rem;
+  font-weight:600;
+  color:var(--opty-accent);
+  text-transform:uppercase;
+  letter-spacing:.4px;
+}
+.opty__kpi-value{
+  margin:0;
+  font-size: clamp(28px, 3.6vw, 40px);
+  font-weight:700;
+}
+.opty__kpi-hint{ margin:8px 0 0; font-size:.98rem; color:var(--opty-muted); }
 
-/* Tabla comparativa (accesible) */
-.opty__table { display: grid; grid-template-columns: 1.2fr 1fr 1fr; border: 1px solid var(--opty-border); border-radius: var(--opty-radius); overflow: hidden; box-shadow: var(--opty-shadow); }
-.opty__row { display: contents; }
-.opty__row--head > .opty__cell { background: var(--opty-accent); color: #fff; font-weight: 600; }
-.opty__cell { padding: 14px 16px; border-bottom: 1px solid var(--opty-border); background: #fff; }
-.opty__row:last-child > .opty__cell { border-bottom: none; }
+/* Bullets */
+.opty__bullets{ margin:14px 0 0 22px; color:var(--opty-fg); }
+.opty__bullets li{ margin:6px 0; }
 
-/* Cards genéricas */
-.opty__cards { display: grid; gap: 16px; }
-.opty__cards--2 { grid-template-columns: repeat(2, 1fr); }
-.opty__cards--3 { grid-template-columns: repeat(3, 1fr); }
-.opty__cards--4 { grid-template-columns: repeat(4, 1fr); }
-.opty__card { background: var(--opty-card); border: 1px solid var(--opty-border); border-radius: var(--opty-radius); padding: 18px; box-shadow: var(--opty-shadow); }
-.opty__card-title { margin: 0 0 8px; font-size: 1.05rem; font-weight: 700; color: var(--opty-accent); }
-.opty__card-text { margin: 0; }
-.opty__list { margin: 0 0 0 18px; }
-.opty__list li { margin: 6px 0; }
+/* Tabla comparativa más grande */
+.opty__table{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  border:1px solid var(--opty-border);
+  border-radius:var(--opty-radius);
+  overflow:hidden;
+  box-shadow:var(--opty-shadow);
+}
+.opty__row{ display:contents; }
+.opty__row--head > .opty__cell{
+  background:var(--opty-accent);
+  color:#fff;
+  font-weight:600;
+  font-size: 1rem;
+}
+.opty__cell{
+  padding: 18px 22px;
+  border-bottom:1px solid var(--opty-border);
+  background:#fff;
+  font-size: 1rem;
+}
+.opty__row:last-child > .opty__cell{ border-bottom:none; }
 
-/* Fases */
-.opty__phases-list { counter-reset: phase; list-style: none; margin: 8px 0 0; padding: 0; border: 1px dashed var(--opty-border); border-radius: var(--opty-radius); }
-.opty__phases-list > li { padding: 12px 14px; border-bottom: 1px dashed var(--opty-border); }
-.opty__phases-list > li:last-child { border-bottom: none; }
+/* Cards más grandes */
+.opty__cards{ display:grid; gap: 20px; }
+.opty__cards--2{ grid-template-columns:repeat(2, 1fr); }
+.opty__cards--3{ grid-template-columns:repeat(3, 1fr); }
+.opty__cards--4{ grid-template-columns:repeat(4, 1fr); }
 
-/* CTA */
-.opty__cta { display: grid; gap: 10px; margin-top: 20px; }
-.opty__btn { justify-self: start; background: var(--opty-accent); color: #fff; border: 0; border-radius: 999px; padding: 12px 20px; font-weight: 700; text-decoration: none; box-shadow: var(--opty-shadow); transition: transform .1s ease, box-shadow .2s ease; }
-.opty__btn:hover { transform: translateY(-1px); box-shadow: 0 12px 34px rgba(0,0,0,.08); }
-.opty__disclaimer { font-size: .9rem; }
+.opty__card{
+  background:var(--opty-card);
+  border:1px solid var(--opty-border);
+  border-radius:var(--opty-radius);
+  padding: 22px;
+  box-shadow:var(--opty-shadow);
+}
+.opty__card-title{
+  margin:0 0 10px;
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight:700;
+  color:var(--opty-accent);
+}
+.opty__card-text{ margin:0; }
+.opty__list{ margin:0 0 0 22px; }
+.opty__list li{ margin:8px 0; }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .opty__kpi-grid { grid-template-columns: repeat(2, 1fr); }
-  .opty__cards--4 { grid-template-columns: repeat(2, 1fr); }
-  .opty__table { grid-template-columns: 1.2fr 1fr; }
+/* Fases con más ritmo */
+.opty__phases-list{
+  list-style:none;
+  margin:10px 0 0;
+  padding:0;
+  border:1px dashed var(--opty-border);
+  border-radius:var(--opty-radius);
+}
+.opty__phases-list > li{
+  padding: 16px 18px;
+  border-bottom:1px dashed var(--opty-border);
+}
+.opty__phases-list > li:last-child{ border-bottom:none; }
+
+/* CTA más visible */
+.opty__cta{ display:grid; gap:12px; margin-top:24px; }
+.opty__btn{
+  justify-self:start;
+  background:var(--opty-accent);
+  color:#fff;
+  border:0;
+  border-radius:999px;
+  padding:14px 24px;
+  font-weight:700;
+  text-decoration:none;
+  box-shadow:var(--opty-shadow);
+  font-size: 1rem;
+  transition: transform .1s ease, box-shadow .2s ease;
+}
+.opty__btn:hover{ transform:translateY(-1px); box-shadow:0 16px 44px rgba(0,0,0,.09); }
+.opty__disclaimer{ font-size:.96rem; }
+
+/* RESPONSIVE */
+@media (max-width: 1280px){
+  :root{ --opty-maxw: min(96vw, 1200px); }
+}
+@media (max-width: 1024px){
+  .opty__kpi-grid{ grid-template-columns:repeat(2, 1fr); }
+  .opty__cards--4{ grid-template-columns:repeat(2, 1fr); }
+  .opty__table{ grid-template-columns:1.2fr 1fr; }
   .opty__row--head .opty__cell:nth-child(3),
-  .opty__row .opty__cell:nth-child(3) { display: none; }
+  .opty__row .opty__cell:nth-child(3){ display:none; }
 }
-@media (max-width: 640px) {
-  .opty__cards--2, .opty__cards--3, .opty__cards--4 { grid-template-columns: 1fr; }
-  .opty__title { font-size: 24px; }
+@media (max-width: 640px){
+  .opty__cards--2, .opty__cards--3, .opty__cards--4{ grid-template-columns:1fr; }
+  .opty__title{ font-size: 28px; }
+  .oportunity-section{ font-size: 1rem; } /* vuelve a ~16px en móvil */
 }
+
+/* OPCIONAL: pantallas MUY grandes */
+@media (min-width: 1600px){
+  :root{ --opty-maxw: 1440px; }
+  .opty__title{ font-size: 52px; }
+  .opty__kpi-value{ font-size: 44px; }
+}
+
+/* ===== OVERRIDES: tipografía más grande (pegar al final) ===== */
+
+/* Base de toda la sección (escala lo que esté en rem/em) */
+.oportunity-section{ font-size: 1.2rem; }          /* ~19.2px en desktop */
+@media (min-width:1600px){ .oportunity-section{ font-size: 1.25rem; } } /* ~20px */
+@media (max-width:1024px){ .oportunity-section{ font-size: 1.0625rem; } } /* ~17px */
+@media (max-width:640px){  .oportunity-section{ font-size: 1rem; } }      /* 16px */
+
+/* Títulos y textos que estaban en px (para que también escalen) */
+.opty__title{  font-size: clamp(36px, 4.5vw, 52px); }
+.opty__subtitle{ font-size: clamp(18px, 1.6vw, 20px); }
+.opty__h3{     font-size: clamp(24px, 2.6vw, 32px); }
+
+/* Tabla (celdas y cabecera un poco mayores) */
+.opty__row--head > .opty__cell{ font-size: 1.0625rem; }
+.opty__cell{ font-size: 1.0625rem; }
+
+/* KPIs */
+.opty__kpi-label{ font-size: 1.05rem; }
+.opty__kpi-hint{  font-size: 1.05rem; }
+.opty__kpi-value{ font-size: clamp(32px, 3.8vw, 46px); }
+
+/* Cards */
+.opty__card-title{ font-size: clamp(20px, 2vw, 24px); }
+
+/* Nota legal/CTA */
+.opty__disclaimer{ font-size: 1.05rem; }
+
+/* Sustituto de <header>: bloque superior sencillo */
+.opty__intro{
+  display:block;
+  margin-bottom: clamp(12px, 2.2vw, 24px);
+}
+
+/* (Recomendado) ancla suave si navegas con #oportunity en el menú */
+#oportunity{ scroll-margin-top: 90px; }
