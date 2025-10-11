@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Actualidad — Progreso de obra</title>
+
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- Estilos globales existentes -->
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/footer.css">
+
+  <!-- Estilos de esta página -->
+  <link rel="stylesheet" href="/css/actualidad.css">
+</head>
+<body class="actualidad-page">
+
+  <!-- Header dinámico -->
+  <div id="header-placeholder" role="banner"></div>
+
+  <main id="main" class="main-wrap" role="main">
+    <section class="actualidad-hero" aria-label="Actualidad">
+      <h1>Actualidad</h1>
+      <p class="lead">Seguimiento de fases y estado de la promoción.</p>
+    </section>
+
+    <!-- ====== PROGRESO (línea recta) ====== -->
+    <!-- Valores por defecto (ajusta a tu gusto): --rail-y: 120; --icon-size: 52px; --dot-r: 16px -->
+    <section class="progreso-section" aria-labelledby="obraTitle">
+      <div class="io-progress-wrap" style="--rail-y: 120; --icon-size: 52px; --dot-r: 16px;">
+        <!-- Título (centrado arriba) -->
+        <h3 id="obraTitle" class="obra-progress-title">Progreso de obra</h3>
+
+        <!-- Barra -->
+        <section id="estado-obra" class="obra-progress simple" data-current="4" aria-labelledby="obraTitle">
+          <!-- Línea recta; el JS actualizará y1/y2 a --rail-y -->
+          <svg class="obra__svg" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+            <line class="obra__rail" x1="140" y1="12" x2="1320" y2="12" />
+            <line class="obra__prog" x1="140" y1="12" x2="140" y2="12" />
+          </svg>
+
+          <!-- Pasos: --x = coordenada de diseño (base 1200) -->
+          <div class="obra__step" data-step="1" style="--x:80;">
+            <img class="obra__icon" src="/images/iconos/terreno.png" alt="" aria-hidden="true" />
+            <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+              <circle cx="18" cy="18" r="12" class="dot" />
+              <path d="M12 18 l4 4 8-8" class="check" />
+            </svg>
+            <div class="obra__labels"><div class="label">Suelo</div><div class="sublabel">Viabilidad</div></div>
+          </div>
+
+          <div class="obra__step" data-step="2" style="--x:228.57;">
+            <img class="obra__icon" src="/images/iconos/arquitecto.png" alt="" aria-hidden="true" />
+            <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+              <circle cx="18" cy="18" r="12" class="dot" />
+              <path d="M12 18 l4 4 8-8" class="check" />
+            </svg>
+            <div class="obra__labels"><div class="label">Proyecto</div><div class="sublabel">Diseño</div></div>
+          </div>
+
+          <div class="obra__step" data-step="3" style="--x:377.14;">
+            <img class="obra__icon" src="/images/iconos/permiso.png" alt="" aria-hidden="true" />
+            <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+              <circle cx="18" cy="18" r="12" class="dot" />
+              <path d="M12 18 l4 4 8-8" class="check" />
+            </svg>
+            <div class="obra__labels"><div class="label">Permisos</div><div class="sublabel">Licencia</div></div>
+          </div>
+
+          <div class="obra__step" data-step="4" style="--x:525.71;">
+            <img class="obra__icon" src="/images/iconos/terreno.png" alt="" aria-hidden="true" />
+            <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+              <circle cx="18" cy="18" r="12" class="dot" />
+              <path d="M12 18 l4 4 8-8" class="check" />
+            </svg>
+            <div class="obra__labels"><div class="label">Terreno</div><div class="sublabel">Preparación</div></div>
+          </div>
+
+          <div class="obra__step" data-step="5" style="--x:674.29;">
+            <img class="obra__icon" src="/images/iconos/cimentacion.png" alt="" aria-hidden="true" />
+            <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+              <circle cx="18" cy="18" r="12" class="dot" />
+              <path d="M12 18 l4 4 8-8" class="check" />
+            </svg>
+            <div class="obra__labels"><div class="label">Cimentación</div><div class="sublabel">Base</div></div>
+          </div>
+
+          <div class="obra__step" data-step="6" style="--x:822.86;">
+            <img class="obra__icon" src="/images/iconos/estructura.png" alt="" aria-hidden="true" />
+            <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+              <circle cx="18" cy="18" r="12" class="dot" />
+              <path d="M12 18 l4 4 8-8" class="check" />
+            </svg>
+            <div class="obra__labels"><div class="label">Estructura</div><div class="sublabel">Esqueleto</div></div>
+          </div>
+
+          <div class="obra__step" data-step="7" style="--x:971.43;">
+            <img class="obra__icon" src="/images/iconos/instalacion.png" alt="" aria-hidden="true" />
+            <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+              <circle cx="18" cy="18" r="12" class="dot" />
+              <path d="M12 18 l4 4 8-8" class="check" />
+            </svg>
+            <div class="obra__labels"><div class="label">Envolvente</div><div class="sublabel">&amp; Instalaciones</div></div>
+          </div>
+
+          <div class="obra__step" data-step="8" style="--x:1120;">
+            <img class="obra__icon" src="/images/iconos/villa.png" alt="" aria-hidden="true" />
+            <svg class="obra__dot" viewBox="0 0 36 36" aria-hidden="true">
+              <circle cx="18" cy="18" r="12" class="dot" />
+              <path d="M12 18 l4 4 8-8" class="check" />
+            </svg>
+            <div class="obra__labels"><div class="label">Acabados</div><div class="sublabel">&amp; Entrega</div></div>
+          </div>
+
+          <!-- Live region accesible -->
+          <span class="sr-live visually-hidden"></span>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer dinámico -->
+  <div id="footer-placeholder" role="contentinfo"></div>
+
+  <!-- JS: loader de parciales + progreso recto (sin inline por CSP) -->
+  <script src="/js/partials.js" defer></script>
+  <script src="/js/progreso-recto.js" defer></script>
+</body>
+</html>

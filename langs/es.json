@@ -53,7 +53,24 @@
       { "alt": "Terrazas con vistas al mar" }
     ]
   },
-
+  "cards": {
+    "infinity8": {
+      "title": "Villas",
+      "subtitle": "Concepto, terreno y villas"
+    },
+    "inversion": {
+      "title": "Inversión",
+      "subtitle": "ROI, cashflow y métricas"
+    },
+    "mapa": {
+      "title": "Mapa Interactivo",
+      "subtitle": "Ubicación, accesos y entorno"
+    },
+    "galeria": {
+      "title": "Galería",
+      "subtitle": "Recorrido visual del proyecto"
+    }
+  },
   "home": {
     "promo": {
       "units": { "label": "viviendas", "value": 20 },
@@ -61,6 +78,26 @@
       "beds": { "label": "dormitorios (tipología base)", "value": 3 },
       "plot": { "label": "m² de parcela", "value": 1803 },
       "sunnydays": { "label": "días de sol/año", "value": 300 }
+    }
+  },
+
+  "villas": {
+    "title": "Villa Infinity 8",
+    "back": "Volver",
+    "tech": {
+      "totalArea": "Área total",
+      "landPlot": "Solar",
+      "landscape": "Paisajismo",
+      "floor1Area": "1ª Planta",
+      "floor2Area": "2ª Planta",
+      "floor1": "1ª Planta",
+      "receptionist": "Recepción",
+      "powerHouse": "Cuarto de máquinas",
+      "staffRoom": "Sala de personal",
+      "storage": "Almacén",
+      "floor2": "2ª Planta",
+      "indoorArea": "Superficie interior",
+      "outdoor": "Exterior"
     }
   },
 
@@ -189,7 +226,7 @@
     }
   },
   "gallery": {
-    "title": "Villas Infinity 8",
+    "title": "Galería",
     "subtitle": "Hay lugares que no solo se visitan... se sienten. Lombok no es solo una isla, es una manera de entender la vida. Tranquilidad, belleza y libertad en su estado más puro.",
     "items": {
       "recepcion": {

@@ -53,7 +53,24 @@
       { "alt": "Terraces with sea views" }
     ]
   },
-
+  "cards": {
+    "infinity8": {
+      "title": "Villas",
+      "subtitle": "Concept, site & villas"
+    },
+    "inversion": {
+      "title": "Investments",
+      "subtitle": "ROI, cashflow & metrics"
+    },
+    "mapa": {
+      "title": "Interactive Map",
+      "subtitle": "Location, access & surroundings"
+    },
+    "galeria": {
+      "title": "Gallery",
+      "subtitle": "Visual tour of the project"
+    }
+  },
   "home": {
     "promo": {
       "units": { "label": "homes", "value": 20 },
@@ -61,6 +78,26 @@
       "beds": { "label": "bedrooms (base layout)", "value": 3 },
       "plot": { "label": "m² plot", "value": 1803 },
       "sunnydays": { "label": "sunny days/year", "value": 300 }
+    }
+  },
+
+   "villas": {
+    "title": "Infinity 8 Villa",
+    "back": "Back",
+    "tech": {
+      "totalArea": "Total Area",
+      "landPlot": "Land Plot",
+      "landscape": "Landscape",
+      "floor1Area": "1st Floor",
+      "floor2Area": "2nd Floor",
+      "floor1": "1st Floor",
+      "receptionist": "Receptionist",
+      "powerHouse": "Power House",
+      "staffRoom": "Staff Room",
+      "storage": "Storage",
+      "floor2": "2nd Floor",
+      "indoorArea": "Indoor Area",
+      "outdoor": "Outdoor"
     }
   },
 
@@ -190,7 +227,7 @@
   },
 
   "gallery": {
-    "title": "Infinity 8 Villas",
+    "title": "Gallery",
     "subtitle": "There are places you don’t just visit—you feel them. Lombok isn’t just an island; it’s a way of life. Calm, beauty, and freedom in their purest form.",
     "items": {
       "recepcion": {

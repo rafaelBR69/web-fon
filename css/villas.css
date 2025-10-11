@@ -1,0 +1,323 @@
+/* ===== Villas (página específica) ===== */
+
+:root{
+  /* Fallback si no existe en style.css */
+  --header-h: 100px;
+}
+
+/* Sección principal */
+.vhv-hero{
+  margin-top: calc(var(--header-h, 100px) + 18px);
+  position: relative;
+}
+
+/* Botón volver (arriba-izquierda, sobre la imagen) */
+.vhv-back{
+  position: absolute;
+  top: 10px; left: 12px;
+  transform: translateY(-100%);   /* queda justo por debajo del header */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #fff;
+  color: #0f2432;
+  text-decoration: none;
+  z-index: 5;
+  font-family: var(--ff-body, 'Montserrat', sans-serif);
+  font-size: 2.5rem;
+}
+.vhv-back:hover{ box-shadow: 0 12px 28px rgba(0,0,0,.16); }
+.vhv-back__icon{ line-height: 0; }
+
+/* Contenedor con ancho cómodo; imagen a la izquierda “pegada” */
+.vhv-hero__container{
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-right: clamp(16px, 4vw, 40px);
+  padding-left: 0; /* pegamos la columna izquierda al borde izq */
+}
+
+/* Grid 2 columnas */
+.vhv-hero__grid{
+  display: grid;
+  grid-template-columns: minmax(280px, 1.15fr) minmax(280px, .95fr);
+  gap: clamp(16px, 3vw, 32px);
+  align-items: start;
+}
+
+/* Col izq: imagen “pegada” a la izquierda */
+.vhv-media{
+  margin: 0;
+  /* truco para que la imagen pueda “sangrar” si tu layout usa padding lateral */
+  padding-left: 0;
+}
+.vhv-img{
+  width: 100%;
+  height: 100px;
+  display: block;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+  background: #fff;
+  /* margen superior para separarla del header */
+  margin-top: 8px;
+}
+
+/* Col der: info */
+.vhv-info{
+  padding-top: 8px;
+}
+.vhv-title{
+  font-family: var(--ff-body, 'Montserrat', sans-serif);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 2.2vw, 3rem);
+  color: #0f2432;
+  margin: 0 0 12px 0;
+}
+
+/* Lista técnica (5 filas) */
+.vhv-spec{
+  list-style: none;
+  margin: 0;
+  padding: 8px 0 0 0;
+  display: grid;
+  gap: 14px; /* separación entre filas */
+}
+.vhv-spec li{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid rgba(15,36,50,.06);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.06);
+}
+
+.vhv-spec__title{
+  font-family: var(--ff-body, 'Montserrat', sans-serif);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 1.1vw, 1.8rem);
+  color: rgba(15,36,50,.85);
+}
+.vhv-spec__value{
+  font-family: var(--ff-body, 'Montserrat', sans-serif);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 1.2vw, 1.9rem);
+  color: #0f2432;
+  justify-self: end;
+}
+
+/* Caracteres individuales animables */
+.vhv-char{
+  display: inline-block;
+  opacity: 0;              /* estado inicial (el JS la anima) */
+  will-change: transform, opacity;
+}
+
+/* Separación inferior de la sección y divisor limpio */
+.vhv-section-sep{
+  margin-top: clamp(28px, 6vw, 64px);
+  padding-top: clamp(20px, 3vw, 36px);
+  border-top: 1px solid rgba(15,36,50,.08);
+}
+
+/* Placeholder para la siguiente sección (ejemplo) */
+.vhv-next{ padding: 24px 0 64px; }
+
+/* ===== Responsive ===== */
+@media (max-width: 992px){
+  .vhv-back{
+    top: 6px; left: 8px;
+    transform: translateY(-100%);
+  }
+  .vhv-hero__container{
+    padding-left: clamp(12px, 4vw, 24px); /* recupera gutter en móvil */
+    padding-right: clamp(12px, 4vw, 24px);
+  }
+  .vhv-hero__grid{
+    grid-template-columns: 1fr; /* stack: imagen arriba, texto abajo */
+  }
+  .vhv-img{ margin-top: 12px; }
+  .vhv-spec li{
+    grid-template-columns: 1fr;  /* título arriba, valor abajo */
+    gap: 6px;
+  }
+  .vhv-spec__value{ justify-self: start; }
+}
+
+/* ===== Ajustes solicitados: imagen izda, más grande, sin bordes ===== */
+
+/* El contenedor ocupa todo el ancho; sin padding a la izquierda → flush al viewport */
+.villas-page .vhv-hero__container{
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: clamp(16px, 4vw, 48px); /* mantenemos gutter a la derecha */
+}
+
+/* Izquierda más ancha: la imagen crece. Derecha ajusta a 1fr */
+.villas-page .vhv-hero__grid{
+  grid-template-columns: minmax(520px, 64%) 1fr; /* ↑ ajusta 60–70% al gusto */
+  align-items: start;
+}
+
+/* La columna izquierda sin sangrías ni márgenes extra */
+.villas-page .vhv-media{
+  margin: 0;
+  padding-left: 0;
+}
+
+/* Imagen sin bordes ni sombra, pegada al borde izq y más grande */
+.villas-page .vhv-img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;          /* ← sin esquinas redondeadas */
+  box-shadow: none;          /* ← sin sombra */
+  margin-top: 12px;          /* separación del header */
+}
+
+/* ===== Responsive ===== */
+/* Ultra ancho: aún más protagonismo a la imagen si quieres */
+@media (min-width: 1400px){
+  .villas-page .vhv-hero__grid{
+    grid-template-columns: 68% 1fr;
+  }
+}
+
+/* Tablet y móvil: stack y recupera gutters laterales */
+@media (max-width: 992px){
+  .villas-page .vhv-hero__container{
+    padding-left: clamp(12px, 4vw, 24px);
+    padding-right: clamp(12px, 4vw, 24px);
+  }
+  .villas-page .vhv-hero__grid{
+    grid-template-columns: 1fr;   /* imagen arriba, texto debajo */
+  }
+}
+
+/* ===== Plano técnico (sin cards) ===== */
+.vhv-info{
+  color: #092B3F;
+  font-family: 'Montserrat', sans-serif;
+}
+.vhv-title{
+  color: #092B3F;
+  margin: 0 0 10px 0;
+}
+
+/* Títulos de grupo */
+.vhv-tech__groupTitle{
+  margin: 18px 0 10px;
+  font-weight: 600;
+  font-size: clamp(1.8rem, 1.5vw, 2.2rem);
+  letter-spacing: .2px;
+  color: #092B3F;
+}
+
+/* Lista plana con separadores */
+.vhv-tech__list{
+  list-style: none;
+  margin: 0 0 12px 0;
+  padding: 0;
+  border-top: 1px solid rgba(9,43,63,.18);
+}
+.vhv-tech__list > li{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(9,43,63,.12);
+}
+
+/* Tipos */
+.vhv-tech__label{
+  font-weight: 500;
+  font-size: clamp(1.5rem, 1.1vw, 1.8rem);
+  color: #092B3F;
+}
+.vhv-tech__value{
+  font-weight: 600;
+  font-size: clamp(1.5rem, 1.2vw, 1.9rem);
+  color: #092B3F;
+  justify-self: end;
+}
+
+/* Animación por carácter (usa la clase existente .vhv-char) */
+.vhv-char{ display:inline-block; opacity:0; }
+
+/* Responsive */
+@media (max-width: 992px){
+  .vhv-tech__list > li{ grid-template-columns: 1fr; }
+  .vhv-tech__value{ justify-self: start; }
+}
+
+/* ===== Ajuste de desplazamiento general para que no solape el header ===== */
+.vhv-hero{
+  /* antes: calc(var(--header-h, 100px) + 18px); */
+  margin-top: calc(var(--header-h, 100px) + 40px);
+  position: relative;
+  padding-top: 14px; /* pequeño aire interno para la flecha */
+}
+
+/* ===== Flecha: sin transform y más abajo ===== */
+.vhv-back{
+  position: absolute;
+  top: 0px;                               /* estaba con translateY(-100%) */
+  left: clamp(10px, 2.5vw, 16px);
+  transform: none;                        /* ¡quitamos el translate! */
+  background: #fff;
+  color: #092B3F;
+
+  z-index: 5;
+}
+
+/* ===== Grid: mantenemos la imagen algo más pequeña y más gap (limpieza) ===== */
+.vhv-hero__grid{
+  grid-template-columns: minmax(420px, 52%) 1fr; /* 52% imagen, 48% texto */
+  gap: clamp(24px, 4.5vw, 56px);                 /* aire entre columnas */
+}
+
+/* ===== Nueva sección de galería (partial) ===== */
+.vhv-gallery-section{
+  padding: clamp(24px, 5vw, 56px) 0;
+  background: #fff;                   /* neutral para que la galería respire */
+}
+
+/* Responsive: sólo recordatorio (si ya lo tienes, se respeta) */
+@media (max-width: 992px){
+  .vhv-hero{
+    margin-top: calc(var(--header-h, 100px) + 24px);
+    padding-top: 8px;
+  }
+  .vhv-hero__grid{
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 3vw, 24px);
+  }
+}
+
+:root{
+  --header-h: 100px;        /* alto real de tu header fijo */
+  --vhv-hero-gap: 52px;     /* ↓ sube/baja TODA la sección respecto al header */
+  --vhv-back-y: -48px;        /* ↓ sube/baja SOLO la flecha dentro de la sección */
+  --vhv-back-x: 14px;       /* ←→ mueve la flecha horizontalmente */
+}
+
+/* 1) Baja/sube la sección “hero” completa */
+.vhv-hero{
+  margin-top: calc(var(--header-h) + var(--vhv-hero-gap));
+  position: relative;
+  padding-top: 0;           /* evita que un padding te mueva la flecha sin querer */
+}
+
+/* 2) Posición precisa de la flecha */
+.vhv-back{
+  position: absolute;
+  top: var(--vhv-back-y);                 /* + más abajo | – más arriba (puede ser negativo) */
+  left: clamp(var(--vhv-back-x), 2vw, 20px);
+  transform: none;                        /* importante: sin translate */
+  z-index: 5;
+}
+

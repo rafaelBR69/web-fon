@@ -5,7 +5,7 @@
 
 #galeria-infinity.gi-slider{
   /* ===== Tokens / Personaliza aquí ===== */
-  --gi-bg: url('/images/galeria-infinity/bg.jpg');
+  --gi-bg: color #fff;
   --gi-gap: 21px;
   --gi-card-radius: 8px;
 
