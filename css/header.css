@@ -8,7 +8,7 @@
   --shadow-hdr  : 0 6px 18px rgba(0,0,0,.12);
 
   --ff-body     : 'Montserrat', sans-serif;
-  --fw-nav      : 300;
+  --fw-nav      : 400;
 }
 
 header{ font-family: var(--ff-body); }
@@ -63,7 +63,7 @@ header .navbar{
   font-size: clamp(1.05rem, 1.1vw, 1.95rem); /* ⬅️ AUMENTADO */
   font-weight: var(--fw-nav);
   text-transform: uppercase;
-  letter-spacing: .18em;                  /* un pelín más abierto */
+  letter-spacing: .10em;                  /* un pelín más abierto */
   color: var(--brand-light) !important;
   padding: .85rem 1.1rem;                 /* más “hit area” */
   transition: opacity .25s ease, color .25s ease;
@@ -120,3 +120,23 @@ header.fixed-top.scrolled::before{
 
 /* (Opcional) Reforzar contraste sobre fondos muy claros del hero */
 .navbar .nav-link { text-shadow: 0 1px 8px rgba(0,0,0,.25); }
+
+/* Fija variables de Bootstrap solo dentro del header */
+header.fixed-top {
+  /* peso y tamaño coherentes */
+  --bs-nav-link-font-weight: 300;
+  --bs-nav-link-font-size: clamp(1.05rem, 1.1vw, 1.95rem);
+
+  /* padding base de .nav-link */
+  --bs-nav-link-padding-y: .85rem;
+  --bs-nav-link-padding-x: 1.1rem;
+
+  /* padding horizontal que usa la regla @media (≥992px) */
+  --bs-navbar-nav-link-padding-x: 1.1rem;
+}
+
+/* Refuerza tu intención (más específico que .nav-link) */
+header.fixed-top .navbar-nav .nav-link {
+  font-weight: 300;
+  padding: .85rem 1.1rem; /* coincide con las vars de arriba */
+}

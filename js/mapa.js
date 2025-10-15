@@ -170,10 +170,11 @@ export async function initLombokMap(
   const onResizeStable = () => {
     cancelAnimationFrame(rafId);
     rafId = requestAnimationFrame(() => {
-      buildTiles();              // recomputa overscan con el tamaño nuevo
+      buildTiles();                   // recomputa overscan con el tamaño nuevo
       keepSameMapCenterAfterResize(); // mantiene el mismo centro del mapa
     });
   };
+  addEventListener('resize', onResizeStable);
 
   /* ===== Parallax ===== */
   let parallaxEnabled = false;
@@ -221,7 +222,7 @@ export async function initLombokMap(
   let running = false, panelOpen = false;
   let currentPoi = null;
 
-  /* === i18n helpers (POIs) === */
+  /* === i18n helpers (mejorados) === */
   const POI_ALIAS = {
     'poi-mandalika'              : 'mandalika',
     'poi-airport'                : 'airport',
@@ -237,7 +238,30 @@ export async function initLombokMap(
     'poi-bali-label'             : 'bali'
   };
   function aliasFromPoiId(id=''){ return POI_ALIAS[id] || id.replace(/^poi-/, '').replace(/-label$/,''); }
-  const tr = (k, fb='') => (window.i18next && i18next.exists(k)) ? i18next.t(k) : fb;
+
+  const i18nReady = () => Boolean(window.i18next && i18next.isInitialized);
+  const hasKey = (k) => i18nReady() && i18next.exists(k);
+
+  // Traduce una clave o usa fallback; no muestra la key cruda
+  function tr(k, fb=''){
+    if (i18nReady() && typeof i18next.t === 'function') {
+      return i18next.t(k, { defaultValue: fb });
+    }
+    return fb;
+  }
+
+  // Prueba varias claves (útil por namespaces diferentes) antes del fallback
+  function trAny(keys, fb=''){
+    const arr = Array.isArray(keys) ? keys : [keys];
+    for (const k of arr){
+      if (hasKey(k)) return i18next.t(k);
+    }
+    for (const k of arr){
+      const v = tr(k, null);
+      if (v !== null && v !== k) return v;
+    }
+    return fb;
+  }
 
   /* === Efecto de escritura (typing) para títulos y texto === */
   function typeInText(el, text, msPerChar = 18) {
@@ -245,8 +269,8 @@ export async function initLombokMap(
     el.textContent = '';
     let idx = 0;
     const tick = () => {
-      if (idx <= text.length) {
-        el.textContent = text.slice(0, idx++);
+      if (idx <= (text?.length ?? 0)) {
+        el.textContent = (text || '').slice(0, idx++);
         setTimeout(tick, msPerChar);
       }
     };
@@ -327,56 +351,49 @@ export async function initLombokMap(
     return res.json();
   }
 
+  // Reemplaza SOLO esta función en /js/mapa.js
   async function loadData(){
-    const candidates = ['/data/mapa-data.json','./data/mapa-data.json','data/mapa-data.json','mapa-data.json'];
-    for (const url of candidates){ try { return await tryFetch(url); } catch(_e){} }
+    const lang =
+      (window.i18next?.language ||
+      document.documentElement.lang ||
+      navigator.language ||
+      'es').split('-')[0].toLowerCase();
+
+    // Intenta primero por idioma (ej: /data/mapa-data-en.json)
+    const byLang = [
+      `/data/mapa-data-${lang}.json`,
+      `./data/mapa-data-${lang}.json`,
+      `data/mapa-data-${lang}.json`,
+      `mapa-data-${lang}.json`
+    ];
+
+    // Luego el genérico (tu actual mapa-data.json en ES)
+    const generic = [
+      '/data/mapa-data.json','./data/mapa-data.json','data/mapa-data.json','mapa-data.json'
+    ];
+
+    for (const url of [...byLang, ...generic]) {
+      try { return await tryFetch(url); } catch(_e){}
+    }
+
     console.warn('[mapa] usando fallback de POIs');
-    return {
-      pois: [
-        { id:"poi-mandalika", label:"Mandalika Circuit",
-          coords:{ cx:728.5, cy:828.2, r:7 },
-          panel:{
-            resumen:{
-              descripcion:"Trazado moderno junto a la costa; rápido y fluido con secciones técnicas.",
-              historiaBreve:"Inaugurado en 2021; primera carrera de MotoGP en 2022.",
-              fechaHabitual:"Octubre (puede variar)."
-            },
-            photo:{
-              src: "/images/poi/circuito.jpg",
-              alt: "Circuito de Mandalika desde el aire",
-              caption: "Mandalika International Circuit"
-            }
-          },
-          track:{ scale:0.46, offsetY:-40, stroke:6 }
-        },
-        { id:"poi-airport", label:"Aeropuerto Intl.",
-          coords:{ cx:701.6, cy:769.6, r:7 },
-          panel:{
-            resumen:{ descripcion:"Aeropuerto más cercano al circuito." },
-            photo:{
-              src: "/images/poi/aeropuerto.jpg",
-              alt: "Aeropuerto cercano",
-              caption: "Aeropuerto Internacional de Lombok"
-            }
-          }
-        }
-      ]
-    };
+    return { pois: [] };
   }
 
-  /* ===== Panel info list ===== */
+  /* ===== Panel info list (solo 'Descripción') ===== */
   function ensureInfoList(){
     if (!panel) return null;
     let infoList = panel.querySelector('#infoList');
     let headerH4 = panel.querySelector('#trackInfo h4');
     if (infoList) {
-      if (headerH4) headerH4.textContent = tr('map.panel.summary','Resumen');
+      if (headerH4) headerH4.textContent = trAny(['map.panel.summary','panel.summary','common.summary'],'Resumen');
       return infoList;
     }
     const trackInfo = document.createElement('section');
     trackInfo.className = 'track-info';
     trackInfo.id = 'trackInfo';
-    const h4 = document.createElement('h4'); h4.textContent = tr('map.panel.summary','Resumen');
+    const h4 = document.createElement('h4');
+    h4.textContent = trAny(['map.panel.summary','panel.summary','common.summary'],'Resumen');
     infoList = document.createElement('dl'); infoList.id = 'infoList';
     trackInfo.appendChild(h4); trackInfo.appendChild(infoList);
     panel.appendChild(trackInfo);
@@ -425,6 +442,7 @@ export async function initLombokMap(
     }
   }
 
+  // === SOLO 'Descripción' en la lista (quitado Historia y Fecha habitual) ===
   function renderInfo(resumen){
     const infoList = ensureInfoList();
     if (!infoList){ console.warn('[mapa] No se pudo crear/encontrar #infoList'); return; }
@@ -436,14 +454,17 @@ export async function initLombokMap(
       infoList.appendChild(dt); infoList.appendChild(dd);
       typeInText(dd, String(v), 12);
     };
-    add(tr('map.panel.fields.description','Descripción'),    resumen?.descripcion);
-    add(tr('map.panel.fields.history','Historia'),           resumen?.historiaBreve);
-    add(tr('map.panel.fields.usualDate','Fecha habitual'),  resumen?.fechaHabitual);
+    const labelDesc = trAny(
+      ['map.panel.fields.description','panel.fields.description','common.description'],
+      'Descripción'
+    );
+    add(labelDesc, resumen?.descripcion);
+
     if (!infoList.children.length){
-      const dt = document.createElement('dt'); dt.textContent = tr('map.panel.fields.generic','Info');
+      const dt = document.createElement('dt'); dt.textContent = trAny(['map.panel.fields.generic','panel.fields.generic'],'Info');
       const dd = document.createElement('dd'); dd.textContent = '';
       infoList.appendChild(dt); infoList.appendChild(dd);
-      typeInText(dd, tr('map.panel.fields.noData','Sin datos para este punto.'), 12);
+      typeInText(dd, trAny(['map.panel.fields.noData','panel.fields.noData'],'Sin datos para este punto.'), 12);
     }
   }
 
@@ -473,22 +494,19 @@ export async function initLombokMap(
         group.appendChild(c);
       }
 
-      // 2) etiqueta
+      // 2) etiqueta (usa labelKey si está definida)
       const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       t.classList.add('poi-label');
       if (p.bigLabel) t.classList.add('poi-label--region');
 
-      // centrado si es rótulo de región o si lo pides explícito
       const anchor = p.anchor || (isLabelOnly ? 'middle' : 'start');
       t.setAttribute('text-anchor', anchor);
-
-      // posición: si es labelOnly, centrado exacto; si no, se corre +4 a la derecha
       t.setAttribute('x', isLabelOnly ? cx : (cx + 4));
       t.setAttribute('y', cy);
 
-      // etiqueta traducida con fallback al JSON
-      const key = aliasFromPoiId(p.id);
-      t.textContent = tr(`map.pois.${key}.label`, p.label ?? '');
+      const alias = aliasFromPoiId(p.id);
+      const labelKey = p.labelKey || `map.pois.${alias}.label`;
+      t.textContent = tr(labelKey, p.label ?? '');
 
       // Solo las etiquetas de POIs con punto deberían abrir panel
       if (interactive) t.setAttribute('data-poi-id', p.id);
@@ -496,7 +514,7 @@ export async function initLombokMap(
       group.appendChild(t);
     });
 
-    // Pequeña entrada solo para los puntos (no para rótulos de región)
+    // Entrada con animación solo para los puntos
     const poiNodes = $$('.poi');
     if (poiNodes && poiNodes.length){
       animate(poiNodes, { opacity:[0,1], r:[0,7], delay:(_el,i)=>300+i*120, duration:450, easing:'easeOutQuad' });
@@ -505,6 +523,9 @@ export async function initLombokMap(
 
   const data = await loadData();
   buildPOIs(data);
+
+  // Si i18n ya está listo, refrescamos ahora; si no, cuando cargue
+  if (i18nReady()) refreshPoiLabels();
 
   /* ===== Click en POI → abre panel con textos traducidos ===== */
   poisGroup?.addEventListener('click', (ev) => {
@@ -517,28 +538,26 @@ export async function initLombokMap(
     if (same){ closePanel(); currentPoi = null; return; }
     currentPoi = poi;
 
-    const key = aliasFromPoiId(poi.id);
+    const alias = aliasFromPoiId(poi.id);
 
+    // Título del panel (usa labelKey si existe)
     if (panelTitle){
       panelTitle.textContent = '';
-      const title = tr(`map.pois.${key}.label`, poi.label || tr('map.panel.titleFallback','Detalle'));
+      const title = tr(poi.labelKey || `map.pois.${alias}.label`, poi.label || trAny(['map.panel.titleFallback','panel.titleFallback'],'Detalle'));
       typeInText(panelTitle, title, 14);
     }
 
-    // Foto: alt/caption traducidos (src viene de JSON)
+    // Foto: alt/caption traducidos (src viene de JSON; keys opcionales)
     const photo = {
       src    : poi.panel?.photo?.src || poi.photo?.src,
-      alt    : tr(`map.pois.${key}.photo.alt`,     poi.panel?.photo?.alt || poi.photo?.alt || ''),
-      caption: tr(`map.pois.${key}.photo.caption`, poi.panel?.photo?.caption || poi.photo?.caption || '')
+      alt    : tr(poi.photo?.altKey || `map.pois.${alias}.photo.alt`,     poi.panel?.photo?.alt || poi.photo?.alt || ''),
+      caption: tr(poi.photo?.captionKey || `map.pois.${alias}.photo.caption`, poi.panel?.photo?.caption || poi.photo?.caption || '')
     };
     renderMedia(photo);
 
-    // Resumen traducido con fallback al JSON
-    const resumen = {
-      descripcion  : tr(`map.pois.${key}.resumen.descripcion`,  poi.panel?.resumen?.descripcion),
-      historiaBreve: tr(`map.pois.${key}.resumen.historiaBreve`, poi.panel?.resumen?.historiaBreve),
-      fechaHabitual: tr(`map.pois.${key}.resumen.fechaHabitual`, poi.panel?.resumen?.fechaHabitual)
-    };
+    // Resumen SOLO con 'descripcion' (usa descripcionKey si existe)
+    const descKey = poi.panel?.resumen?.descripcionKey || `map.pois.${alias}.resumen.descripcion`;
+    const resumen = { descripcion: tr(descKey, poi.panel?.resumen?.descripcion) };
     renderInfo(resumen);
 
     openPanel();
@@ -575,42 +594,52 @@ export async function initLombokMap(
     rebuildAnimations();
   }
 
-  /* ===== i18n: refrescar etiquetas al cambiar idioma ===== */
+  /* ===== i18n: refrescar etiquetas cuando i18next esté listo/cargado/cambie ===== */
   function refreshPoiLabels(){
+    // Labels de los puntos
     const labels = $('#pois')?.querySelectorAll('.poi-label');
-    if (!labels) return;
-    labels.forEach(node => {
-      // intenta leer el id del poi asociado
-      const id = node.getAttribute('data-poi-id') || node.previousElementSibling?.id || '';
-      const key = aliasFromPoiId(id);
-      const fallback = node.textContent || '';
-      if (key) node.textContent = tr(`map.pois.${key}.label`, fallback);
-    });
+    if (labels) {
+      labels.forEach(node => {
+        const id = node.getAttribute('data-poi-id') || node.previousElementSibling?.id || '';
+        const alias = aliasFromPoiId(id);
+        // Si el POI existe en data, intenta usar su labelKey
+        const p = (data.pois || []).find(x => x.id === id);
+        const key = p?.labelKey || `map.pois.${alias}.label`;
+        const fallback = p?.label || node.textContent || '';
+        node.textContent = tr(key, fallback);
+      });
+    }
 
     // actualizar cabecera "Resumen" si existe
     const h4 = panel?.querySelector('#trackInfo h4');
-    if (h4) h4.textContent = tr('map.panel.summary','Resumen');
+    if (h4) h4.textContent = trAny(['map.panel.summary','panel.summary','common.summary'],'Resumen');
 
-    // si el panel está abierto, re-render para traducir contenido
+    // si el panel está abierto, re-render SOLO 'Descripción' y media con sus keys
     if (panelOpen && currentPoi){
       const poi = currentPoi;
-      const key = aliasFromPoiId(poi.id);
+      const alias = aliasFromPoiId(poi.id);
+
       if (panelTitle){
-        panelTitle.textContent = tr(`map.pois.${key}.label`, poi.label || tr('map.panel.titleFallback','Detalle'));
+        panelTitle.textContent = tr(poi.labelKey || `map.pois.${alias}.label`, poi.label || trAny(['map.panel.titleFallback','panel.titleFallback'],'Detalle'));
       }
       const photo = {
         src    : poi.panel?.photo?.src || poi.photo?.src,
-        alt    : tr(`map.pois.${key}.photo.alt`,     poi.panel?.photo?.alt || poi.photo?.alt || ''),
-        caption: tr(`map.pois.${key}.photo.caption`, poi.panel?.photo?.caption || poi.photo?.caption || '')
+        alt    : tr(poi.photo?.altKey || `map.pois.${alias}.photo.alt`,     poi.panel?.photo?.alt || poi.photo?.alt || ''),
+        caption: tr(poi.photo?.captionKey || `map.pois.${alias}.photo.caption`, poi.panel?.photo?.caption || poi.photo?.caption || '')
       };
       renderMedia(photo);
-      const resumen = {
-        descripcion  : tr(`map.pois.${key}.resumen.descripcion`,  poi.panel?.resumen?.descripcion),
-        historiaBreve: tr(`map.pois.${key}.resumen.historiaBreve`, poi.panel?.resumen?.historiaBreve),
-        fechaHabitual: tr(`map.pois.${key}.resumen.fechaHabitual`, poi.panel?.resumen?.fechaHabitual)
-      };
+
+      const descKey = poi.panel?.resumen?.descripcionKey || `map.pois.${alias}.resumen.descripcion`;
+      const resumen = { descripcion: tr(descKey, poi.panel?.resumen?.descripcion) };
       renderInfo(resumen);
     }
   }
-  if (window.i18next) i18next.on('languageChanged', refreshPoiLabels);
+
+  // Eventos i18next para refrescar cuando realmente esté listo
+  if (window.i18next){
+    if (i18next.isInitialized) refreshPoiLabels();
+    i18next.on?.('initialized', refreshPoiLabels);
+    i18next.on?.('loaded',      refreshPoiLabels);
+    i18next.on?.('languageChanged', refreshPoiLabels);
+  }
 }

@@ -447,7 +447,10 @@
       "senggigi": { "label": "Senggigi", "photo": { "alt": "Coast and sunset in Senggigi", "caption": "Senggigi" } },
       "lombok":   { "label": "LOMBOK" },
       "bali":     { "label": "BALI" }
-    }
+    },
+    "back": "Back",
+    "title": "Lombok — Interactive Map",
+    "subtitle": "Explore points of interest, the Mandalika circuit, and our location."
   },
 
   "modals": {
@@ -526,5 +529,71 @@
     "step6": { "title": "Structure", "sub": "Skeleton" },
     "step7": { "title": "Envelope", "sub": "Installations" },
     "step8": { "title": "Finishes", "sub": "Handover" }
-  }
+  },
+  "mandalika": {
+    "label": "Mandalika Circuit",
+    "photo": { "alt": "Aerial view of Mandalika Circuit", "caption": "Mandalika International Circuit" },
+    "resumen": {
+      "descripcion": "New-generation coastal circuit (~4.3 km, 17 turns) embedded in the Mandalika tourism district. Fast sweepers, linked technical sections and a beach backdrop; MotoGP venue since 2022."
+    }
+  },
+  "airport": {
+    "label": "Lombok International Airport",
+    "photo": { "alt": "Lombok International Airport terminal", "caption": "Lombok International Airport (BIZAM)" },
+    "resumen": {
+      "descripcion": "BIZAM (LOP) is the practical gateway to south Lombok: ~20–30 min to Kuta/Mandalika via the airport bypass. Daily flights to Jakarta and Bali, with simple international links."
+    }
+  },
+  "rinjani": {
+    "label": "Mount Rinjani",
+    "photo": { "alt": "Crater and lake of Mount Rinjani", "caption": "Mount Rinjani National Park" },
+    "resumen": {
+      "descripcion": "Active volcano (3,726 m) and northern Lombok icon. Demanding 2–4 day trek to the crater and Segara Anak lake. Quotas/closures may apply due to weather or safety—check status before going."
+    }
+  },
+  "gili": {
+    "label": "Gili Islands",
+    "photo": { "alt": "Beach and reef in the Gili Islands", "caption": "Gili Trawangan · Gili Air · Gili Meno" },
+    "resumen": {
+      "descripcion": "Car-free trio: Trawangan is lively, Air runs local/chill, Meno stays quiet. Snorkel with turtles and reefs close to shore. Access by fast boat from Bali or by boat from Bangsal (Lombok)."
+    }
+  },
+  "selong": {
+    "label": "Selong Belanak Beach",
+    "photo": { "alt": "Selong Belanak bay", "caption": "Selong Belanak" },
+    "resumen": {
+      "descripcion": "Horseshoe bay with fine sand and forgiving waves—ideal to learn surfing. Schools, warungs and board rental on the beach; ~25–40 min by road from Kuta."
+    }
+  },
+  "tanjung": {
+    "label": "Tanjung Aan & Bukit Merese",
+    "photo": { "alt": "Coves of Tanjung Aan and Merese hill", "caption": "Tanjung Aan · Bukit Merese" },
+    "resumen": {
+      "descripcion": "Two turquoise coves great for bathing and paddle close to shore. The climb to Bukit Merese delivers a classic Lombok sunset; 10–15 minutes from Kuta."
+    }
+  },
+  "senaru": {
+    "label": "Sendang Gile & Tiu Kelep (Senaru)",
+    "photo": { "alt": "Sendang Gile and Tiu Kelep waterfalls", "caption": "Sendang Gile & Tiu Kelep" },
+    "resumen": {
+      "descripcion": "Twin jungle waterfalls reached by a signed path from Senaru (ticketed; local guides optional). Slippery after rain—wear shoes with good grip."
+    }
+  },
+  "pink": {
+    "label": "Pink Beach (Pantai Tangsi)",
+    "photo": { "alt": "Pink sand and turquoise waters at Pink Beach", "caption": "Pink Beach (Pantai Tangsi)" },
+    "resumen": {
+      "descripcion": "Secluded bay with pinkish sand from coral fragments. Best from ~11:00–15:00 with high sun and calm sea. Rough road access (4×4 helps) or boat; very basic services."
+    }
+  },
+  "senggigi": {
+    "label": "Senggigi",
+    "photo": { "alt": "Coast and sunset in Senggigi", "caption": "Senggigi" },
+    "resumen": {
+      "descripcion": "Historic west-coast strip with hotels, beach clubs and the coastal temple Pura Batu Bolong. Great sunsets and a handy base for Bangsal (Gili boats) and Mataram."
+    }
+  },
+  "lombok": { "label": "LOMBOK" },
+  "bali": { "label": "BALI" }
+
 }

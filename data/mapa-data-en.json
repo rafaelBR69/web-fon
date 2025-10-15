@@ -1,0 +1,184 @@
+{
+  "pois": [
+    {
+      "id": "poi-mandalika",
+      "label": "Mandalika Circuit",
+      "coords": { "cx": 722.1, "cy": 871.6, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "New-generation coastal circuit (~4.3 km, 17 turns) embedded in the Mandalika tourism district. Fast sweepers, linked technical sections and a beach backdrop. MotoGP venue since 2022."
+        }
+      },
+      "photo": {
+        "src": "/images/poi/circuito.jpg",
+        "alt": "Aerial view of Mandalika Circuit",
+        "caption": "Mandalika International Circuit"
+      },
+      "track": { "scale": 0.66, "offsetY": -130, "stroke": 6 }
+    },
+
+    {
+      "id": "poi-airport",
+      "label": "Lombok International Airport",
+      "coords": { "cx": 701.2, "cy": 772.7, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "BIZAM (LOP) is the practical gateway to south Lombok: ~20–30 min to Kuta/Mandalika via the airport bypass. Daily flights to Jakarta and Bali, with straightforward international links."
+        }
+      },
+      "photo": {
+        "src": "/images/poi/aeropuerto.jpeg",
+        "alt": "Lombok International Airport terminal",
+        "caption": "Lombok International Airport (BIZAM)"
+      }
+    },
+
+    {
+      "id": "poi-infinity",
+      "label": "Infinity 8",
+      "coords": { "cx": 813.6, "cy": 818.6, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Hillside boutique cluster with clean lines, privacy and open Indian Ocean views. Quick access to Kuta and Tanjung Aan—solid base for quality lodging and experiences."
+        }
+      },
+      "photo": {
+        "src": "/images/poi/infinity.jpg",
+        "alt": "Infinity 8 complex on the hillside",
+        "caption": "Infinity 8"
+      }
+    },
+
+    {
+      "id": "poi-rinjani",
+      "label": "Mount Rinjani",
+      "coords": { "cx": 818.3, "cy": 513.1, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Active volcano (3,726 m) and the north’s big icon. Classic 2–4 day trek to the crater rim and Segara Anak lake. Permits, quotas and weather closures apply—check status before going."
+        }
+      },
+      "photo": {
+        "src": "/images/poi/rinjani.jpg",
+        "alt": "Crater and lake of Mount Rinjani",
+        "caption": "Mount Rinjani National Park"
+      }
+    },
+
+    {
+      "id": "poi-gili-trawangan",
+      "label": "Gili Islands",
+      "coords": { "cx": 525.9, "cy": 469.8, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Car-free trio: Trawangan is lively, Air is chill and local, Meno stays quiet. Reef and turtles close to shore. Access by fast boat from Bali or by local boats from Bangsal (Lombok)."
+        }
+      },
+      "photo": {
+        "src": "/images/poi/gili.webp",
+        "alt": "Beach and reef in the Gili Islands",
+        "caption": "Gili Trawangan · Gili Air · Gili Meno"
+      }
+    },
+
+    {
+      "id": "poi-selong-belanak",
+      "label": "Selong Belanak Beach",
+      "coords": { "cx": 618.4, "cy": 854.6, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Wide horseshoe bay with fine sand and forgiving waves—perfect for first surf lessons. Beach warungs, board rental and sunbeds; ~25–40 min by road from Kuta."
+        }
+      },
+      "photo": {
+        "src": "/images/poi/selong.jpg",
+        "alt": "Selong Belanak bay",
+        "caption": "Selong Belanak"
+      }
+    },
+
+    {
+      "id": "poi-tanjung-aan-merese",
+      "label": "Tanjung Aan & Bukit Merese",
+      "coords": { "cx": 736.1, "cy": 881.1, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Two turquoise coves great for bathing and paddle close to shore. Short hike to Bukit Merese for a classic Lombok sunset—just 10–15 minutes from Kuta."
+        }
+      },
+      "photo": {
+        "src": "/images/poi/tanjung.jpg",
+        "alt": "Coves of Tanjung Aan and Merese hill",
+        "caption": "Tanjung Aan · Bukit Merese"
+      }
+    },
+
+    {
+      "id": "poi-sendang-gile-tiu-kelep",
+      "label": "Sendang Gile & Tiu Kelep (Senaru)",
+      "coords": { "cx": 798.1, "cy": 437.8, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Twin jungle waterfalls reached from Senaru via a signed path (ticketed; local guides optional). Slippery when wet—wear shoes with good grip."
+        }
+      },
+      "photo": {
+        "src": "/images/poi/cascada.jpg",
+        "alt": "Sendang Gile and Tiu Kelep waterfalls",
+        "caption": "Sendang Gile & Tiu Kelep"
+      }
+    },
+
+    {
+      "id": "poi-pink-beach",
+      "label": "Pink Beach (Pantai Tangsi)",
+      "coords": { "cx": 909.8, "cy": 842.1, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Secluded bay with pinkish sand from coral fragments. Best tones ~11:00–15:00 with high sun and calm sea. Rough road (4×4 helps) or boat access; very basic services."
+        }
+      },
+      "photo": {
+        "src": "/images/poi/pantai.jpg",
+        "alt": "Pink sand and turquoise waters at Pink Beach",
+        "caption": "Pink Beach (Pantai Tangsi)"
+      }
+    },
+
+    {
+      "id": "poi-senggigi",
+      "label": "Senggigi",
+      "coords": { "cx": 529.7, "cy": 573.8, "r": 7 },
+      "panel": {
+        "resumen": {
+          "descripcion": "Historic west-coast strip with hotels, beach clubs and the coastal temple Pura Batu Bolong. Famous sunsets and handy base for Bangsal (Gili boats) and Mataram."
+        }
+      },
+      "photo": {
+        "src": "/images/poi/senggigi.jpg",
+        "alt": "Coast and sunset in Senggigi",
+        "caption": "Senggigi"
+      }
+    },
+
+    {
+      "id": "poi-lombok-label",
+      "label": "LOMBOK",
+      "coords": { "lon": 116.30, "lat": -8.60 },
+      "noDot": true,
+      "bigLabel": true,
+      "anchor": "middle",
+      "panel": { "resumen": {} }
+    },
+
+    {
+      "id": "poi-bali-label",
+      "label": "BALI",
+      "coords": { "lon": 115.56919615812996, "lat": -8.377235843694745 },
+      "noDot": true,
+      "bigLabel": true,
+      "anchor": "middle",
+      "panel": { "resumen": {} }
+    }
+  ]
+}

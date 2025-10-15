@@ -443,7 +443,10 @@
       "senggigi": { "label": "Senggigi", "photo": { "alt": "Costa y puesta de sol en Senggigi", "caption": "Senggigi" } },
       "lombok":   { "label": "LOMBOK" },
       "bali":     { "label": "BALI" }
-    }
+    },
+    "back": "Volver",
+    "title": "Lombok — Mapa interactivo",
+    "subtitle": "Explora puntos de interés, el circuito de Mandalika y nuestra localización."
   },
   "modals": {
     "common": {

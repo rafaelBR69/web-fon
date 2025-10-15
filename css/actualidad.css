@@ -263,3 +263,40 @@ body.actualidad-page{ --hdr: var(--header-h, 88px); }
   color: #fff;          /* texto oscuro dentro del campo */
   background: rgba(0,0,0,.26);        /* fondo claro */
 }
+
+/* Alturas base del header fijo (ajusta si cambia) */
+:root{
+  --hdr: 88px;        /* desktop */
+  --gap-top: 12px;    /* separación bajo el header */
+}
+@media (max-width: 991.98px){
+  :root{ --hdr: 70px; }
+}
+
+/* El contenedor de la página debe ser el "posicionador" del absolute */
+.actualidad-page .main-wrap{ position: relative; }
+
+/* Flecha volver – debajo del header, esquina superior izquierda */
+.vhv-back{
+  position: absolute;
+  left: max(env(safe-area-inset-left), 16px);
+  top: calc(var(--hdr) + var(--gap-top));
+  transform: var(--vhv-back-transform, none);
+  z-index: 5;
+
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+
+  padding: .45rem .7rem;
+  background: #fff;
+  color: #092B3F;
+  text-decoration: none;
+
+  font-family: var(--ff-body, 'Montserrat', sans-serif);
+  font-weight: 400;
+  font-size: 2.5rem;
+
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}

@@ -38,14 +38,15 @@
     <!-- ⬇️ Partial del header (mismo id que en index) -->
     <div id="siteHeader"></div>
 
-    <!-- ===== Hero / título (igual estilo que usas) ===== -->
     <section class="map-hero" aria-label="Mapa interactivo de Lombok">
-      <div class="container">
-        <a href="/index.html" class="map-back" aria-label="Volver al inicio">
-          <i class="fa-solid fa-arrow-left"></i>
-          <span data-i18n="map.back">Volver</span>
-        </a>
+      <!-- Flecha fuera del container -->
+      <a href="/index.html" class="vhv-back" aria-label="Volver al inicio">
+        <span class="vhv-back__icon" aria-hidden="true"><i class="fa-solid fa-arrow-left"></i></span>
+        <span class="vhv-back__label" data-i18n="map.back">Volver</span>
+      </a>
 
+      <!-- Títulos centrados dentro del container -->
+      <div class="map-hero__inner container">
         <h1 class="map-title-h1" data-i18n="map.title">Lombok — Mapa interactivo</h1>
         <p class="map-subtitle" data-i18n="map.subtitle">
           Explora puntos de interés, el circuito de Mandalika y nuestra localización.
