@@ -282,7 +282,6 @@
 
 /* ===== Nueva sección de galería (partial) ===== */
 .vhv-gallery-section{
-  padding: clamp(24px, 5vw, 56px) 0;
   background: #fff;                   /* neutral para que la galería respire */
 }
 

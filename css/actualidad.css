@@ -9,17 +9,17 @@
 html, body { height: 100%; }
 body.actualidad-page{
   margin:0;
-  background: #ffffff;           /* Fondo blanco */
-  color: var(--page-ink);        /* Texto #092B3F */
+  background:#fff;                   /* Fondo blanco */
+  color: var(--page-ink);            /* Texto #092B3F */
   font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
 .main-wrap{ padding: clamp(16px, 3vw, 32px); }
 
-/* Hero */
+/* ===== Hero (encabezado de página) ===== */
 .actualidad-hero{
   text-align:center;
-  padding: clamp(28px, 6vw, 64px) 8px 8px;
+  padding: clamp(28px, 6vw, 56px) 8px 8px;
 }
 .actualidad-hero h1{
   margin: 0 0 8px;
@@ -35,38 +35,48 @@ body.actualidad-page{
   font-weight: 500;
 }
 
-/* Sección de progreso – contenedor */
+/* ===== Sección Progreso ===== */
 .progreso-section{
+  position: relative;
   max-width: 1400px;
-  margin: 24px auto 64px;
+  margin: 16px auto 64px;
   padding: 0 10px;
 }
-
-/* ========== Progreso de obra (versión simple) ========== */
 
 /* Accesible helper */
 .visually-hidden{
   position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0
 }
 
-/* Wrapper general (no recorta extremos) */
-.io-progress-wrap{ overflow: visible; position: relative; margin-top: 20px; }
+/* Envoltorio del progreso */
+.io-progress-wrap{
+  /* Variables “de escena” que podremos ajustar por media queries */
+  --icon-size: 52px;
+  --dot-r: 16px;
+  --label-size: 13px;
+  --rail-y: 120;            /* altura (px) a la que cae el punto/rail respecto al top de .obra-progress */
+  --stage-gap: calc(var(--icon-size) + 14px); /* espacio para que el icono NO se meta en el título */
+  overflow: visible;
+}
+
+/* Título */
+.obra-progress-title{
+  margin: 0 0 var(--stage-gap) 0;  /* separamos del gráfico lo bastante para que no se solape */
+  text-align: center;
+  font-weight: 600;
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  color: #092B3F;
+}
 
 /* Bloque principal */
 .obra-progress.simple{
-  --rail-color: rgba(9,43,63,.28); /* Rail oscuro suave para fondo claro */
-  --prog-color: #145E8C;           /* color del progreso (marca) */
+  --rail-color: rgba(9,43,63,.28); /* Rail suave para fondo claro */
+  --prog-color: #145E8C;           /* marca */
   --done-color: #092B3F;           /* nodos completados */
   --active-ring: #22C55E;          /* aro activo */
-  --label: #092B3F;                /* textos en barra */
+  --label: #092B3F;                /* textos */
   --label-dim: rgba(9,43,63,.65);
-
-  --rail-w: 6px;        /* barra más fina */
-  --dot-r: 16px;        /* tamaño del punto (editable inline) */
-  --active-scale: 1.35; /* tamaño del paso activo */
-  --icon-size: 52px;    /* editable inline */
-  --label-size: 13px;   /* editable inline */
-  --rail-y: 120;        /* editable inline; cuanto mayor, más abajo */
+  --rail-w: 6px;
 
   position: relative;
   max-width: 1200px;
@@ -74,16 +84,6 @@ body.actualidad-page{
   padding: 12px 8px 4px;
   color: var(--label);
   font-family: "Montserrat", system-ui, sans-serif;
-}
-
-/* Título centrado arriba */
-.obra-progress-title{
-  margin: 0 0 12px 0;
-  text-align: center;
-  font-weight: 600;
-  font-size: clamp(1.6rem, 3.8vw, 3.2rem);
-  color: #092B3F;                     /* Texto en #092B3F */
-  text-shadow: none;                  /* Sin sombra en claro */
 }
 
 /* SVG carriles */
@@ -99,24 +99,24 @@ body.actualidad-page{
   stroke-linecap: round;
 }
 
-/* POSICIONAMIENTO POR --x (base 1200) */
+/* Pasos posicionados por --x (base 1200) */
 .obra__step{
   position: absolute;
   top: 0;
-  left: calc(1% * (var(--x) / 12)); /* (var(--x)/1200)*100% */
-  transform: translate(-50%, calc(var(--rail-y) + 8px)); /* coloca el punto a la altura de --rail-y */
+  left: calc((var(--x) / 12) * 1%);         /* (var(--x)/1200)*100%  -> se expresa en % para ser fluido */
+  transform: translate(-50%, calc(var(--rail-y) + 8px)); /* baja el conjunto al rail */
   width: 120px;
   text-align: center;
   pointer-events: none;
   z-index: 2;
 }
 
-/* Icono encima del punto (escalable) */
+/* Icono encima del punto */
 .obra__icon{
   display:block;
   width: var(--icon-size);
   height: var(--icon-size);
-  margin: calc(-1 * var(--icon-size)) auto 2px;
+  margin: calc(-1 * var(--icon-size)) auto 2px;  /* queda justo por encima del punto */
   object-fit: contain;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
 }
@@ -124,18 +124,18 @@ body.actualidad-page{
 /* Punto (SVG) */
 .obra__dot{ width: 36px; height: 36px; display:block; margin: 0 auto; }
 .obra__dot .dot{
-  fill: #fff;                          /* círculo base blanco (se ve por el borde) */
+  fill: #fff;   /* círculo base blanco */
   stroke: var(--rail-color);
   stroke-width: 2.5;
   r: var(--dot-r);
 }
 .obra__dot .check{
   fill: none;
-  stroke: #fff;                        /* check blanco encima del punto oscuro en "done" */
+  stroke: #fff; /* check blanco en done */
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0; /* visible solo en “done” */
+  opacity: 0;   /* solo visible en done */
 }
 
 /* Etiquetas */
@@ -143,19 +143,12 @@ body.actualidad-page{
 .obra__labels .label{ font-size: var(--label-size); line-height:1.2; color: var(--label); }
 .obra__labels .sublabel{ font-size: calc(var(--label-size) - 2px); line-height:1.2; color: var(--label-dim); }
 
-@media (max-width:720px){
-  .obra__labels .label{ font-size: 12px; }
-  .obra__labels .sublabel{ display:none; }
-}
-
 /* Estados */
 .obra-progress.simple .is-done .obra__dot .dot{
   fill: var(--done-color);
   stroke: var(--done-color);
 }
-.obra-progress.simple .is-done .obra__dot .check{
-  opacity: 1;
-}
+.obra-progress.simple .is-done .obra__dot .check{ opacity: 1; }
 .obra-progress.simple .is-active .obra__dot .dot{
   stroke: var(--active-ring);
   stroke-width: 3.5;
@@ -167,4 +160,106 @@ body.actualidad-page{
 .obra-progress.simple .is-active .obra__dot{
   transform: scale(1.4);
   transform-origin: 50% 50%;
+}
+
+/* ===== CTA debajo de la barra ===== */
+.cta-visita{
+  display:flex;
+  justify-content:center;
+  margin-top: clamp(18px, 2.5vw, 28px);
+}
+.cta-visita .btn{
+  padding: .625rem 1.25rem;
+  border-radius: 9999px;             /* pastilla, parecido a tu UI */
+  box-shadow: 0 6px 18px rgba(20,94,140,.18);
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 992px){
+  .io-progress-wrap{ --icon-size: 44px; --dot-r: 14px; --label-size: 12px; --rail-y: 108; }
+  .obra__step{ width: 110px; }
+}
+@media (max-width: 720px){
+  .io-progress-wrap{ --icon-size: 38px; --dot-r: 12px; --label-size: 12px; --rail-y: 96; }
+  .obra__labels .sublabel{ display:none; }  /* menos ruido en móvil */
+  .obra__step{ width: 96px; }
+}
+@media (max-width: 480px){
+  .io-progress-wrap{ --icon-size: 34px; --dot-r: 11px; --label-size: 11px; --rail-y: 88; }
+  .obra__step{ width: 88px; }
+}
+
+/* === 1) Espaciado general + altura visible === */
+body.actualidad-page{ --hdr: var(--header-h, 88px); }
+
+.main-wrap{
+  /* baja el contenido teniendo en cuenta el header */
+  padding-top: calc(var(--hdr) + clamp(24px, 4vw, 56px));
+}
+
+
+/* separa bien el título de la barra incluso con iconos grandes */
+.io-progress-wrap{ --stage-gap: calc(var(--icon-size) + 22px); }
+.obra-progress-title{ margin-bottom: var(--stage-gap); }
+
+/* === 2) CTA blanca con borde fino === */
+.cta-visita{ margin-top: clamp(18px, 3vw, 36px); }
+
+.cta-visita .btn{
+  background: #fff;
+  color: var(--page-ink);                 /* #092B3F */
+  border: 1px solid rgba(9,43,63,.22);    /* borde fino */
+  border-radius: 9999px;
+  padding: .625rem 1.25rem;
+  box-shadow: 0 6px 16px rgba(9,43,63,.08);
+  font-size: 2rem;
+}
+
+.cta-visita .btn:hover,
+.cta-visita .btn:focus{
+  background: #f7fafc;
+  border-color: rgba(9,43,63,.35);
+  box-shadow: 0 8px 20px rgba(9,43,63,.12);
+}
+
+/* ===== Forzar paleta de texto dentro del modal (independiente del orden) ===== */
+#modals-host .modal,
+.modal{
+  --modal-ink: #fff;
+  --modal-muted: rgba(255,255,255,.80);
+}
+
+/* Texto principal del panel del modal */
+#modals-host .modal__panel{
+  color: var(--modal-ink);
+}
+
+/* Títulos, párrafos, labels, notas */
+#modals-host .modal__panel h1,
+#modals-host .modal__panel h2,
+#modals-host .modal__panel h3,
+#modals-host .modal__panel p,
+#modals-host .modal__panel .label,
+#modals-host .modal__panel .muted,
+#modals-host .modal__panel .hint,
+#modals-host .modal__panel .error,
+#modals-host .modal__panel .confirm{
+  color: var(--modal-ink);
+}
+
+/* Enlaces dentro del modal: blancos (sin afectar botones .btn) */
+#modals-host .modal__panel a:not(.btn){
+  color: var(--modal-ink);
+  text-decoration: underline;
+}
+#modals-host .modal__panel a:not(.btn):hover{
+  opacity: .9;
+}
+
+/* No tocar los controles para no perder contraste */
+#modals-host .modal__panel input,
+#modals-host .modal__panel select,
+#modals-host .modal__panel textarea{
+  color: #fff;          /* texto oscuro dentro del campo */
+  background: rgba(0,0,0,.26);        /* fondo claro */
 }

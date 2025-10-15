@@ -23,7 +23,8 @@
     "home": "INFINITY 8",
     "contact": "INVERSIÓN",
     "availability": "VILLAS",
-    "process": "MAPA LOMBOK"
+    "process": "MAPA LOMBOK",
+    "progress": "PROGESO"
   },
   "header": {
     "logoAlt": "Infinity 8 (Lombok)",
@@ -504,5 +505,21 @@
         "copyBtn": "Copiar enlace"
       }
     }
-  }  
+  },
+  "actualidad": {
+    "title": "Actualidad",
+    "subtitle": "Seguimiento de fases y estado de la promoción.",
+    "progress": "Progreso de obra",
+    "bookVisitBtn": "Agendar llamada"
+  },
+  "obra": {
+    "step1": { "title": "Suelo", "sub": "Viabilidad" },
+    "step2": { "title": "Proyecto", "sub": "Diseño" },
+    "step3": { "title": "Permisos", "sub": "Licencia" },
+    "step4": { "title": "Terreno", "sub": "Preparación" },
+    "step5": { "title": "Cimentación", "sub": "Base" },
+    "step6": { "title": "Estructura", "sub": "Esqueleto" },
+    "step7": { "title": "Envolvente", "sub": "Instalaciones" },
+    "step8": { "title": "Acabados", "sub": "Entrega" }
+  }
 }
