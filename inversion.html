@@ -11,299 +11,279 @@
 
   <!-- Iconos / fuentes -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-
-  <!-- Montserrat -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 
-  <!-- CSS global del sitio -->
+  <!-- CSS global -->
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/footer.css" />
-
-  <!-- Estilos del módulo de oportunidad -->
   <link rel="stylesheet" href="/css/oportunity.css" />
+  <link rel="stylesheet" href="/css/graficos.css" />
+  <link rel="stylesheet" href="/css/inversion.css" /> <!-- estilos separados -->
 
   <!-- i18next -->
   <script src="https://unpkg.com/i18next@23/i18next.min.js"></script>
   <script src="https://unpkg.com/i18next-http-backend@2/i18nextHttpBackend.min.js"></script>
   <script src="https://unpkg.com/i18next-browser-languagedetector@8/i18nextBrowserLanguageDetector.min.js"></script>
-  <script src="/js/i18n.js" defer></script>
+  <script src="/js/i18n.js"></script>
 </head>
 
-<body class="inversion-page" style="background:#fff; color:#092B3F; font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;">
-  <!-- Header dinámico -->
+<body class="inversion-page" style="background:#fff; color:#092B3F; font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;">
+  <!-- Header -->
   <div id="header-placeholder" role="banner"></div>
 
   <main id="main" class="main-wrap" role="main">
-    <!-- === PARTIAL: opportunity.html (inline) === -->
-    <section id="oportunity" class="oportunity-section" aria-label="Lombok (Indonesia) — Oportunidad de inversión en 8 villas boutique">
-      <div class="opty__container">
-
-        <!-- Intro -->
-        <div class="opty__intro">
-          <h2 class="opty__title">Lombok, Indonesia — Oportunidad de inversión</h2>
-          <p class="opty__subtitle">Promoción boutique de ~8 villas cerca de las mejores playas del sur de Lombok. Diseño eficiente para explotación turística y revalorización a medio plazo.</p>
-        </div>
-
-        <!-- KPIs / Métricas de inversión -->
-        <section class="opty__kpis" aria-labelledby="opty-kpi-title">
-          <h3 id="opty-kpi-title" class="opty__h3">Rentabilidad estimada <small class="opty__muted">(calculable sin precio cerrado)</small></h3>
-          <p class="opty__note">Introduce precio de parcela, coste de obra, ADR y ocupación en tu modelo. Estos campos admiten <code>data-kpi</code> para auto-relleno por JS.</p>
-          <div class="opty__kpi-grid">
-            <article class="opty__kpi">
-              <h4 class="opty__kpi-label">Cap rate</h4>
-              <p class="opty__kpi-value" data-kpi="cap-rate">—</p>
-              <p class="opty__kpi-hint">NOI anual / Inversión total</p>
-            </article>
-            <article class="opty__kpi">
-              <h4 class="opty__kpi-label">Cash-on-Cash</h4>
-              <p class="opty__kpi-value" data-kpi="coc">—</p>
-              <p class="opty__kpi-hint">Flujo neto / Equity aportado</p>
-            </article>
-            <article class="opty__kpi">
-              <h4 class="opty__kpi-label">Payback</h4>
-              <p class="opty__kpi-value" data-kpi="payback">—</p>
-              <p class="opty__kpi-hint">Años para recuperar la inversión</p>
-            </article>
-            <article class="opty__kpi">
-              <h4 class="opty__kpi-label">TIR (IRR)</h4>
-              <p class="opty__kpi-value" data-kpi="irr">—</p>
-              <p class="opty__kpi-hint">Sobre flujos proyectados</p>
-            </article>
-          </div>
-          <ul class="opty__bullets">
-            <li>Costes estimables: <em>parcela</em> + <em>construcción</em> + <em>mobiliario</em> + <em>permisos</em> + <em>impuestos</em> + <em>contingencias</em>.</li>
-            <li>Ingresos: ADR × ocupación × noches vendibles − comisiones OTA − costes operativos.</li>
-            <li class="opty__muted">*Los resultados dependen del modelo; cifras a validar en due diligence.*</li>
-          </ul>
-        </section>
-
-        <!-- NUEVO: Áreas & Métricas -->
-        <section class="opty__areas" aria-labelledby="opty-areas-title">
-          <h3 id="opty-areas-title" class="opty__h3">Áreas & Métricas</h3>
-          <div class="opty__cards opty__cards--3">
-            <article class="opty__card">
-              <h4 class="opty__card-title">Superficies</h4>
-              <ul class="opty__list">
-                <li>Parcela: <b data-area="land-plot">—</b></li>
-                <li>Landscape: <b data-area="landscape">—</b></li>
-                <li>Interior total: <b data-area="indoor">—</b></li>
-                <li>Exterior total: <b data-area="outdoor">—</b></li>
-                <li>GFA (construida): <b data-area="gfa">—</b></li>
-              </ul>
-            </article>
-            <article class="opty__card">
-              <h4 class="opty__card-title">Métricas del sitio</h4>
-              <ul class="opty__list">
-                <li>FAR (GFA/Parcela): <b data-metric="far">—</b></li>
-                <li>Cobertura planta baja: <b data-metric="coverage">—</b></li>
-                <li>Eficiencia (Interior/GFA): <b data-metric="efficiency">—</b></li>
-              </ul>
-            </article>
-            <article class="opty__card">
-              <h4 class="opty__card-title">Coste de obra</h4>
-              <p class="opty__card-text">Estimación total (directos + soft + contingencia):</p>
-              <p class="opty__card-text"><b data-build-total>—</b></p>
-              <p class="opty__muted">Edita costes por m² en <code>opportunity-data.js</code>.</p>
-            </article>
-          </div>
-        </section>
-
-        <!-- Comparativa con Bali -->
-        <section class="opty__compare" aria-labelledby="opty-compare-title">
-          <h3 id="opty-compare-title" class="opty__h3">Comparativa con Bali</h3>
-          <div class="opty__table" role="table" aria-label="Comparativa Bali vs. Lombok">
-            <div class="opty__row opty__row--head" role="row">
-              <div class="opty__cell" role="columnheader">Métrica</div>
-              <div class="opty__cell" role="columnheader">Bali (sur, zonas prime)</div>
-              <div class="opty__cell" role="columnheader">Lombok (sur, Kuta/Selong Belanak)</div>
-            </div>
-            <div class="opty__row" role="row">
-              <div class="opty__cell" role="cell">Precio terreno (€/m²)</div>
-              <div class="opty__cell" role="cell">Más alto</div>
-              <div class="opty__cell" role="cell">Más bajo, margen de entrada</div>
-            </div>
-            <div class="opty__row" role="row">
-              <div class="opty__cell" role="cell">Coste villa (€/m² construidos)</div>
-              <div class="opty__cell" role="cell">Alto</div>
-              <div class="opty__cell" role="cell">Medio</div>
-            </div>
-            <div class="opty__row" role="row">
-              <div class="opty__cell" role="cell">ADR / Ocupación</div>
-              <div class="opty__cell" role="cell">Elevados en prime, competencia intensa</div>
-              <div class="opty__cell" role="cell">Creciendo, menor saturación</div>
-            </div>
-            <div class="opty__row" role="row">
-              <div class="opty__cell" role="cell">Regulación alquiler</div>
-              <div class="opty__cell" role="cell">Madura, con exigencias locales</div>
-              <div class="opty__cell" role="cell">En desarrollo, requiere asesoría</div>
-            </div>
-            <div class="opty__row" role="row">
-              <div class="opty__cell" role="cell">Potencial de plusvalía</div>
-              <div class="opty__cell" role="cell">Más limitado en zonas maduras</div>
-              <div class="opty__cell" role="cell">Alto a medio plazo (nuevas infraestructuras)</div>
-            </div>
-          </div>
-          <p class="opty__muted">Indicadores cualitativos; sustituye por tus propias métricas cuando dispongas de datos.</p>
-        </section>
-
-        <!-- Potencial de plusvalía -->
-        <section class="opty__value" aria-labelledby="opty-value-title">
-          <h3 id="opty-value-title" class="opty__h3">Potencial de plusvalía</h3>
-          <div class="opty__cards opty__cards--2">
-            <article class="opty__card">
-              <h4 class="opty__card-title">Motores de crecimiento</h4>
-              <ul class="opty__list">
-                <li>Nuevas infraestructuras turísticas y mejor conectividad regional.</li>
-                <li>Menor saturación que Bali en zonas clave del sur.</li>
-                <li>Oferta limitada de producto prime frente a demanda internacional creciente.</li>
-                <li>Efecto arrastre de destinos consolidados cercanos.</li>
-              </ul>
-            </article>
-            <article class="opty__card">
-              <h4 class="opty__card-title">Riesgos a monitorizar</h4>
-              <ul class="opty__list">
-                <li>Ejecución de licencias y tiempos administrativos.</li>
-                <li>Dependencia del turismo internacional.</li>
-                <li>Riesgo regulatorio local y de uso del suelo.</li>
-                <li>Tipo de cambio (IDR/EUR) y costes logísticos.</li>
-              </ul>
-            </article>
-          </div>
-        </section>
-
-        <!-- Tipos de inversores -->
-        <section class="opty__investors" aria-labelledby="opty-investors-title">
-          <h3 id="opty-investors-title" class="opty__h3">Tipos de inversores</h3>
-          <div class="opty__cards opty__cards--4">
-            <article class="opty__card">
-              <h4 class="opty__card-title">Buy-to-Let</h4>
-              <p class="opty__card-text">Busca ingresos por alquiler vacacional con gestión profesional. Horizonte 5–10 años.</p>
-            </article>
-            <article class="opty__card">
-              <h4 class="opty__card-title">Lifestyle + Yield</h4>
-              <p class="opty__card-text">Uso propio algunas semanas y rendimiento el resto del año.</p>
-            </article>
-            <article class="opty__card">
-              <h4 class="opty__card-title">Yield Hunter</h4>
-              <p class="opty__card-text">Prioriza cap rate y TIR; sensibilidad a ADR/ocupación y OPEX.</p>
-            </article>
-            <article class="opty__card">
-              <h4 class="opty__card-title">Partner Desarrollador</h4>
-              <p class="opty__card-text">Co-desarrollo de 6–10 unidades, salida por venta en bloque o retail.</p>
-            </article>
-          </div>
-        </section>
-
-        <!-- Seguridad jurídica -->
-        <section class="opty__legal" aria-labelledby="opty-legal-title">
-          <h3 id="opty-legal-title" class="opty__h3">Seguridad jurídica (visión general)</h3>
-          <div class="opty__cards opty__cards--3">
-            <article class="opty__card">
-              <h4 class="opty__card-title">Estructuras habituales</h4>
-              <ul class="opty__list">
-                <li><strong>PT PMA + HGB</strong>: sociedad extranjera con derecho de edificación.</li>
-                <li><strong>Hak Pakai</strong>: derecho de uso en casos elegibles.</li>
-                <li><strong>Leasehold</strong>: arrendamiento largo (p.ej., 25–30 años + prórrogas).</li>
-              </ul>
-            </article>
-            <article class="opty__card">
-              <h4 class="opty__card-title">Checklist de due diligence</h4>
-              <ul class="opty__list">
-                <li>Título y cargas (BPN), límites y acceso.</li>
-                <li>Zonificación/uso del suelo y permisos (p.ej., PBG).</li>
-                <li>Ambiental (UKL-UPL/AMDAL si aplica).</li>
-                <li>Contratos de obra y garantías.</li>
-              </ul>
-            </article>
-            <article class="opty__card">
-              <h4 class="opty__card-title">Notas</h4>
-              <p class="opty__card-text opty__muted">Requiere asesoría legal/local especializada. Evitar estructuras de <em>nominee</em> sin respaldo legal claro.</p>
-            </article>
-          </div>
-        </section>
-
-        <!-- CTA -->
-        <footer class="opty__cta">
-          <a href="#contacto" class="opty__btn">Solicitar dossier financiero</a>
-          <p class="opty__disclaimer opty__muted">La información es orientativa y no constituye asesoramiento legal ni oferta comercial. Sujeta a verificación documental.</p>
-        </footer>
-
+    <!-- ===== Intro sección inversión ===== -->
+    <section class="invest-intro" aria-label="Introducción a la inversión">
+      <div class="invest-intro__container">
+        <p class="invest-intro__eyebrow">Inversión</p>
+        <h1 class="invest-intro__title">Explora la oportunidad en Lombok</h1>
+        <p class="invest-intro__lead">
+          Aquí podrás consultar un resumen ejecutivo con KPIs, áreas y costes; y un panel de gráficos con
+          comparativas clave (incluidas las llegadas internacionales a BIZAM 2024/2025). Abre los widgets para profundizar.
+        </p>
       </div>
     </section>
-    <!-- === /PARTIAL === -->
+
+    <!-- ===== Lanzadores (2 widgets) ===== -->
+    <section class="widget-launch" aria-label="Secciones de inversión">
+      <div class="widget-launch__container">
+        <div class="widget-launch__grid">
+          <!-- Widget Oportunidad -->
+          <button type="button"
+                  class="widget-card"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal-opty"
+                  id="btnOpenOpty">
+            <span class="widget-card__icon" aria-hidden="true"><i class="fa-solid fa-clipboard-list"></i></span>
+            <h3 class="widget-card__title">Oportunidad</h3>
+            <p class="widget-card__text">KPIs, áreas, costes y comparativa resumidos en una vista.</p>
+            <p class="widget-card__cta">Abrir &nbsp;→</p>
+          </button>
+
+          <!-- Widget Gráficos -->
+          <button type="button"
+                  class="widget-card"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal-charts"
+                  id="btnOpenCharts">
+            <span class="widget-card__icon" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></span>
+            <h3 class="widget-card__title">Gráficos</h3>
+            <p class="widget-card__text">Comparativas clave e internacionales BIZAM 2024/25.</p>
+            <p class="widget-card__cta">Abrir &nbsp;→</p>
+          </button>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Footer dinámico -->
+  <!-- ===== Modales fullscreen (debajo del header) ===== -->
+  <!-- Oportunidad -->
+  <div class="modal fade modal--below-header" id="modal-opty" tabindex="-1" aria-labelledby="modalOptyLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalOptyLabel">Oportunidad</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <div id="opty-modal-host" class="modal-host" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gráficos -->
+  <div class="modal fade modal--below-header" id="modal-charts" tabindex="-1" aria-labelledby="modalChartsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalChartsLabel">Gráficos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <div id="charts-modal-host" class="modal-host" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
   <div id="footer-placeholder" role="contentinfo"></div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- ==== i18n helpers (mismo patrón que en actualidad.html) ==== -->
   <script>
-    function __applyI18nFallback(scope=document){
-      if (!window.i18next) return;
-      scope.querySelectorAll('[data-i18n]').forEach(el=>{
-        const k = el.getAttribute('data-i18n'); if (!k) return;
-        el.textContent = i18next.t(k);
-      });
-      scope.querySelectorAll('[data-i18n-attr]').forEach(el=>{
-        const spec = el.getAttribute('data-i18n-attr'); if (!spec) return;
-        const opts = el.getAttribute('data-i18n-opts');
-        const [attr,key] = spec.split('|');
-        if (attr && key) el.setAttribute(attr, i18next.t(key, opts ? JSON.parse(opts) : undefined));
-      });
-      document.documentElement.setAttribute('lang', i18next.language || 'es');
+    /* ========= Utilidades ========= */
+    function absolutizeUrl(url, baseHref){
+      try { return new URL(url, baseHref).href; } catch { return url; }
     }
-    function renderI18n(scope=document){
-      if (window.applyI18nAndRoutes) { window.applyI18nAndRoutes(scope); }
-      else { __applyI18nFallback(scope); }
+    function stripLiveServer(html) {
+      const tpl = document.createElement('template');
+      tpl.innerHTML = html;
+      const walker = document.createTreeWalker(tpl.content, NodeFilter.SHOW_COMMENT);
+      const toRemove = [];
+      let n;
+      while ((n = walker.nextNode())) {
+        if (/Code injected by live-server/i.test(n.nodeValue || '')) toRemove.push(n);
+      }
+      toRemove.forEach(c => c.parentNode && c.parentNode.removeChild(c));
+      tpl.content.querySelectorAll('script').forEach(s => {
+        const txt = (s.textContent || '') + ' ' + (s.src || '');
+        if (/refreshcss|Live-Reloading|\/ws\b/i.test(txt)) s.remove();
+      });
+      const div = document.createElement('div');
+      div.appendChild(tpl.content.cloneNode(true));
+      return div.innerHTML;
     }
-  </script>
+    async function loadPartial(sel, url, { executeScripts=false } = {}){
+      const host = typeof sel === 'string' ? document.querySelector(sel) : sel;
+      if (!host) throw new Error(`Contenedor no encontrado: ${sel}`);
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
+      let html = (await res.text()).trim();
+      if (!html) { host.innerHTML=''; return; }
+      html = stripLiveServer(html);
 
-  <!-- Carga header/footer + sincronización de i18n (igual que en tu otra página) -->
-  <script>
-    const headerHost = document.getElementById('header-placeholder');
-    const footerHost = document.getElementById('footer-placeholder');
+      const baseHref = new URL(url, document.baseURI).href;
+      const tpl = document.createElement('template');
+      tpl.innerHTML = html;
+      const frag = tpl.content;
 
-    (function(){
-      if (!window.i18next) return;
-      const rerender = () => renderI18n(document);
-      if (i18next.isInitialized) rerender();
-      i18next.on('initialized', rerender);
-      i18next.on('loaded', rerender);
-      i18next.on('languageChanged', rerender);
-    })();
+      frag.querySelectorAll('img[src], link[href], a[href], script[src]').forEach(el=>{
+        const attr = el.tagName === 'LINK' || el.tagName === 'A' ? 'href' : 'src';
+        el.setAttribute(attr, absolutizeUrl(el.getAttribute(attr), baseHref));
+      });
 
-    // Header
-    fetch('/partials/header.html')
-      .then(r => r.text())
-      .then(html => {
-        headerHost.innerHTML = html;
+      const scripts = Array.from(frag.querySelectorAll('script'));
+      scripts.forEach(s => s.remove());
 
-        // Marca activo el enlace de Inversión
-        const path = (location.pathname || '').toLowerCase();
-        document.querySelectorAll('header a[href]').forEach(a => {
-          const href = (a.getAttribute('href') || '').toLowerCase();
-          const isInv = href.endsWith('inversion.html') || href === '/inversion.html' || href.includes('/inversion');
-          if (isInv) { a.classList.add('active'); a.setAttribute('aria-current','page'); }
+      host.replaceChildren(frag.cloneNode(true));
+
+      if (executeScripts && scripts.length){
+        for (const old of scripts) {
+          const s = document.createElement('script');
+          if (old.type) s.type = old.type;
+          if (old.noModule) s.noModule = true;
+          if (old.async) s.async = true;
+
+          if (old.src) {
+            s.src = absolutizeUrl(old.getAttribute('src'), baseHref);
+          } else if ((old.type || '').toLowerCase() === 'module') {
+            const blob = new Blob([old.textContent || ''], { type: 'text/javascript' });
+            s.type = 'module';
+            s.src = URL.createObjectURL(blob);
+          } else {
+            s.textContent = old.textContent || '';
+          }
+          host.appendChild(s);
+        }
+      }
+    }
+
+    // Medir header y fijar variable CSS --hdr-h
+    function setHeaderOffset(){
+      const header = document.querySelector('header.fixed-top') || document.querySelector('header');
+      const h = header ? Math.ceil(header.getBoundingClientRect().height) : 72;
+      document.documentElement.style.setProperty('--hdr-h', h + 'px');
+    }
+    // Ajusta el backdrop para que no cubra el header
+    function adjustBackdropForHeader(){
+      const hdr = getComputedStyle(document.documentElement).getPropertyValue('--hdr-h').trim() || '72px';
+      document.querySelectorAll('.modal-backdrop').forEach(b=>{
+        b.style.top = hdr;
+        b.style.height = `calc(100vh - ${hdr})`;
+      });
+    }
+    // Debounce simple
+    function debounce(fn, t=120){
+      let to; return (...a)=>{ clearTimeout(to); to=setTimeout(()=>fn.apply(null,a), t); };
+    }
+
+    // Cargador perezoso para cada modal (solo 1ª vez)
+    async function ensureOptyLoaded(){
+      const host = document.getElementById('opty-modal-host');
+      if (!host || host.dataset.loaded === 'true') return;
+      await loadPartial(host, '/partials/opportunity.html', { executeScripts:false });
+      if (window.applyI18nAndRoutes) applyI18nAndRoutes(host);
+      else if (window.renderPage) renderPage(host);
+      host.dataset.loaded = 'true';
+    }
+    async function ensureChartsLoaded(){
+      const host = document.getElementById('charts-modal-host');
+      if (!host || host.dataset.loaded === 'true') return;
+      await loadPartial(host, '/partials/graficos.html', { executeScripts:true });
+      if (window.applyI18nAndRoutes) applyI18nAndRoutes(host);
+      else if (window.renderPage) renderPage(host);
+      host.dataset.loaded = 'true';
+    }
+
+    (async () => {
+      // Header / Footer
+      await Promise.all([
+        loadPartial('#header-placeholder','/partials/header.html'),
+        loadPartial('#footer-placeholder','/partials/footer.html'),
+      ]);
+
+      // Fija offset inicial y al redimensionar
+      setHeaderOffset();
+      window.addEventListener('resize', debounce(setHeaderOffset, 120));
+
+      // Marca activo el enlace de Inversión
+      document.querySelectorAll('header a[href]').forEach(a=>{
+        const href = (a.getAttribute('href')||'').toLowerCase();
+        if (href.endsWith('/inversion.html') || href.includes('/inversion')) {
+          a.classList.add('active'); a.setAttribute('aria-current','page');
+        }
+      });
+
+      // Carga perezosa al abrir el modal + ajuste backdrop
+      const modalOpty   = document.getElementById('modal-opty');
+      const modalCharts = document.getElementById('modal-charts');
+
+      modalOpty?.addEventListener('show.bs.modal', ensureOptyLoaded);
+      modalCharts?.addEventListener('show.bs.modal', ensureChartsLoaded);
+
+      // Cuando ya se muestra (backdrop inyectado) ajusta top/height del backdrop
+      modalOpty?.addEventListener('shown.bs.modal', adjustBackdropForHeader);
+      modalCharts?.addEventListener('shown.bs.modal', adjustBackdropForHeader);
+
+      // Reajusta backdrop si redimensionas con modal abierto
+      window.addEventListener('resize', debounce(()=>{
+        setHeaderOffset();
+        adjustBackdropForHeader();
+      }, 120));
+
+      // Precarga suave en hover/focus
+      document.getElementById('btnOpenOpty')?.addEventListener('mouseenter', ensureOptyLoaded, { once:true });
+      document.getElementById('btnOpenCharts')?.addEventListener('mouseenter', ensureChartsLoaded, { once:true });
+
+      // Re-render si i18n cambia estando el modal abierto
+      if (window.i18next?.on) {
+        i18next.on('languageChanged', ()=>{
+          const optyHost = document.getElementById('opty-modal-host');
+          const chartsHost = document.getElementById('charts-modal-host');
+          if (optyHost?.dataset.loaded === 'true') {
+            if (window.applyI18nAndRoutes) applyI18nAndRoutes(optyHost);
+            else if (window.renderPage) renderPage(optyHost);
+          }
+          if (chartsHost?.dataset.loaded === 'true') {
+            if (window.applyI18nAndRoutes) applyI18nAndRoutes(chartsHost);
+            else if (window.renderPage) renderPage(chartsHost);
+            if (window.dashboardLombok?.renderAll) {
+              chartsHost.querySelectorAll('#dashboard-lombok .chart').forEach(n=> n.innerHTML='');
+              chartsHost.querySelectorAll('#dashboard-lombok .legend').forEach(el=> el.innerHTML='');
+              window.dashboardLombok.renderAll();
+            }
+          }
+          adjustBackdropForHeader();
         });
-
-        renderI18n(headerHost);
-      });
-
-    // Footer
-    fetch('/partials/footer.html')
-      .then(r => r.text())
-      .then(html => {
-        footerHost.innerHTML = html;
-        renderI18n(footerHost);
-      });
+      }
+    })().catch(console.error);
   </script>
 
-  <!-- JS del módulo (ESM, sin inline) -->
-  <!-- Nota: /js/opportunity-boot.js importa ./opportunity-data.js -->
+  <!-- Módulos de cálculo/render (si el parcial de oportunidad los usa) -->
   <script type="module" src="/js/opportunity-boot.js"></script>
 </body>
 </html>

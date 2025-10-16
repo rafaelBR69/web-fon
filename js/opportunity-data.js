@@ -1,74 +1,11 @@
-// /js/opportunity-data.js  (v2 con soporte de áreas y costes diferenciados)
+// /js/opportunity-data.js  (v4.1: precio fijo por unidad, presets realistas y explicación)
+// Nota: gestión calculada sobre NET si mgmt_on_net === true
 
-// ========= Modelos de ejemplo (sustituye con tus cifras) =========
+// ========= MODELOS (legacy: se mantienen por compatibilidad, pero NO se usan para inversión) =========
 export const models = {
-  // Ejemplo con TUS números de la imagen (ajústalos si hay matices)
   base: {
     currency: 'EUR',
-
-    // ---- ÁREAS (nuevo) ----
-    areas: {
-      land_plot_m2: 121.45,
-      landscape_m2: 23.31,
-
-      // Totales por planta
-      floor1_total_m2: 60.41,
-      floor2_total_m2: 85.76,
-
-      // Si conoces indoor/outdoor por planta, ponlos aquí:
-      floor1_indoor_m2: 60.41,   // asunción: todo interior
-      floor1_outdoor_m2: 0,
-
-      floor2_indoor_m2: 39.72,
-      floor2_outdoor_m2: 28.67
-    },
-
-    // (Opcional) desglose de estancias por si quieres mostrarlo luego
-    breakdown: {
-      floor1: [
-        { name: 'Reception', m2: 12.82 },
-        { name: 'Power House', m2: 8.75 },
-        { name: 'Staff Room', m2: 10 },
-        { name: 'Storage', m2: 10 }
-      ]
-    },
-
-    // ---- COSTES DE CONSTRUCCIÓN (nuevo esquema) ----
-    build: {
-      // Si rellenas 'costs', se ignora el modo "legacy" de cost_per_m2 * built_m2
-      costs: {
-        indoor_per_m2_eur:    900,  // ejemplo
-        outdoor_per_m2_eur:   450,  // decks/porches/terrazas
-        landscape_per_m2_eur:  60   // ajardinamiento
-      },
-      contingency_pct: 0.10,
-      // Si NO quisieras el modo áreas, puedes seguir usando:
-      // built_m2: 220, cost_per_m2_eur: 750
-    },
-
-    ffe: { amount_eur: 25000 },       // mobiliario/equipamiento
-    soft_costs_pct: 0.08,             // técnicos/PM sobre obra
-    taxes_fees_eur: 10000,            // licencias/tasas
-
-    // ---- Ingresos/Operación ----
-    adr_eur: 230,
-    occ: 0.68,
-    nights: 365,
-
-    ota_pct: 0.12,
-    mgmt_pct: 0.20,
-    variable_opex_pct: 0.08,
-    fixed_opex_year_eur: 18000,
-
-    // ---- Deuda / Salida ----
-    debt: { ltv: 0.50, rate: 0.075, amort_years: 20 },
-    exit: { exit_cap: 0.08, selling_costs_pct: 0.03 },
-    horizon_years: 10
-  },
-
-  // Variante “cluster ~8 villas” (mejoras por escala)
-  scaled8: {
-    currency: 'EUR',
+    // Áreas (no influyen en cálculo comercial)
     areas: {
       land_plot_m2: 121.45,
       landscape_m2: 23.31,
@@ -79,40 +16,75 @@ export const models = {
       floor2_indoor_m2: 39.72,
       floor2_outdoor_m2: 28.67
     },
-    build: {
-      costs: {
-        indoor_per_m2_eur:    920,  // quizá mejores calidades/eficiencia
-        outdoor_per_m2_eur:   460,
-        landscape_per_m2_eur:  60
-      },
-      contingency_pct: 0.10
-    },
-    ffe: { amount_eur: 24000 }, // compras a volumen
-    soft_costs_pct: 0.08,
-    taxes_fees_eur: 10000,
+    // Campos internos (no se usan en el cálculo comercial de esta página)
+    build: { costs: { indoor_per_m2_eur: 0, outdoor_per_m2_eur: 0, landscape_per_m2_eur: 0 }, contingency_pct: 0 },
+    ffe: { amount_eur: 0 },
+    soft_costs_pct: 0,
+    taxes_fees_eur: 0,
 
-    adr_eur: 260,
-    occ: 0.75,
+    // Defaults “placeholder”; serán sobreescritos con presets
+    adr_eur: 175,
+    occ: 0.59,
     nights: 365,
-
-    ota_pct: 0.12,
+    ota_pct: 0.15,
     mgmt_pct: 0.18,
     variable_opex_pct: 0.08,
     fixed_opex_year_eur: 12000,
 
     debt: { ltv: 0.55, rate: 0.072, amort_years: 20 },
-    exit: { exit_cap: 0.075, selling_costs_pct: 0.03 },
+    exit: { exit_cap: 0.08, selling_costs_pct: 0.03 },
     horizon_years: 10
+  },
+  scaled8: {} // compat con tu boot; usaremos base + presets igualmente
+};
+
+// ========= PRESETS ABSOLUTOS (lo que verá el cliente) =========
+// Ajustados a rangos realistas de Lombok (2024–2025 aprox.)
+export const presets = {
+  conservador: {
+    adr_eur: 160,  occ: 0.50, nights: 365,
+    ota_pct: 0.14,
+    mgmt_pct: 0.18, mgmt_on_net: true,       // gestión sobre NET (GROSS - OTA)
+    variable_opex_pct: 0.08,
+    fixed_opex_year_eur: 9000,
+    debt: { ltv: 0.55, rate: 0.072, amort_years: 20 },
+    exit: { exit_cap: 0.08, selling_costs_pct: 0.03 }
+  },
+  base: {
+    adr_eur: 170,  occ: 0.55, nights: 365,
+    ota_pct: 0.14,
+    mgmt_pct: 0.18, mgmt_on_net: true,
+    variable_opex_pct: 0.08,
+    fixed_opex_year_eur: 7500,
+    debt: { ltv: 0.55, rate: 0.072, amort_years: 20 },
+    exit: { exit_cap: 0.08, selling_costs_pct: 0.03 }
+  },
+  optimista: {
+    adr_eur: 200,  occ: 0.65, nights: 365,
+    ota_pct: 0.14,
+    mgmt_pct: 0.18, mgmt_on_net: true,
+    variable_opex_pct: 0.08,
+    fixed_opex_year_eur: 7000,
+    debt: { ltv: 0.55, rate: 0.072, amort_years: 20 },
+    exit: { exit_cap: 0.08, selling_costs_pct: 0.03 }
   }
 };
 
+// (legacy) Multiplicadores antiguos: se mantienen por compatibilidad, no usados aquí
+export const scenarios = {
+  conservador: { adr_mult: 0.90, occ_mult: 0.85, fixed_opex_mult: 1.05 },
+  base:        { adr_mult: 1.00, occ_mult: 1.00, fixed_opex_mult: 1.00 },
+  optimista:   { adr_mult: 1.10, occ_mult: 0.92, fixed_opex_mult: 0.95 }
+};
+
 // ========= Utils =========
-function formatCurrency(v, c) {
+export function formatCurrency(v, c) {
   try {
     return new Intl.NumberFormat('es-ES', { style: 'currency', currency: c || 'EUR', maximumFractionDigits: 0 }).format(v);
   } catch { return `${(v||0).toFixed(0)} ${c||'EUR'}`; }
 }
-const pct = v => `${(v*100).toFixed(1)}%`;
+const clamp = (v,min,max)=>Math.min(max,Math.max(min,v));
+const pctFmt = v => `${(v*100).toFixed(1)}%`;
 
 function annualDebtPayment(P, r, n){
   if (!P || !r || !n) return 0;
@@ -147,94 +119,66 @@ function xirr(cashflows){
   return r;
 }
 
-// ========= Derivados de ÁREAS =========
-function areaDerived(areas){
-  areas = areas || {};
-  const f1i = +areas.floor1_indoor_m2 || 0;
-  const f1o = +areas.floor1_outdoor_m2 || 0;
-  const f2i = +areas.floor2_indoor_m2 || 0;
-  const f2o = +areas.floor2_outdoor_m2 || 0;
-
-  const indoor_m2  = f1i + f2i;
-  const outdoor_m2 = f1o + f2o;
-  // Si no tienes indoor/outdoor por planta, usa los “total” como indoor por defecto
-  const fallbackGFA = (areas.floor1_total_m2||0) + (areas.floor2_total_m2||0);
-  const gfa_m2 = (indoor_m2 + outdoor_m2) || fallbackGFA;
-
-  const land = +areas.land_plot_m2 || 0;
-  const far = land > 0 ? (gfa_m2 / land) : 0;
-  const coverage = land > 0 ? ((areas.floor1_total_m2||0) / land) : 0; // cobertura ≈ huella planta baja
-  const efficiency = gfa_m2 > 0 ? (indoor_m2 / gfa_m2) : 0;
-
-  return { land_plot_m2: land, landscape_m2: (+areas.landscape_m2||0),
-           indoor_m2, outdoor_m2, gfa_m2, far, coverage, efficiency };
+// ========= Carga preset sobre el modelo base (sin tocar áreas/obra) =========
+function applyPreset(model, presetKey='base'){
+  const m0 = model || models.base;
+  const p = presets[presetKey] || presets.base;
+  const m = JSON.parse(JSON.stringify(m0));
+  // Ingresos / OPEX
+  m.adr_eur = p.adr_eur;
+  m.occ = clamp(p.occ, 0, 1);
+  m.nights = p.nights ?? 365;
+  m.ota_pct = p.ota_pct;
+  m.mgmt_pct = p.mgmt_pct;
+  m.mgmt_on_net = !!p.mgmt_on_net;           // <<<<<<
+  m.variable_opex_pct = p.variable_opex_pct;
+  m.fixed_opex_year_eur = p.fixed_opex_year_eur;
+  // Deuda / salida
+  m.debt = { ...(m.debt||{}), ...(p.debt||{}) };
+  m.exit = { ...(m.exit||{}), ...(p.exit||{}) };
+  // Horizonte / moneda
+  m.horizon_years = m.horizon_years || 10;
+  m.currency = m.currency || 'EUR';
+  return m;
 }
 
-// ========= Costes de construcción =========
-function buildCostFromModel(model, ad){
-  const b = model.build || {};
-  // Modo áreas (preferente si hay 'costs')
-  if (b.costs){
-    const indoor    = ad.indoor_m2  * (b.costs.indoor_per_m2_eur    || 0);
-    const outdoor   = ad.outdoor_m2 * (b.costs.outdoor_per_m2_eur   || 0);
-    const landscape = ad.landscape_m2 * (b.costs.landscape_per_m2_eur || 0);
-    const direct    = indoor + outdoor + landscape;
-    const soft      = direct * (model.soft_costs_pct || 0);
-    const cont      = direct * (b.contingency_pct || 0);
-    return { direct, soft, contingency: cont, total: direct + soft + cont };
-  }
-  // Modo legacy (compatibilidad)
-  const built_m2 = b.built_m2 || ad.gfa_m2 || 0;
-  const direct   = built_m2 * (b.cost_per_m2_eur || 0);
-  const soft     = direct * (model.soft_costs_pct || 0);
-  const cont     = direct * (b.contingency_pct || 0);
-  return { direct, soft, contingency: cont, total: direct + soft + cont };
+// ========= Cálculo “por unidad” (sin usar costes de obra) =========
+function computePerUnit(m){
+  const gross = (m.adr_eur || 0) * (m.occ || 0) * (m.nights || 0);
+  const ota   = gross * (m.ota_pct || 0);
+  const mgmtBase = (m.mgmt_on_net ? (gross - ota) : gross); // <<<<<< gestión sobre NET opcional
+  const mgmt  = mgmtBase * (m.mgmt_pct || 0);
+  const varOx = gross * (m.variable_opex_pct || 0);
+  const opex  = ota + mgmt + varOx + (m.fixed_opex_year_eur || 0);
+  const NOI   = gross - opex;
+  return { gross, ota, mgmtBase, mgmt, varOx, opex, NOI };
 }
 
-// ========= Cálculo financiero principal =========
-function compute(model){
-  model = model || models.base;
+// ========= Cálculo financiero principal basado en precio fijo por unidad =========
+function recomputeFromUnitPrice(m, unitPriceEUR){
+  const per = computePerUnit(m);
 
-  const ad = areaDerived(model.areas || {});
-  const b  = buildCostFromModel(model, ad);
+  // Deuda y flujo
+  const inv    = Math.max(0, unitPriceEUR || 0);
+  const loan   = inv * (m.debt?.ltv || 0);
+  const equity = inv - loan;
+  const ads    = annualDebtPayment(loan, (m.debt?.rate || 0), (m.debt?.amort_years || 0));
+  const cfb    = per.NOI - ads;
 
-  const landCost   = (ad.land_plot_m2 || 0) * ((model.land && model.land.price_per_m2_eur) || 0);
-  const landCosts  = landCost * ((model.land && model.land.purchase_costs_pct) || 0);
-  const ffe        = (model.ffe && model.ffe.amount_eur) || 0;
-  const taxesFees  = model.taxes_fees_eur || 0;
-
-  const totalInvestment = landCost + landCosts + b.total + ffe + taxesFees;
-
-  // Ingresos
-  const gross    = (model.adr_eur || 0) * (model.occ || 0) * (model.nights || 0);
-  const ota      = gross * (model.ota_pct || 0);
-  const mgmt     = gross * (model.mgmt_pct || 0);
-  const varOpex  = gross * (model.variable_opex_pct || 0);
-  const opex     = ota + mgmt + varOpex + (model.fixed_opex_year_eur || 0);
-
-  const NOI = gross - opex;
-
-  // Deuda
-  const debt  = model.debt || {};
-  const loan  = totalInvestment * (debt.ltv || 0);
-  const equity = totalInvestment - loan;
-  const ads   = annualDebtPayment(loan, (debt.rate || 0), (debt.amort_years || 0));
-  const cfb   = NOI - ads;
-
-  // KPIs
-  const capRate = totalInvestment > 0 ? (NOI / totalInvestment) : 0;
+  // KPIs por unidad
+  const capRate = inv > 0 ? (per.NOI / inv) : 0;
   const coc     = equity > 0 ? (cfb / equity) : 0;
   const payback = (cfb > 0 && equity > 0) ? (equity / cfb) : Infinity;
 
-  // Salida
-  const ex = model.exit || {};
-  const exitCap = ex.exit_cap || 0.08;
-  const exitValue = exitCap > 0 ? (NOI / exitCap) : 0;
-  const sellingCosts = exitValue * (ex.selling_costs_pct || 0.03);
-  const loanOut = loanBalanceAfterYears(loan, (debt.rate || 0), (debt.amort_years || 0), (model.horizon_years || 0));
+  // Salida (venta a cap sobre NOI)
+  const exitCap = m.exit?.exit_cap || 0.08;
+  const exitValue = exitCap > 0 ? (per.NOI / exitCap) : 0;
+  const sellingCosts = exitValue * (m.exit?.selling_costs_pct || 0.03);
+  const loanOut = loanBalanceAfterYears(loan, (m.debt?.rate || 0), (m.debt?.amort_years || 0), (m.horizon_years || 10));
   const netSale = exitValue - sellingCosts - loanOut;
 
-  const years = Math.max(1, model.horizon_years || 10);
+  // IRR
+  const years = Math.max(1, m.horizon_years || 10);
   const cf = [-equity];
   for (let y=1; y<=years; y++){
     cf.push(cfb + (y===years ? netSale : 0));
@@ -242,66 +186,201 @@ function compute(model){
   const irr = xirr(cf);
 
   return {
-    // financieros
-    totalInvestment, gross, NOI, equity, ads, cfb, capRate, coc, payback, irr,
-    // construcción/terreno
-    landCost, landCosts,
-    build: b, ffe, taxesFees,
-    // áreas derivadas
-    areas: ad,
-    currency: model.currency || 'EUR'
+    inv, loan, equity, ads, cfb,
+    perNOI: per.NOI,
+    capRate, coc, payback, irr,
+    _per: per
   };
 }
 
-// ========= Pintado DOM (KPIs + métricas de área si existen) =========
+// ========= API pública: cálculo por N unidades =========
+export function computeUnits(model, {
+  units = 1,
+  unitPriceEUR = 100000,
+  scenario = 'base'
+} = {}){
+  const u = clamp(Math.round(units||1), 1, 999);
+  // Cargamos preset absoluto sobre el modelo base
+  const m = applyPreset(model || models.base, scenario);
+
+  // Por unidad con precio fijo
+  const k = recomputeFromUnitPrice(m, unitPriceEUR);
+
+  // Totales
+  const investment = k.inv   * u;
+  const equity     = k.equity* u;
+  const loan       = k.loan  * u;
+  const NOI        = k.perNOI* u;
+  const ads        = k.ads   * u;
+  const cfb        = k.cfb   * u;
+
+  // KPIs totales
+  const capRate = investment > 0 ? (NOI / investment) : 0;
+  const coc     = equity > 0 ? (cfb / equity) : 0;
+  const payback = (cfb > 0 && equity > 0) ? (equity / cfb) : Infinity;
+
+  // IRR total
+  const years = m.horizon_years || 10;
+  const cf = [-equity];
+  for (let y=1; y<=years; y++){
+    const exitCap = m.exit?.exit_cap || 0.08;
+    const exitValuePer = exitCap > 0 ? (k.perNOI / exitCap) : 0;
+    const sellingCostsPer = exitValuePer * (m.exit?.selling_costs_pct || 0.03);
+    const loanOutPer = loanBalanceAfterYears(k.loan, (m.debt?.rate || 0), (m.debt?.amort_years || 0), y);
+    const netSalePer = exitValuePer - sellingCostsPer - loanOutPer;
+
+    const cfy = (k.perNOI - k.ads) * u + (y===years ? netSalePer * u : 0);
+    cf.push(cfy);
+  }
+  const irr = xirr(cf);
+
+  return {
+    scenario,
+    units: u,
+    currency: m.currency || 'EUR',
+    totals: { investment, equity, loan, NOI, ads, cfb },
+    kpis: { capRate, coc, payback, irr },
+    perUnit: {
+      investment: k.inv, equity: k.equity, loan: k.loan, NOI: k.perNOI, ads: k.ads,
+      capRate: k.capRate, coc: k.coc, payback: k.payback, irr: k.irr
+    },
+    assumptions: {
+      adr_eur: m.adr_eur, occ: m.occ, nights: m.nights,
+      ota_pct: m.ota_pct, mgmt_pct: m.mgmt_pct, mgmt_on_net: !!m.mgmt_on_net,
+      variable_opex_pct: m.variable_opex_pct, fixed_opex_year_eur: m.fixed_opex_year_eur,
+      debt: { ...m.debt }, exit: { ...m.exit }, horizon_years: m.horizon_years
+    }
+  };
+}
+
+// ========= Azúcar: 3 escenarios a la vez =========
+export function computeScenarios(model, { units=1, unitPriceEUR=100000 } = {}){
+  const keys = ['conservador','base','optimista'];
+  const out = {};
+  for (const k of keys){
+    out[k] = computeUnits(model, { units, unitPriceEUR, scenario: k });
+  }
+  return out;
+}
+
+// ========= “Cómo calculamos” — explicación paso a paso (per-unit) =========
+export function buildPerUnitExplanation(model, { unitPriceEUR=100000, scenario='base' } = {}){
+  const m = applyPreset(model || models.base, scenario);
+  const per = computePerUnit(m);
+  const loan = unitPriceEUR * (m.debt?.ltv || 0);
+  const equity = unitPriceEUR - loan;
+  const ads = annualDebtPayment(loan, (m.debt?.rate || 0), (m.debt?.amort_years || 0));
+  const cf = per.NOI - ads;
+  const payback = (cf > 0 && equity > 0) ? (equity / cf) : Infinity;
+  const cap = unitPriceEUR > 0 ? (per.NOI / unitPriceEUR) : 0;
+  const coc = equity > 0 ? (cf / equity) : 0;
+
+  return {
+    scenario,
+    unitPriceEUR,
+    steps: [
+      { label: 'Ingresos brutos (GROSS)',      formula: 'ADR × Ocupación × Noches', value: per.gross,      key:'gross' },
+      { label: 'Comisión OTA',                 formula: 'GROSS × OTA%',             value: per.ota,        key:'ota' },
+      { label: 'Gestión',
+        formula: (m.mgmt_on_net ? 'NET (GROSS − OTA) × Gestión%' : 'GROSS × Gestión%'),
+        value: per.mgmt, key:'mgmt' },
+      { label: 'Variables',                    formula: 'GROSS × Variables%',       value: per.varOx,      key:'var' },
+      { label: 'Fijos anuales',                formula: 'Fijos',                     value: m.fixed_opex_year_eur, key:'fixed' },
+      { label: 'OPEX total',                   formula: 'OTA + Gestión + Var + Fijos', value: per.opex,    key:'opex' },
+      { label: 'NOI',                          formula: 'GROSS − OPEX',             value: per.NOI,        key:'noi' },
+      { label: 'Préstamo',                     formula: 'Precio × LTV',             value: loan,           key:'loan' },
+      { label: 'Equity',                       formula: 'Precio − Préstamo',        value: equity,         key:'equity' },
+      { label: 'Cuota anual (ADS)',            formula: 'Amortización francesa',    value: ads,            key:'ads' },
+      { label: 'Flujo anual (CF)',             formula: 'NOI − ADS',                value: cf,             key:'cf' },
+      { label: 'Payback',                      formula: 'Equity / CF',              value: payback,        key:'payback', fmt:'years' },
+      { label: 'Cap rate',                     formula: 'NOI / Precio',             value: cap,            key:'cap',    fmt:'pct' },
+      { label: 'Cash-on-Cash',                 formula: 'CF / Equity',              value: coc,            key:'coc',    fmt:'pct' }
+    ],
+    assumptions: {
+      adr_eur: m.adr_eur, occ: m.occ, nights: m.nights,
+      ota_pct: m.ota_pct, mgmt_pct: m.mgmt_pct, mgmt_on_net: !!m.mgmt_on_net,
+      variable_opex_pct: m.variable_opex_pct, fixed_opex_year_eur: m.fixed_opex_year_eur,
+      debt: { ...m.debt }, exit: { ...m.exit }, horizon_years: m.horizon_years,
+      currency: m.currency || 'EUR'
+    }
+  };
+}
+
+// Render opcional (pinta una tarjetita si existe [data-explain] dentro de #oportunity)
+export function renderExplanation(rootSel='#oportunity', expl){
+  const root = document.querySelector(rootSel);
+  if (!root) return;
+  const host = root.querySelector('[data-explain]');
+  if (!host) return;
+
+  const cur = expl.assumptions.currency || 'EUR';
+  const F = (v) => formatCurrency(v, cur);
+
+  const rows = expl.steps.map(s=>{
+    let val = s.value;
+    if (s.fmt === 'pct') val = pctFmt(val);
+    else if (s.fmt === 'years') val = (val===Infinity ? '—' : `${val.toFixed(2)} años`);
+    else val = F(val);
+    return `
+      <li class="opty__how-row">
+        <div class="opty__how-col opty__how-col--what"><b>${s.label}</b><br><small class="opty__muted">${s.formula}</small></div>
+        <div class="opty__how-col opty__how-col--val">${val}</div>
+      </li>`;
+  }).join('');
+
+  host.innerHTML = `
+    <article class="opty__card">
+      <h4 class="opty__card-title">Cómo calculamos</h4>
+      <ul class="opty__list opty__how-list">${rows}</ul>
+      <p class="opty__muted" style="margin-top:8px;">
+        Supuestos — ADR: <b>${formatCurrency(expl.assumptions.adr_eur, cur)}</b>,
+        Ocupación: <b>${pctFmt(expl.assumptions.occ)}</b>, OTA: <b>${pctFmt(expl.assumptions.ota_pct)}</b>,
+        Gestión: <b>${pctFmt(expl.assumptions.mgmt_pct)}</b>${expl.assumptions.mgmt_on_net ? ' (sobre NET)' : ''},
+        Variables: <b>${pctFmt(expl.assumptions.variable_opex_pct)}</b>,
+        Fijos: <b>${formatCurrency(expl.assumptions.fixed_opex_year_eur, cur)}</b>, LTV: <b>${pctFmt(expl.assumptions.debt.ltv||0)}</b>.
+      </p>
+      <p class="opty__muted" style="font-size:.95em">Cálculos orientativos, antes de impuestos y sujetos a estacionalidad y condiciones reales de operación.</p>
+    </article>`;
+}
+
+// ========= Pintado DOM (KPIs + explicación si hay host) =========
 export function populateOpportunity(rootSel='#oportunity', model=models.base){
+  return populateOpportunityAdvanced(rootSel, model, {});
+}
+
+export function populateOpportunityAdvanced(rootSel='#oportunity', model=models.base, {
+  units = 1,
+  unitPriceEUR = 100000,
+  scenario = 'base'
+} = {}){
   const root = document.querySelector(rootSel);
   if (!root) return;
 
-  const r = compute(model);
-  const q = sel => root.querySelector(sel);
-  const setKpi = (key, text) => { const el = root.querySelector('[data-kpi="'+key+'"]'); if (el) el.textContent = text; };
+  const r = computeUnits(model, { units, unitPriceEUR, scenario });
 
-  // KPIs
-  setKpi('cap-rate', pct(r.capRate));
-  setKpi('coc',      pct(r.coc));
-  setKpi('payback',  (r.payback===Infinity ? '—' : (r.payback.toFixed(1) + ' años')));
-  setKpi('irr',      pct(r.irr));
+  const setKpi = (key, text) => {
+    const el = root.querySelector('[data-kpi="'+key+'"]');
+    if (el) el.textContent = text;
+  };
 
-  // Nota resumen
-  const note = q('.opty__note');
+  // KPIs (agregados por N unidades)
+  setKpi('cap-rate', pctFmt(r.kpis.capRate));
+  setKpi('coc',      pctFmt(r.kpis.coc));
+  setKpi('payback',  (r.kpis.payback===Infinity ? '—' : (r.kpis.payback.toFixed(1) + ' años')));
+  setKpi('irr',      pctFmt(r.kpis.irr));
+
+  // Nota resumen (totales)
+  const note = root.querySelector('.opty__note');
   if (note){
     note.innerHTML =
-      'Inversión total estimada: <b>' + formatCurrency(r.totalInvestment, r.currency) + '</b> · ' +
-      'Ingresos brutos: <b>'         + formatCurrency(r.gross,          r.currency) + '</b> · ' +
-      'NOI: <b>'                     + formatCurrency(r.NOI,            r.currency) + '</b> · ' +
-      'Equity: <b>'                  + formatCurrency(r.equity,         r.currency) + '</b>';
+      `Unidades: <b>${r.units}</b> · ` +
+      `Precio/unidad: <b>${formatCurrency(unitPriceEUR, r.currency)}</b> · ` +
+      `Inversión total: <b>${formatCurrency(r.totals.investment, r.currency)}</b> · ` +
+      `NOI total: <b>${formatCurrency(r.totals.NOI, r.currency)}</b> · ` +
+      `Equity total: <b>${formatCurrency(r.totals.equity, r.currency)}</b>`;
   }
 
-  // ---- (Opcional) Métricas de área si tienes placeholders en HTML ----
-  function setArea(key, val, unit='m²'){
-    const el = root.querySelector('[data-area="'+key+'"]');
-    if (el) el.textContent = (val==null ? '—' : (val.toFixed ? val.toFixed(2) : val)) + (unit ? ' ' + unit : '');
-  }
-  function setMetric(key, val){
-    const el = root.querySelector('[data-metric="'+key+'"]');
-    if (!el) return;
-    if (key === 'efficiency')      el.textContent = pct(val);
-    else if (key === 'coverage')   el.textContent = pct(val);
-    else if (key === 'far')        el.textContent = val.toFixed(2);
-  }
-
-  setArea('land-plot',  r.areas.land_plot_m2);
-  setArea('landscape',  r.areas.landscape_m2);
-  setArea('indoor',     r.areas.indoor_m2);
-  setArea('outdoor',    r.areas.outdoor_m2);
-  setArea('gfa',        r.areas.gfa_m2, 'm² GFA');
-
-  setMetric('far',       r.areas.far);
-  setMetric('coverage',  r.areas.coverage);
-  setMetric('efficiency',r.areas.efficiency);
-
-  // (Opcional) también puedes mostrar costes de obra:
-  const bc = root.querySelector('[data-build-total]');
-  if (bc) bc.textContent = formatCurrency(r.build.total, r.currency);
+  // Explicación (per-unit) si el HTML incluye [data-explain]
+  const expl = buildPerUnitExplanation(model, { unitPriceEUR, scenario });
+  renderExplanation(rootSel, expl);
 }

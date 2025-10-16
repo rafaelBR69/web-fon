@@ -1,0 +1,127 @@
+/* ====== inversion.css — estilos de Inversión (widgets + modal debajo del header) ====== */
+
+:root{
+  /* Altura del header (fallback) — se sobreescribe por JS */
+  --hdr-h: 72px;
+  --hdr-extra-space: clamp(12px, 1.8vw, 28px);
+}
+
+/* ---------- Espacio bajo header fijo ---------- */
+.inversion-page .main-wrap{
+  /* Empuja el contenido por debajo del header fijo + un extra agradable */
+  padding-top: calc(var(--hdr-h) + var(--hdr-extra-space));
+}
+
+/* ---------- Introducción de la sección ---------- */
+.invest-intro{
+  background:#fff;
+  color:var(--opty-fg, #0a1f2b);
+  font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+}
+.invest-intro__container{
+  max-width: var(--opty-maxw, min(96vw, 1320px));
+  margin: 0 auto;
+  padding: clamp(18px, 3.2vw, 40px) 20px 8px;
+}
+.invest-intro__eyebrow{
+  margin:0 0 6px;
+  color: var(--opty-accent, #092B3F);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: 400;
+  font-size: clamp(12px, 1.1vw, 14px);
+}
+.invest-intro__title{
+  margin:0;
+  font-weight: 400;
+  letter-spacing:.2px;
+  color: var(--opty-accent, #092B3F);
+  font-size: clamp(28px, 4.2vw, 44px);
+  line-height: 1.14;
+}
+.invest-intro__lead{
+  margin: 10px 0 0;
+  color: var(--opty-muted, #5f6b76);
+  font-weight: 350;
+  font-size: clamp(16px, 1.6vw, 20px);
+}
+
+/* ---------- Lanzadores (2 widgets) ---------- */
+.widget-launch {
+  background:#fff;
+  color:var(--opty-fg, #0a1f2b);
+  font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+}
+.widget-launch__container {
+  max-width: var(--opty-maxw, min(96vw, 1320px));
+  margin: 0 auto;
+  padding: clamp(18px, 3vw, 32px) 20px clamp(20px, 3vw, 40px);
+}
+.widget-launch__grid {
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+@media (max-width: 768px){
+  .widget-launch__grid { grid-template-columns: 1fr; }
+}
+
+/* Card lanzadora (tipografías más grandes) */
+.widget-card {
+  display:grid;
+  gap: 12px;
+  align-content:start;
+  text-decoration:none;
+  background: var(--opty-card, #f7fafc);
+  border:1px solid var(--opty-border, #e5eaef);
+  border-radius: var(--opty-radius, 20px);
+  padding: 22px;
+  box-shadow: var(--opty-shadow, 0 14px 40px rgba(0,0,0,.07));
+  transition: transform .08s ease, box-shadow .2s ease;
+  cursor:pointer;
+  min-height: 170px;
+}
+.widget-card:hover { transform: translateY(-1px); box-shadow: 0 18px 48px rgba(0,0,0,.08); }
+.widget-card__icon {
+  width: 52px; height: 52px; display:grid; place-items:center;
+  border-radius: 14px; background:#092B3F; color:#fff; font-size: 24px;
+}
+.widget-card__title { margin:0; font-weight:450; font-size: clamp(20px, 2.1vw, 26px); color:#092B3F; letter-spacing:.2px; }
+.widget-card__text  { margin:0; color: var(--opty-muted, #5f6b76); font-size: clamp(15px, 1.35vw, 18px); }
+.widget-card__cta   { margin:0; font-weight:450; color:#092B3F; font-size: clamp(16px, 1.5vw, 19px); }
+
+/* ---------- Modal debajo del header ---------- */
+.modal--below-header .modal-dialog.modal-fullscreen{
+  height: calc(100vh - var(--hdr-h));
+  margin: var(--hdr-h) 0 0;
+}
+.modal--below-header .modal-content{
+  border-radius: 16px 16px 0 0;
+  border:1px solid var(--opty-border, #e5eaef);
+}
+.modal--below-header .modal-header{
+  position: sticky; top: 0; z-index: 2;
+  background:#fff;
+  padding: clamp(14px, 2vw, 18px) clamp(14px, 2vw, 20px);
+  border-bottom:1px solid var(--opty-border,#e5eaef);
+}
+.modal--below-header .modal-title{
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 450;
+  color:#092B3F;
+  letter-spacing:.2px;
+}
+.modal--below-header .btn-close{ transform: scale(1.25); }
+@media (min-width:1600px){
+  .modal--below-header .btn-close{ transform: scale(1.35); }
+}
+
+/* Body del modal con mismo ancho que opportunity */
+.modal-fullscreen .modal-body {
+  padding: clamp(16px, 2vw, 24px);
+  background: #fff;
+}
+.modal-host {
+  max-width: var(--opty-maxw, min(96vw, 1320px));
+  margin: 0 auto;
+}

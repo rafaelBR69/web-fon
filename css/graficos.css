@@ -1,206 +1,203 @@
 /* =========================================================
-   GRAFICOS.CSS  –  Panel 2×2 con cards centradas (tuneado)
+   /css/graficos.css — Tema claro (blanco + azules) alineado con oportunity.css
+   Tipografía: Montserrat (si ya la cargas en <head>, puedes quitar @import)
    ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap');
 
-/* ============ 1) SCOPE GLOBAL / TOKENS ============ */
-.charts-scope{
-  --bg: transparent;
-  --ink: #ffffff;
-  --muted: #E6EEF8;
+/* ===== Tokens base ===== */
+:root{
+  /* Colores base (en la línea de oportunity.css) */
+  --charts-bg:    #ffffff;
+  --charts-ink:   #0a1f2b;        /* texto principal */
+  --charts-muted: #5f6b76;        /* texto secundario */
+  --charts-accent:#092B3F;        /* azul marca */
+  --charts-border:#e5eaef;        /* bordes claros */
+  --charts-card:  #ffffff;        /* fondo de cards */
+  --charts-panel: #f7fafc;        /* paneles y áreas */
+  --charts-grid:  rgba(9,43,63,.12); /* líneas de rejilla */
+  --charts-chartbg: #f7fafc;      /* fondo de la zona de gráfico */
 
-  /* Colores series (sin cambios) */
-  --brand:  #32c1ff;
-  --brand2: #ff7a59;
-  --brand3: #9d7bff;
-  --brand4: #3ad29f;
+  --charts-radius: 20px;
+  --charts-shadow: 0 14px 40px rgba(0,0,0,.07);
 
-  /* Grid y fondos translúcidos */
-  --grid: rgba(255,255,255,.26);
-  --card-bg: rgba(0,0,0,.22);      /* MÁS OSCURO: para texto y charts */
-  --chart-bg: rgba(0,0,0,.16);     /* base para área del gráfico */
+  /* 🔄 Usa exactamente el mismo ancho que oportunity.css */
+  --charts-maxw: var(--opty-maxw, min(96vw, 1320px));
 
-  --radius: 16px;
+  /* Colores series (azules) */
+  --brand:  #3db2ff;   /* opcional */
+  --brand2: #092B3F;   /* serie 1 (marca) */
+  --brand3: #5f9ed1;   /* opcional */
+  --brand4: #32c1ff;   /* serie 2 (azul claro) */
 
-  /* Escala global (ligeramente ↑) */
+  /* Escala tipográfica/espaciales del dashboard */
   --mul: 1.22;
-  --h: 240px;
+  --h:   240px;
+}
 
-  color: var(--ink);
-  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+/* ===== Scope ===== */
+.charts-scope{
+  color: var(--charts-ink);
+  font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   position: relative;
-  background: var(--bg);
+  background: var(--charts-bg);
   isolation: isolate;
-
-  /* Sombra blanca mínima para *todo* el texto dentro del scope */
-  text-shadow: 0 0 6px rgba(255,255,255,.12);
 }
 
-/* ============ 2) FONDO A DOS COLUMNAS (full-bleed) ============ */
-.charts-scope .bg-cols{
-  position:absolute; inset:0; left:50%; width:100vw; transform:translateX(-50%);
-  pointer-events:none; z-index:0;
-}
-.charts-scope .bg-col{
-  position:absolute; top:0; bottom:0; background-position:center; background-size:cover;
-  filter: grayscale(.06) saturate(.98) brightness(1.0) contrast(1.02) blur(.2px);
-}
-.charts-scope .bg-col.left  { left:0;    width:50vw; background-image: var(--bg-col-1, none); }
-.charts-scope .bg-col.right { left:50vw; width:50vw; background-image: var(--bg-col-2, none); }
-@media (max-width: 991.98px){ .charts-scope .bg-cols{ display:none; } }
+/* (Se eliminan los fondos fotográficos) — por compatibilidad, ocúltalos si existieran */
+.charts-scope .bg-cols{ display:none !important; }
 
-/* ============ 3) CABECERA ============ */
+/* ===== Cabecera ===== */
 .charts-scope .charts-head{
   position:relative; z-index:1;
   display:flex; justify-content:center; text-align:center; gap:14px; margin-bottom:16px;
   padding-inline: 12px;
 }
-.charts-scope .charts-head > div{ max-width:1140px; }
+.charts-scope .charts-head > div{ max-width:var(--charts-maxw); margin:0 auto; }
 .charts-scope .title{
-  margin:0; font-weight:900; letter-spacing:.2px;
-  font-size: calc(2.18rem * var(--mul)); line-height:1.12; color:#fff;
+  margin:0; font-weight:500; letter-spacing:.2px;
+  color: var(--opty-accent, var(--charts-accent));
+  font-size: calc(2.18rem * var(--mul)); line-height:1.12;
 }
 .charts-scope .lead{
-  color:var(--muted); margin:.35rem 0 0;
-  font-size: calc(1.14rem * var(--mul)); font-weight:600;
+  color:var(--charts-muted); margin:.35rem 0 0; font-weight:600;
+  font-size: calc(1.14rem * var(--mul));
 }
 
-/* ============ 4) GRID 2×2 – CADA CELDA CENTRADA ============ */
+/* ===== Grid 2×2 centrado ===== */
 .charts-quad{
   position:relative; z-index:1;
-  max-width:2140px; margin-inline:auto; padding-inline:12px;
+  max-width: var(--charts-maxw);         /* ⬅️ igual que oportunity.css */
+  margin-inline:auto; padding-inline:12px;
   display:grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: minmax(360px, auto);
-  gap: 18px;
-  place-items: center;
+  gap: 20px;
+  place-items: stretch;                   /* que las cards estiren al 100% */
 }
 
-/* ============ 5) CARDS (TEXTO y GRÁFICO) ============ */
+/* ===== Cards ===== */
 .card{
-  background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: var(--radius);
-  padding: 16px 16px 12px;
-  box-shadow: 0 16px 36px rgba(0,0,0,.20);
+  background: var(--charts-card);
+  border: 1px solid var(--charts-border);
+  border-radius: var(--charts-radius);
+  padding: 22px;
+  box-shadow: var(--charts-shadow);
 }
 
-/* Texto: ahora sobre fondo translúcido oscuro y tipografía blanca */
+/* Texto */
 .text-card{
-  width: min(560px, 92%);
-  background: var(--card-bg);
-  color:#fff;
+  width: 100%;                            /* ⬅️ full-width dentro del grid */
+  background: var(--charts-card);
+  color: var(--charts-ink);
 }
-.text-card *{ color:#fff; }
 .text-card .punch{
-  margin:0 0 .5rem; font-weight:450;
+  margin:0 0 .5rem; font-weight:700;
+  color: var(--opty-accent, var(--charts-accent));
   font-size: calc(1.62rem * var(--mul));
   line-height:1.18;
 }
 .text-card .tagline{
-  margin:.25rem 0 .8rem; font-weight:350;
-  font-size: calc(1.42rem * var(--mul));
-  color:#f3f6fb;
+  margin:.25rem 0 .8rem; font-weight:500;
+  font-size: calc(1.10rem * var(--mul));
+  color: var(--charts-muted);
 }
 .text-card .bullets{
   margin:0; padding-left:1.55rem; display:grid; gap:.45rem;
-  font-size: calc(1.22rem * var(--mul)); color:#eaf0f7;
+  font-size: calc(1.02rem * var(--mul)); color: var(--charts-ink);
 }
-.text-card .bullets li{ line-height:1.38; }
+.text-card .bullets li{ line-height:1.42; }
 
 /* Gráficos */
-.chart-card{ width: min(640px, 96%); }
+.chart-card{ width: 100%; }               /* ⬅️ full-width dentro del grid */
 .chart-card h3{
-  margin:0 0 .5rem; font-weight:900; color:#fff;
-  font-size: calc(1.24rem * var(--mul));
+  margin:0 0 .5rem; font-weight:800;
+  color: var(--opty-accent, var(--charts-accent));
+  font-size: calc(1.22rem * var(--mul));
 }
 .chart-card .meta{
-  font-size: calc(1.02rem * var(--mul)); color:#E6EEF8; margin-bottom:10px; font-weight:500;
+  font-size: calc(0.98rem * var(--mul)); color: var(--charts-muted);
+  margin-bottom:10px; font-weight:500;
 }
 .chart{
   height: var(--h);
-  background: linear-gradient(180deg, var(--card-bg), var(--chart-bg));
+  background: linear-gradient(180deg, #ffffff 0%, var(--charts-chartbg) 100%);
+  border: 1px solid var(--charts-border);
   border-radius: 14px;
-  backdrop-filter: blur(.6px) saturate(1.02);
+  position: relative; /* para tooltips */
 }
 
-/* ============ 6) SVG (ejes, ticks, series, leyenda, tooltip) ============ */
+/* ===== SVG, ejes, series, leyenda ===== */
 svg{ width:100%; height:100%; display:block; }
-.gridline{ stroke: var(--grid); }
+.gridline{ stroke: var(--charts-grid); }
 
-/* Garantiza etiquetas de meses SIEMPRE BLANCAS y sin contorno pesado */
-.tick, .tick text, .axis-label{
-  fill:#ffffff !important;
-  stroke: rgba(255,255,255,.10);     /* “halo” blanco MUY sutil */
-  stroke-width: 1.4px;
-  stroke-linejoin: round;
-  paint-order: stroke fill;
-  font-weight: 450;
+.tick, .axis-label{
+  fill: var(--charts-ink) !important;
+  font-weight: 600;
 }
-.tick text{ font-size: calc(1.04rem * var(--mul)); }
-.axis-label{ font-size: calc(1.10rem * var(--mul)); }
+.tick{ font-size: calc(0.98rem * var(--mul)); }
+.axis-label{ font-size: calc(1.00rem * var(--mul)); }
 
 .serie{ fill:none; stroke-width: calc(2.8px * var(--mul)); stroke-linecap:round; }
 .point{ cursor:pointer; }
 
-/* Leyenda: oscura translúcida + texto blanco */
+/* Leyenda clara */
 .legend{
   display:flex; gap:12px; align-items:center; margin-top:10px; flex-wrap:wrap;
-  font-size: calc(1.00rem * var(--mul));
+  font-size: calc(0.98rem * var(--mul));
 }
 .legend .item{
-  display:flex; align-items:center; gap:8px; color:#fff; font-weight:520;
-  background: rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.12);
-  border-radius:10px; padding:4px 8px;
+  display:flex; align-items:center; gap:8px;
+  color: var(--charts-ink); font-weight:600;
+  background: #fff; border:1px solid var(--charts-border);
+  border-radius:10px; padding:6px 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.04);
 }
-.legend .sw{ width:18px; height:6px; border-radius:4px; opacity:.9; }
-.legend .check{
-  appearance:none; width:18px; height:18px; border:1px solid rgba(255,255,255,.45);
-  border-radius:4px; position:relative; cursor:pointer; background: rgba(255,255,255,.06);
-}
-.legend .check:checked{ background:rgba(255,255,255,.12); }
-.legend .check:checked::after{ content:""; position:absolute; inset:3px; background:#fff; }
+.legend .sw{ width:18px; height:6px; border-radius:4px; opacity:.95; }
 
-/* Tooltip: lo dejo claro para contraste (puedes oscurecer si quieres) */
+/* Tooltip claro */
 .tool{
-  position:absolute; min-width:190px; pointer-events:none; z-index:5;
-  padding:12px 14px; background:rgba(255,255,255,.98);
-  border:1px solid rgba(0,0,0,.10); border-radius:12px; box-shadow:0 12px 28px rgba(0,0,0,.15);
-  color:#0f172a; font-weight:700; font-size: calc(1.04rem * var(--mul));
+  position:absolute; min-width:190px; max-width:380px; pointer-events:none; z-index:5;
+  padding:12px 14px; background:#ffffff;
+  border:1px solid var(--charts-border); border-radius:12px; box-shadow:0 12px 28px rgba(0,0,0,.08);
+  color:#0f172a; font-weight:700; font-size: calc(1.00rem * var(--mul)); line-height:1.15;
 }
-.tool .t{ font-weight:900; color:#0f172a; letter-spacing:.2px; margin-bottom:2px; }
-.tool .s{ display:flex; align-items:center; gap:8px; margin-top:6px; color:#334155; }
-.tool .s b{ color:#0f172a; font-weight:900; }
+.tool .t{ font-weight:500; color: var(--opty-accent, var(--charts-accent)); letter-spacing:.2px; margin-bottom:6px; }
+.tool .s{ display:grid; gap:6px; margin-top:2px; color:#334155; }
+.tool .r{ display:grid; grid-template-columns: 1fr auto; column-gap:12px; align-items:baseline; }
+.tool .n{ font-weight:450; color:#1f2a44; }
+.tool .v{ font-weight:500; color:#0f172a; font-variant-numeric: tabular-nums; }
 
-.insight{
-  margin:8px 2px 0; color:#f1f5f9;
-  font-size: calc(1.06rem * var(--mul)); font-weight:750;
+/* ===== Fila ancho completo (mismo contenedor que opportunity) ===== */
+.charts-row{
+  position: relative; z-index: 1;
+  max-width: var(--charts-maxw);          /* ⬅️ igual que oportunity.css */
+  margin: 6px auto 0; padding-inline: 12px;
+  display: flex; justify-content: center;
 }
-.insight b{ color:#ffffff; }
+#dashboard-lombok .chart-card.wide{ width: 100%; }  /* ⬅️ ocupar contenedor */
 
-/* ============ 7) RESPONSIVE ============ */
+/* ===== Responsive ===== */
 @media (max-width: 1199.98px){
   .charts-scope{ --mul: 1.15; --h: 230px; }
 }
 @media (max-width: 991.98px){
   .charts-scope{ --mul: 1.10; --h: 210px; }
-  .charts-quad{ grid-template-columns: 1fr; grid-auto-rows: auto; gap:14px; }
+  .charts-quad{ grid-template-columns: 1fr; grid-auto-rows: auto; gap:18px; }
   .text-card, .chart-card{ width: 100%; }
 }
 @media (max-width: 575.98px){
   .charts-scope{ --mul: 1.04; --h: 200px; }
 }
 
-/* ==== Ajustes específicos del dashboard ==== */
+/* ===== Overrides “XL” ===== */
 #dashboard-lombok{
-  --mul: 1.34;   /* ↑ tipografías y grosores un poco más */
+  --mul: 1.34;
   --h: 260px;
 }
-#dashboard-lombok .text-card{  width: min(680px, 96%); }
-#dashboard-lombok .chart-card{ width: min(680px, 96%); }
-#dashboard-lombok .chart-card{ border-radius: 14px; padding: 16px 16px 12px; }
-#dashboard-lombok .chart-card h3{ font-size: calc(1.26rem * var(--mul)); }
+#dashboard-lombok .chart-card{ border-radius: 14px; padding: 22px; }
+#dashboard-lombok .chart-card h3{ font-size: calc(1.24rem * var(--mul)); }
 #dashboard-lombok .chart-card .meta{ font-size: calc(1.02rem * var(--mul)); }
-#dashboard-lombok .legend{ font-size: calc(1.00rem * var(--mul)); gap: 10px; }
+#dashboard-lombok .legend{ font-size: calc(0.98rem * var(--mul)); gap: 10px; }
 
 @media (max-width: 991.98px){
   #dashboard-lombok{ --mul: 1.20; --h: 230px; }
@@ -208,45 +205,13 @@ svg{ width:100%; height:100%; display:block; }
 @media (max-width: 575.98px){
   #dashboard-lombok{ --mul: 1.10; --h: 210px; }
 }
-/* En tu bloque .chart existente, añade: */
-.chart{ position: relative; }  /* <- para posicionar el tooltip dentro de la tarjeta */
 
-/* =========================================================
-   GRAFICOS.CSS  –  Panel 2×2 con cards centradas (tuneado)
-   ========================================================= */
-
-/* … (todo tu CSS tal cual) … */
-
-/* En tu bloque .chart existente, añade: */
-.chart{ position: relative; }  /* <- para posicionar el tooltip dentro de la tarjeta */
-
-/* ===== Añadidos para la 5ª sección (gráfico inferior en fila completa) ===== */
-.charts-row{
-  position: relative; z-index: 1;
-  max-width: 2140px; margin: 6px auto 0; padding-inline: 12px;
-  display: flex; justify-content: center;
-}
-#dashboard-lombok .chart-card.wide{ width: min(1140px, 98%); }
-
-.tool{
-  position:absolute; min-width:190px; max-width:380px; pointer-events:none; z-index:5;
-  padding:12px 14px; background:rgba(255,255,255,.98);
-  border:1px solid rgba(0,0,0,.10); border-radius:12px; box-shadow:0 12px 28px rgba(0,0,0,.15);
-  color:#0f172a; font-weight:700; font-size: calc(1.04rem * var(--mul));
-  line-height:1.15;
-}
-.tool .t{
-  font-weight:900; color:#0f172a; letter-spacing:.2px; margin-bottom:6px;
-}
-.tool .s{
-  display:grid; gap:6px; margin-top:2px; color:#334155;
-}
-.tool .r{
-  display:grid; grid-template-columns: 1fr auto; column-gap:12px; align-items:baseline;
-}
-.tool .n{
-  font-weight:700; color:#1f2a44;
-}
-.tool .v{
-  font-weight:900; color:#0f172a; font-variant-numeric: tabular-nums;  /* alinea dígitos */
+/* Banderas junto a los títulos (h4) */
+.text-card h4 .flag-img{
+  width: 1.25em;        /* escala con el tamaño de letra */
+  height: auto;
+  margin-right: .5em;
+  border-radius: 2px;   /* esquinas suaves */
+  vertical-align: -.12em;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.06);
 }

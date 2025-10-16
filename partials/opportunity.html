@@ -1,0 +1,290 @@
+<section id="oportunity" class="oportunity-section" aria-label="Lombok (Indonesia) — Oportunidad de inversión en villas boutique">
+  <div class="opty__container">
+
+    <!-- Intro -->
+    <div class="opty__intro">
+      <h2 class="opty__title">Lombok, Indonesia — Oportunidad de inversión</h2>
+      <p class="opty__subtitle">Promoción boutique cerca de las mejores playas del sur de Lombok. Diseño eficiente para explotación turística y revalorización a medio plazo.</p>
+    </div>
+
+    <!-- KPIs / Métricas de inversión -->
+    <section class="opty__kpis" aria-labelledby="opty-kpi-title">
+      <h3 id="opty-kpi-title" class="opty__h3">
+        Rentabilidad estimada <small class="opty__muted">(precio fijo por unidad)</small>
+      </h3>
+
+      <!-- CONTROLES -->
+      <div class="opty__controls" role="group" aria-label="Configuración de inversión" style="display:grid;grid-template-columns:repeat(3, max-content);gap:12px 16px;align-items:end;margin:10px 0 14px;">
+        <label class="opty__control" style="display:grid;gap:6px;">
+          <span style="font-weight:600;">Unidades</span>
+          <select data-units aria-label="Número de unidades" style="padding:10px 12px;border:1px solid var(--opty-border);border-radius:12px;">
+            <option value="1">1 villa</option>
+            <option value="2">2 villas</option>
+            <option value="3">3 villas</option>
+            <option value="4">4 villas</option>
+            <option value="5">5 villas</option>
+            <option value="6">6 villas</option>
+            <option value="7">7 villas</option>
+            <option value="8" selected>8 villas</option>
+            <option value="9">9 villas</option>
+          </select>
+        </label>
+
+        <label class="opty__control" style="display:grid;gap:6px;">
+          <span style="font-weight:600;">Escenario</span>
+          <select data-scenario aria-label="Escenario de operación" style="padding:10px 12px;border:1px solid var(--opty-border);border-radius:12px;">
+            <option value="conservador">Conservador</option>
+            <option value="base" selected>Base</option>
+            <option value="optimista">Optimista</option>
+          </select>
+        </label>
+
+        <!-- Precio por unidad: fijo a 100.000 € (visible pero deshabilitado) -->
+        <label class="opty__control" style="display:grid;gap:6px;">
+          <span style="font-weight:600;">Precio por unidad (fijo)</span>
+          <input data-unit-price value="100000" inputmode="decimal" pattern="[0-9.,]+"
+                 aria-label="Precio por unidad"
+                 disabled
+                 style="padding:10px 12px;border:1px solid var(--opty-border);border-radius:12px;background:#f3f6f9;color:#6b7680;">
+        </label>
+      </div>
+
+      <!-- Nota resumen (la sobreescribe el JS con unidades/inversión/NOI/equity) -->
+      <p class="opty__note">
+        Configura unidades y escenario. Calculamos automáticamente ingresos (ADR × ocupación) y OPEX (OTA, gestión, variables y fijos) para estimar NOI, payback y TIR.
+      </p>
+
+      <div class="opty__kpi-grid">
+        <article class="opty__kpi">
+          <h4 class="opty__kpi-label">Cap rate</h4>
+          <p class="opty__kpi-value" data-kpi="cap-rate">—</p>
+          <p class="opty__kpi-hint">NOI anual / Inversión total</p>
+        </article>
+        <article class="opty__kpi">
+          <h4 class="opty__kpi-label">Cash-on-Cash</h4>
+          <p class="opty__kpi-value" data-kpi="coc">—</p>
+          <p class="opty__kpi-hint">Flujo neto / Equity aportado</p>
+        </article>
+        <article class="opty__kpi">
+          <h4 class="opty__kpi-label">Payback</h4>
+          <p class="opty__kpi-value" data-kpi="payback">—</p>
+          <p class="opty__kpi-hint">Años para recuperar la inversión</p>
+        </article>
+        <article class="opty__kpi">
+          <h4 class="opty__kpi-label">TIR (IRR)</h4>
+          <p class="opty__kpi-value" data-kpi="irr">—</p>
+          <p class="opty__kpi-hint">Sobre flujos proyectados</p>
+        </article>
+      </div>
+
+      <ul class="opty__bullets">
+        <li>Ingresos: ADR × ocupación × noches vendibles.</li>
+        <li>OPEX: comisiones OTA + gestión + variables + fijos.</li>
+        <li class="opty__muted">*Cálculos orientativos antes de impuestos; sujetos a estacionalidad y condiciones reales de operación.*</li>
+      </ul>
+    </section>
+
+    <!-- Cómo calculamos (expander) -->
+    <section class="opty__how" aria-labelledby="how-title" style="margin-top:24px;">
+      <style>
+        /* Estilos mínimos del expander (puedes moverlos a tu CSS) */
+        #calc-expander {
+          border: 1px solid var(--opty-border, #e4e7ec);
+          border-radius: 12px;
+          background: #fff;
+          overflow: hidden;
+        }
+        #calc-expander > summary {
+          list-style: none;
+          cursor: pointer;
+          padding: 12px 16px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+        }
+        #calc-expander > summary::-webkit-details-marker { display: none; }
+        #calc-expander .chev {
+          transition: transform .2s ease;
+          font-size: 14px;
+          opacity: .7;
+        }
+        #calc-expander[open] .chev { transform: rotate(180deg); }
+        #calc-expander .opty__expander-content {
+          padding: 12px 16px 16px;
+          border-top: 1px solid var(--opty-border, #e4e7ec);
+          background: #fafbfc;
+        }
+      </style>
+
+      <details id="calc-expander">
+        <summary>
+          <span id="how-title" class="opty__h3" style="margin:0;">Detalle del cálculo</span>
+          <i class="fa-solid fa-chevron-down chev" aria-hidden="true"></i>
+        </summary>
+        <div class="opty__expander-content">
+          <!-- El JS v4 inyecta aquí la tarjeta con los pasos -->
+          <div data-explain></div>
+        </div>
+      </details>
+    </section>
+
+    <!-- Comparativa con Bali -->
+    <section class="opty__compare" aria-labelledby="opty-compare-title" style="margin-top:24px;">
+      <h3 id="opty-compare-title" class="opty__h3">Comparativa con Bali</h3>
+      <div class="opty__table" role="table" aria-label="Comparativa Bali vs. Lombok">
+        <div class="opty__row opty__row--head" role="row">
+          <div class="opty__cell" role="columnheader">Métrica</div>
+          <div class="opty__cell" role="columnheader">Bali (sur, zonas prime)</div>
+          <div class="opty__cell" role="columnheader">Lombok (sur, Kuta/Selong Belanak)</div>
+        </div>
+        <div class="opty__row" role="row">
+          <div class="opty__cell" role="cell">Precio terreno (€/m²)</div>
+          <div class="opty__cell" role="cell">Más alto</div>
+          <div class="opty__cell" role="cell">Más bajo, margen de entrada</div>
+        </div>
+        <div class="opty__row" role="row">
+          <div class="opty__cell" role="cell">Coste villa (€/m² construidos)</div>
+          <div class="opty__cell" role="cell">Alto</div>
+          <div class="opty__cell" role="cell">Medio</div>
+        </div>
+        <div class="opty__row" role="row">
+          <div class="opty__cell" role="cell">ADR / Ocupación</div>
+          <div class="opty__cell" role="cell">Elevados en prime, competencia intensa</div>
+          <div class="opty__cell" role="cell">Creciendo, menor saturación</div>
+        </div>
+        <div class="opty__row" role="row">
+          <div class="opty__cell" role="cell">Regulación alquiler</div>
+          <div class="opty__cell" role="cell">Madura, con exigencias locales</div>
+          <div class="opty__cell" role="cell">En desarrollo, requiere asesoría</div>
+        </div>
+        <div class="opty__row" role="row">
+          <div class="opty__cell" role="cell">Potencial de plusvalía</div>
+          <div class="opty__cell" role="cell">Más limitado en zonas maduras</div>
+          <div class="opty__cell" role="cell">Alto a medio plazo (nuevas infraestructuras)</div>
+        </div>
+      </div>
+      <p class="opty__muted">Indicadores cualitativos; sustituye por tus propias métricas cuando dispongas de datos.</p>
+    </section>
+
+    <!-- Potencial de plusvalía -->
+    <section class="opty__value" aria-labelledby="opty-value-title" style="margin-top:24px;">
+      <h3 id="opty-value-title" class="opty__h3">Potencial de plusvalía</h3>
+      <div class="opty__cards opty__cards--2">
+        <article class="opty__card">
+          <h4 class="opty__card-title">Motores de crecimiento</h4>
+          <ul class="opty__list">
+            <li>Nuevas infraestructuras turísticas y mejor conectividad regional.</li>
+            <li>Menor saturación que Bali en zonas clave del sur.</li>
+            <li>Oferta limitada de producto prime frente a demanda internacional creciente.</li>
+            <li>Efecto arrastre de destinos consolidados cercanos.</li>
+          </ul>
+        </article>
+        <article class="opty__card">
+          <h4 class="opty__card-title">Riesgos a monitorizar</h4>
+          <ul class="opty__list">
+            <li>Ejecución de licencias y tiempos administrativos.</li>
+            <li>Dependencia del turismo internacional.</li>
+            <li>Riesgo regulatorio local y de uso del suelo.</li>
+            <li>Tipo de cambio (IDR/EUR) y costes logísticos.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Seguridad jurídica -->
+    <section class="opty__legal" aria-labelledby="opty-legal-title" style="margin-top:24px;">
+      <h3 id="opty-legal-title" class="opty__h3">Seguridad jurídica (visión general)</h3>
+      <div class="opty__cards opty__cards--3">
+        <article class="opty__card">
+          <h4 class="opty__card-title">Estructuras habituales</h4>
+          <ul class="opty__list">
+            <li><strong>PT PMA + HGB</strong>: sociedad extranjera con derecho de edificación.</li>
+            <li><strong>Hak Pakai</strong>: derecho de uso en casos elegibles.</li>
+            <li><strong>Leasehold</strong>: arrendamiento largo (p.ej., 25–30 años + prórrogas).</li>
+          </ul>
+        </article>
+        <article class="opty__card">
+          <h4 class="opty__card-title">Checklist de due diligence</h4>
+          <ul class="opty__list">
+            <li>Título y cargas (BPN), límites y acceso.</li>
+            <li>Zonificación/uso del suelo y permisos (p.ej., PBG).</li>
+            <li>Ambiental (UKL-UPL/AMDAL si aplica).</li>
+            <li>Contratos de obra y garantías.</li>
+          </ul>
+        </article>
+        <article class="opty__card">
+          <h4 class="opty__card-title">Notas</h4>
+          <p class="opty__card-text opty__muted">Requiere asesoría legal/local especializada. Evitar estructuras de <em>nominee</em> sin respaldo legal claro.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <footer class="opty__cta">
+      <a href="#contacto" class="opty__btn">Solicitar dossier financiero</a>
+      <p class="opty__disclaimer opty__muted">La información es orientativa y no constituye asesoramiento legal ni oferta comercial. Sujeta a verificación documental.</p>
+    </footer>
+
+  </div>
+
+  <!-- Conexión de controles con el JS de cálculo -->
+  <script type="module">
+    import { models, populateOpportunityAdvanced, formatCurrency } from '/js/opportunity-data.js';
+
+    // Rellena superficies informativas (opcional)
+    function paintAreas(){
+      const A = models?.base?.areas || {};
+      const f1i = +A.floor1_indoor_m2 || 0;
+      const f1o = +A.floor1_outdoor_m2 || 0;
+      const f2i = +A.floor2_indoor_m2 || 0;
+      const f2o = +A.floor2_outdoor_m2 || 0;
+      const indoor  = f1i + f2i;
+      const outdoor = f1o + f2o;
+      const gfa     = (indoor + outdoor) || ((+A.floor1_total_m2||0) + (+A.floor2_total_m2||0));
+
+      const setArea = (k,v,u='m²')=>{
+        const el = document.querySelector(`#oportunity [data-area="${k}"]`);
+        if (el) el.textContent = (v==null? '—' : v.toFixed(2) + ' ' + u);
+      };
+      const land = +A.land_plot_m2 || 0;
+      setArea('land-plot', land);
+      setArea('landscape', +A.landscape_m2 || 0);
+      setArea('indoor', indoor);
+      setArea('outdoor', outdoor);
+      setArea('gfa', gfa, 'm² GFA');
+
+      const setMetric = (k,val)=>{
+        const el = document.querySelector(`#oportunity [data-metric="${k}"]`);
+        if (!el) return;
+        if (k==='far') el.textContent = (land>0 ? (gfa/land).toFixed(2) : '—');
+        if (k==='coverage') el.textContent = (land>0 ? ((+A.floor1_total_m2||0)/land*100).toFixed(1)+'%' : '—');
+        if (k==='efficiency') el.textContent = (gfa>0 ? (indoor/gfa*100).toFixed(1)+'%' : '—');
+      };
+      setMetric('far');
+      setMetric('coverage');
+      setMetric('efficiency');
+    }
+
+    function repaint(){
+      const selUnits = document.querySelector('#oportunity [data-units]');
+      const selScn   = document.querySelector('#oportunity [data-scenario]');
+      const units    = parseInt(selUnits?.value || '1', 10) || 1;
+      const scenario = (selScn?.value || 'base');
+      populateOpportunityAdvanced('#oportunity', models.base, {
+        units, unitPriceEUR: 100000, scenario
+      });
+    }
+
+    document.addEventListener('change', (e)=>{
+      if (e.target.closest?.('#oportunity [data-units], #oportunity [data-scenario]')) repaint();
+    });
+
+    // Primera pintura
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => { paintAreas(); repaint(); }, { once: true });
+    } else {
+      paintAreas(); repaint();
+    }
+  </script>
+</section>
