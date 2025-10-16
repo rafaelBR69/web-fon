@@ -24,7 +24,8 @@
     "contact": "INVERSIÓN",
     "availability": "VILLAS",
     "process": "MAPA LOMBOK",
-    "progress": "PROGESO"
+    "progress": "PROGESO",
+    "gallery": "GALERÍA"
   },
   "header": {
     "logoAlt": "Infinity 8 (Lombok)",
@@ -524,5 +525,159 @@
     "step6": { "title": "Estructura", "sub": "Esqueleto" },
     "step7": { "title": "Envolvente", "sub": "Instalaciones" },
     "step8": { "title": "Acabados", "sub": "Entrega" }
+  },
+  "opty": {
+    "aria": "Lombok (Indonesia) — Oportunidad de inversión en villas boutique",
+    "title": "Lombok, Indonesia — Oportunidad de inversión",
+    "subtitle": "Promoción boutique cerca de las mejores playas del sur de Lombok. Diseño eficiente para explotación turística y revalorización a medio plazo.",
+
+    "kpis": {
+      "heading": "Rentabilidad estimada",
+      "headingNote": "(precio fijo por unidad)",
+      "controls": {
+        "groupAria": "Configuración de inversión",
+        "units": {
+          "label": "Unidades",
+          "aria": "Número de unidades",
+          "options": {
+            "1": "1 villa",
+            "2": "2 villas",
+            "3": "3 villas",
+            "4": "4 villas",
+            "5": "5 villas",
+            "6": "6 villas",
+            "7": "7 villas",
+            "8": "8 villas",
+            "9": "9 villas"
+          }
+        },
+        "scenario": {
+          "label": "Escenario",
+          "aria": "Escenario de operación",
+          "options": {
+            "conservador": "Conservador",
+            "base": "Base",
+            "optimista": "Optimista"
+          }
+        },
+        "unitPrice": {
+          "label": "Precio por unidad (fijo)",
+          "aria": "Precio por unidad"
+        }
+      },
+      "note": "Configura unidades y escenario. Calculamos automáticamente ingresos (ADR × ocupación) y OPEX (OTA, gestión, variables y fijos) para estimar NOI, payback y TIR.",
+      "kpi": {
+        "capRate": { "label": "Cap rate", "hint": "NOI anual / Inversión total" },
+        "coc":     { "label": "Cash-on-Cash", "hint": "Flujo neto / Equity aportado" },
+        "payback": { "label": "Payback", "hint": "Años para recuperar la inversión" },
+        "irr":     { "label": "TIR (IRR)", "hint": "Sobre flujos proyectados" }
+      },
+      "bullets": [
+        "Ingresos: ADR × ocupación × noches vendibles.",
+        "OPEX: comisiones OTA + gestión + variables + fijos.",
+        "*Cálculos orientativos antes de impuestos; sujetos a estacionalidad y condiciones reales de operación.*"
+      ]
+    },
+
+    "how": {
+      "heading": "Detalle del cálculo"
+    },
+
+    "compare": {
+      "heading": "Comparativa con Bali",
+      "tableAria": "Comparativa Bali vs. Lombok",
+      "head": [
+        "Métrica",
+        "Bali (sur, zonas prime)",
+        "Lombok (sur, Kuta/Selong Belanak)"
+      ],
+      "rows": [
+        { "metric": "Precio terreno (€/m²)",               "bali": "Más alto",                                    "lombok": "Más bajo, margen de entrada" },
+        { "metric": "Coste villa (€/m² construidos)",      "bali": "Alto",                                        "lombok": "Medio" },
+        { "metric": "ADR / Ocupación",                     "bali": "Elevados en prime, competencia intensa",      "lombok": "Creciendo, menor saturación" },
+        { "metric": "Regulación alquiler",                 "bali": "Madura, con exigencias locales",             "lombok": "En desarrollo, requiere asesoría" },
+        { "metric": "Potencial de plusvalía",              "bali": "Más limitado en zonas maduras",               "lombok": "Alto a medio plazo (nuevas infraestructuras)" }
+      ],
+      "note": "Indicadores cualitativos; sustituye por tus propias métricas cuando dispongas de datos."
+    },
+
+    "value": {
+      "heading": "Potencial de plusvalía",
+      "growth": {
+        "title": "Motores de crecimiento",
+        "items": [
+          "Nuevas infraestructuras turísticas y mejor conectividad regional.",
+          "Menor saturación que Bali en zonas clave del sur.",
+          "Oferta limitada de producto prime frente a demanda internacional creciente.",
+          "Efecto arrastre de destinos consolidados cercanos."
+        ]
+      },
+      "risks": {
+        "title": "Riesgos a monitorizar",
+        "items": [
+          "Ejecución de licencias y tiempos administrativos.",
+          "Dependencia del turismo internacional.",
+          "Riesgo regulatorio local y de uso del suelo.",
+          "Tipo de cambio (IDR/EUR) y costes logísticos."
+        ]
+      }
+    },
+
+    "legal": {
+      "heading": "Seguridad jurídica (visión general)",
+      "structures": {
+        "title": "Estructuras habituales",
+        "items": [
+          "<strong>PT PMA + HGB</strong>: sociedad extranjera con derecho de edificación.",
+          "<strong>Hak Pakai</strong>: derecho de uso en casos elegibles.",
+          "<strong>Leasehold</strong>: arrendamiento largo (p.ej., 25–30 años + prórrogas)."
+        ]
+      },
+      "checklist": {
+        "title": "Checklist de due diligence",
+        "items": [
+          "Título y cargas (BPN), límites y acceso.",
+          "Zonificación/uso del suelo y permisos (p.ej., PBG).",
+          "Ambiental (UKL-UPL/AMDAL si aplica).",
+          "Contratos de obra y garantías."
+        ]
+      },
+      "notes": {
+        "title": "Notas",
+        "text": "Requiere asesoría legal/local especializada. Evitar estructuras de <em>nominee</em> sin respaldo legal claro."
+      }
+    },
+
+    "cta": {
+      "button": "Solicitar dossier financiero",
+      "disclaimer": "La información es orientativa y no constituye asesoramiento legal ni oferta comercial. Sujeta a verificación documental."
+    }
+  },
+  "invest": {
+    "intro": {
+      "aria": "Introducción a la inversión",
+      "eyebrow": "Inversión",
+      "title": "Explora la oportunidad en Lombok",
+      "lead": "Aquí podrás consultar un resumen ejecutivo con KPIs, áreas y costes; y un panel de gráficos con comparativas clave (incluidas las llegadas internacionales a BIZAM 2024/2025). Abre los widgets para profundizar."
+    },
+    "widgets": {
+      "aria": "Secciones de inversión",
+      "openCta": "Abrir →",
+      "opty": {
+        "aria": "Abrir sección Oportunidad",
+        "title": "Oportunidad",
+        "text": "KPIs, áreas, costes y comparativa resumidos en una vista."
+      },
+      "charts": {
+        "aria": "Abrir sección Gráficos",
+        "title": "Gráficos",
+        "text": "Comparativas clave e internacionales BIZAM 2024/25."
+      }
+    },
+    "modals": {
+      "close": "Cerrar",
+      "opty": { "title": "Oportunidad" },
+      "charts": { "title": "Gráficos" }
+    }
   }
 }

@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galería — Infinity 8, Planos y Naturaleza</title>
+  <meta name="description" content="Tres galerías: Infinity 8, Planos y Naturaleza de Lombok, con animación de tarjetas expandibles.">
+
+  <!-- (Opcional) Bootstrap si ya lo usas en el sitio -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Iconos / fuentes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Jost:wght@600;700&display=swap" rel="stylesheet"/>
+
+  <!-- CSS del sitio y de la galería -->
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+  <link rel="stylesheet" href="/css/galeria.css" />
+
+  <!-- i18n (si tu web ya lo usa) -->
+  <script src="https://unpkg.com/i18next@23/i18next.min.js"></script>
+  <script src="https://unpkg.com/i18next-http-backend@2/i18nextHttpBackend.min.js"></script>
+  <script src="https://unpkg.com/i18next-browser-languagedetector@8/i18nextBrowserLanguageDetector.min.js"></script>
+  <script src="/js/i18n.js"></script>
+</head>
+
+<body class="galeria-page" style="background:#fff; color:#092B3F; font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;">
+  <!-- Header/Footers si tu sitio los inyecta por parcial -->
+  <div id="header-placeholder" role="banner"></div>
+
+  <main id="main" class="main-wrap" role="main">
+    <!-- ===== Intro ===== -->
+    <section class="galeria-intro" aria-label="Introducción a la galería">
+      <div class="gi-container">
+        <p class="gi-eyebrow">Galería</p>
+        <h1 class="gi-title-page">Explora Infinity 8, los planos y la naturaleza de Lombok</h1>
+        <p class="gi-lead">Pulsa una tarjeta para ampliarla; usa los controles o el teclado (← →) para navegar.</p>
+      </div>
+    </section>
+
+    <!-- ===== Galería 1: Infinity 8 ===== -->
+    <section id="galeria-infinity" class="gi-slider" aria-label="Galería Infinity 8" data-gi>
+      <header class="gi-header">
+        <h2 class="gi-title">Infinity 8</h2>
+        <p class="gi-subtitle">Recepción, interiores y vistas</p>
+      </header>
+
+      <div class="gi-stage" role="listbox" aria-orientation="horizontal">
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+          <img src="/images/galeria-infinity/dia-dcha.jpg" alt="Vista diurna del conjunto Infinity 8" loading="lazy" />
+          <h3 class="gi-ribbon">DÍA</h3>
+          <div class="gi-details">
+            <h4>Vista diurna</h4><p>Infinity 8</p>
+          </div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+          <img src="/images/galeria-infinity/recepcion.jpg" alt="Recepción del complejo Infinity 8" loading="lazy" />
+          <h3 class="gi-ribbon">RECEPCIÓN</h3>
+          <div class="gi-details">
+            <h4>Recepción</h4><p>Infinity 8</p>
+          </div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+          <img src="/images/galeria-infinity/interior-plano.jpg" alt="Interior de vivienda con distribución abierta" loading="lazy" />
+          <h3 class="gi-ribbon">INTERIOR II</h3>
+          <div class="gi-details">
+            <h4>Interior</h4><p>Infinity 8</p>
+          </div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+          <img src="/images/galeria-infinity/noche-dcha.jpg" alt="Vista nocturna del conjunto Infinity 8" loading="lazy" />
+          <h3 class="gi-ribbon">NOCHE</h3>
+          <div class="gi-details">
+            <h4>Vista nocturna</h4><p>Infinity 8</p>
+          </div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+          <img src="/images/galeria-infinity/detras-dcha.jpg" alt="Fachada posterior con zonas ajardinadas" loading="lazy" />
+          <h3 class="gi-ribbon">POSTERIOR</h3>
+          <div class="gi-details">
+            <h4>Posterior</h4><p>Infinity 8</p>
+          </div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+          <img src="/images/galeria-infinity/interior-plano2.jpg" alt="Interior de vivienda — salón y cocina" loading="lazy" />
+          <h3 class="gi-ribbon">INTERIOR</h3>
+          <div class="gi-details">
+            <h4>Interior</h4><p>Infinity 8</p>
+          </div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+          <img src="/images/galeria-infinity/terreno.jpg" alt="Parcela del proyecto Infinity 8" loading="lazy" />
+          <h3 class="gi-ribbon">TERRENO</h3>
+          <div class="gi-details">
+            <h4>Terreno</h4><p>Infinity 8</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="gi-controls" aria-hidden="false">
+        <button class="gi-prev" type="button" aria-label="Anterior">‹</button>
+        <button class="gi-next" type="button" aria-label="Siguiente">›</button>
+      </div>
+    </section>
+
+    <!-- ===== Galería 2: Planos ===== -->
+    <section id="galeria-planos" class="gi-slider gi-light" aria-label="Galería Planos" data-gi>
+      <header class="gi-header">
+        <h2 class="gi-title">Planos</h2>
+        <p class="gi-subtitle">Distribuciones y detalles</p>
+      </header>
+
+      <div class="gi-stage" role="listbox" aria-orientation="horizontal">
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+          <img src="/images/galeria-planos/areas-comunes.jpg" alt="Plano de planta baja" loading="lazy" />
+          <h3 class="gi-ribbon">ÁREAS COMUNES</h3>
+          <div class="gi-details">
+            <h4>ÁREAS COMUNES</h4><p>Distribución</p>
+          </div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+          <img src="/images/galeria-planos/vista-ortogonal.jpg" alt="Plano de planta alta" loading="lazy" />
+          <h3 class="gi-ribbon">VISTA ORTOGONAL</h3>
+          <div class="gi-details">
+            <h4>V. ORTOGONAL</h4><p>Distribución</p>
+          </div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+          <img src="/images/galeria-planos/total-vivienda.jpg" alt="Implantación en parcela" loading="lazy" />
+          <h3 class="gi-ribbon">VILLA</h3>
+          <div class="gi-details">
+            <h4>VILLA</h4><p>Distribución</p>
+          </div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+          <img src="/images/galeria-planos/section-a.jpg" alt="Detalle constructivo 1" loading="lazy" />
+          <h3 class="gi-ribbon">DETALLE I</h3>
+          <div class="gi-details">
+            <h4>SECTION A</h4><p>Constructivo</p>
+          </div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+          <img src="/images/galeria-planos/section-b.jpg" alt="Detalle constructivo 2" loading="lazy" />
+          <h3 class="gi-ribbon">DETALLE II</h3>
+          <div class="gi-details">
+            <h4>SECTION B</h4><p>Constructivo</p>
+          </div>
+        </article>
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+          <img src="/images/galeria-planos/general.jpg" alt="Detalle constructivo 2" loading="lazy" />
+          <h3 class="gi-ribbon">DETALLE II</h3>
+          <div class="gi-details">
+            <h4>GENERAL</h4><p>Constructivo</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="gi-controls" aria-hidden="false">
+        <button class="gi-prev" type="button" aria-label="Anterior">‹</button>
+        <button class="gi-next" type="button" aria-label="Siguiente">›</button>
+      </div>
+    </section>
+
+    <!-- ===== Galería 3: Naturaleza ===== -->
+    <section id="galeria-naturaleza" class="gi-slider gi-light" aria-label="Galería Naturaleza de Lombok" data-gi>
+    <header class="gi-header">
+        <h2 class="gi-title">Naturaleza</h2>
+        <p class="gi-subtitle">Playas, paisajes y entorno</p>
+    </header>
+
+    <div class="gi-stage" role="listbox" aria-orientation="horizontal">
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+        <img src="/images/galeria-naturaleza/animales.jpg" alt="Playa de arena blanca en Lombok" loading="lazy" />
+        <h3 class="gi-ribbon">Fauna</h3>
+        <div class="gi-details"><h4>Fauna</h4><p>Lombok</p></div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+        <img src="/images/galeria-naturaleza/montana.webp" alt="Acantilados y mar turquesa" loading="lazy" />
+        <h3 class="gi-ribbon">Monte Rinjani</h3>
+        <div class="gi-details"><h4>Monte Rinjani</h4><p>Costa sur</p></div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+        <img src="/images/galeria-naturaleza/cultivo.jpg" alt="Arrozal verde en terrazas" loading="lazy" />
+        <h3 class="gi-ribbon">Arrozal</h3>
+        <div class="gi-details"><h4>Arrozal</h4><p>Interior</p></div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+        <img src="/images/galeria-naturaleza/rul-1.jpg" alt="Puesta de sol sobre el océano" loading="lazy" />
+        <h3 class="gi-ribbon">Atard.</h3>
+        <div class="gi-details"><h4>Atardecer</h4><p>Occidente</p></div>
+        </article>
+
+        <!-- nuevas (ejemplo) -->
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+        <img src="/images/galeria-naturaleza/rul-4.jpg" alt="Vegetación tropical" loading="lazy" />
+        <h3 class="gi-ribbon">Selva</h3>
+        <div class="gi-details"><h4>Selva</h4><p>Trópico</p></div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+        <img src="/images/galeria-naturaleza/tardeo.jpg" alt="Cascada entre rocas" loading="lazy" />
+        <h3 class="gi-ribbon">Mar</h3>
+        <div class="gi-details"><h4>Cascada</h4><p>Montaña</p></div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+        <img src="/images/galeria-naturaleza/aeropuerto.jpg" alt="Bahía con aguas turquesa" loading="lazy" />
+        <h3 class="gi-ribbon">Aeropuerto</h3>
+        <div class="gi-details"><h4>Bahía</h4><p>Costa</p></div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+        <img src="/images/galeria-naturaleza/surf.jpg" alt="Colinas verdes" loading="lazy" />
+        <h3 class="gi-ribbon">Surf</h3>
+        <div class="gi-details"><h4>Colinas</h4><p>Interior</p></div>
+        </article>
+
+        <article class="gi-item" role="option" aria-selected="false" tabindex="0">
+        <img src="/images/galeria-naturaleza/rul-3.jpg" alt="Sendero en la costa" loading="lazy" />
+        <h3 class="gi-ribbon">Playa</h3>
+        <div class="gi-details"><h4>Sendero</h4><p>Costa</p></div>
+        </article>
+    </div>
+
+    <div class="gi-controls" aria-hidden="false">
+        <button class="gi-prev" type="button" aria-label="Anterior">‹</button>
+        <button class="gi-next" type="button" aria-label="Siguiente">›</button>
+    </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder" role="contentinfo"></div>
+
+  <!-- (Opcional) Bootstrap bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- ===== JS del slider (centra SIEMPRE la tarjeta del MEDIO al cargar) ===== -->
+  <script>
+    function setupGiSlider(root){
+      const stage  = root.querySelector('.gi-stage');
+      const items  = Array.from(root.querySelectorAll('.gi-item'));
+      const prevBt = root.querySelector('.gi-prev');
+      const nextBt = root.querySelector('.gi-next');
+
+      function setActive(idx){
+        items.forEach((it,i)=>{
+          const active = i === idx;
+          it.classList.toggle('is-active', active);
+          it.setAttribute('aria-selected', String(active));
+        });
+        // Centra el activo en el contenedor
+        const activeEl = items[idx];
+        if (activeEl && stage && stage.scrollTo){
+          const rect = activeEl.getBoundingClientRect();
+          const srect = stage.getBoundingClientRect();
+          const offset = (rect.left + rect.right)/2 - (srect.left + srect.right)/2;
+          stage.scrollBy({ left: offset, behavior: 'smooth' });
+        }
+      }
+
+      // Fuerza el índice inicial al centro (ignora marcado inicial)
+      let index = Math.floor(items.length / 2);
+      setActive(index);
+
+      items.forEach((it,i)=>{
+        it.addEventListener('click', ()=>{ index = i; setActive(index); });
+        it.addEventListener('keydown', (e)=>{
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); index = i; setActive(index); }
+          if (e.key === 'ArrowRight') { e.preventDefault(); index = Math.min(items.length-1, index+1); setActive(index); }
+          if (e.key === 'ArrowLeft')  { e.preventDefault(); index = Math.max(0, index-1); setActive(index); }
+        });
+      });
+
+      prevBt?.addEventListener('click', ()=>{ index = Math.max(0, index-1); setActive(index); });
+      nextBt?.addEventListener('click', ()=>{ index = Math.min(items.length-1, index+1); setActive(index); });
+    }
+
+    // Header transparente (opcional) cuando la sección está en vista
+    function observeHeaderBlend(){
+      const sections = document.querySelectorAll('.gi-slider[data-gi]');
+      if (!('IntersectionObserver' in window)) return;
+      const body = document.body;
+      const io = new IntersectionObserver((entries)=>{
+        const anyInView = entries.some(e => e.isIntersecting);
+        body.classList.toggle('gi-in-view', anyInView);
+      }, { root: null, threshold: 0.2 });
+      sections.forEach(s => io.observe(s));
+    }
+
+    // Carga header/footer por parciales si usas ese sistema
+    async function loadPartial(sel, url){
+      const host = document.querySelector(sel);
+      if (!host) return;
+      const res = await fetch(url); if (!res.ok) return;
+      host.innerHTML = await res.text();
+    }
+
+    document.addEventListener('DOMContentLoaded', async ()=>{
+      // Parciales (si existen en tu sitio)
+      await Promise.all([
+        loadPartial('#header-placeholder','/partials/header.html'),
+        loadPartial('#footer-placeholder','/partials/footer.html')
+      ]);
+
+      document.querySelectorAll('.gi-slider[data-gi]').forEach(setupGiSlider);
+      observeHeaderBlend();
+
+      // Marca activo el enlace a Galería en tu header (si aplica)
+      document.querySelectorAll('header a[href]').forEach(a=>{
+        const href = (a.getAttribute('href')||'').toLowerCase();
+        if (href.endsWith('/galeria.html') || href.includes('/galeria')) {
+          a.classList.add('active'); a.setAttribute('aria-current','page');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

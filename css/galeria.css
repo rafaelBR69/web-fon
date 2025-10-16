@@ -1,0 +1,272 @@
+/* =========================================================
+   /css/galeria.css — 3 galerías stacked
+   Tema claro (blanco + azul corporativo #092B3F)
+   Tipografías: Montserrat + Jost
+   ========================================================= */
+
+/* --------- Intro de página --------- */
+.gi-container{
+  max-width: min(96vw, 1320px);
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px) 20px 0;
+}
+.galeria-intro{
+  background:#fff;
+  color:#092B3F;
+}
+.gi-eyebrow{
+  margin:0 0 .25rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#5f6b76;
+}
+.gi-title-page{
+  margin:.1rem 0 .4rem;
+  font-weight:700;
+  font-size: clamp(28px, 3.6vw, 44px);
+  letter-spacing:.02em;
+}
+.gi-lead{
+  margin:.25rem 0 0;
+  color:#5f6b76;
+  font-weight:500;
+  font-size: clamp(15px, 1.2vw, 18px);
+}
+
+/* =========================================================
+   SLIDER - BASE
+   (adaptado de tu galeria-infinity, con tokens y tema claro)
+   ========================================================= */
+.gi-slider{
+  --gi-accent: #092B3F;
+  --gi-bg: #ffffff;               /* fondo blanco */
+  --gi-gap: 21px;
+  --gi-card-radius: 12px;
+
+  --gi-width-closed: 110px;
+  --gi-width-open: clamp(320px, 62vw, 766px);
+
+  --gi-height-closed-1: 440px;
+  --gi-height-closed-2: 520px;
+  --gi-height-closed-3: 620px;
+  --gi-height-open: clamp(520px, 76vh, 760px);
+
+  --gi-speed: 700ms cubic-bezier(.22,1,.36,1);
+
+  --gi-header-top: 0px;
+  --gi-ribbon-x: 26px;
+  --gi-ribbon-top-offset: 0px;
+
+  width: 100%;
+  min-height: 80vh;
+  background: var(--gi-bg);
+  display: grid;
+  place-items: center;
+  padding: min(6vh, 48px) min(4vw, 36px) min(10vh, 72px);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid #e5eaef;
+}
+.gi-slider + .gi-slider{
+  border-top: none;
+  margin-top: 8px;
+}
+
+/* Stage */
+.gi-slider .gi-stage{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gi-gap);
+  width: min(1400px, 100%);
+  margin-inline: auto;
+}
+
+/* Item */
+.gi-slider .gi-item{
+  position: relative;
+  flex: 0 0 var(--gi-width-closed);
+  height: var(--gi-height-closed-3);
+  cursor: pointer;
+  border-radius: var(--gi-card-radius);
+  overflow: hidden;
+  transition: all var(--gi-speed);
+  outline: none;
+  box-shadow: 0 10px 30px rgba(9,43,63,.10);
+  isolation: isolate;
+  background: #f7fafc;
+  border: 1px solid #e5eaef;
+}
+.gi-slider .gi-item:nth-child(1),
+.gi-slider .gi-item:nth-child(7){ height: var(--gi-height-closed-1); }
+.gi-slider .gi-item:nth-child(2),
+.gi-slider .gi-item:nth-child(6){ height: var(--gi-height-closed-2); }
+
+.gi-slider .gi-item > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Ribbon vertical */
+.gi-slider .gi-ribbon{
+  position: absolute;
+  top: calc(60% + var(--gi-ribbon-top-offset));
+  left: var(--gi-ribbon-x);
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: 0 50%;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font: 700 40px/1 "Jost", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.35));
+  transition: opacity var(--gi-speed), transform var(--gi-speed);
+}
+.gi-slider .gi-item:not(.is-active) .gi-ribbon{
+  --gi-ribbon-top-offset: 20px;
+}
+
+/* Detalles (al abrir) */
+.gi-slider .gi-details{
+  position: absolute;
+  left: 36px;
+  bottom: 36px;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0,0,0,.6);
+  display: none;
+  z-index: 1;
+}
+.gi-slider .gi-details h4{
+  font: 700 26px/1.3 "Jost", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  margin: 0 0 6px;
+}
+.gi-slider .gi-details p{
+  font: 700 18px/1.3 "Jost", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  margin: 0;
+  opacity: .95;
+}
+
+/* Estado activo */
+.gi-slider .gi-item.is-active{
+  flex-basis: var(--gi-width-open);
+  height: var(--gi-height-open);
+}
+.gi-slider .gi-item.is-active .gi-ribbon{ opacity: 0; }
+.gi-slider .gi-item.is-active .gi-details{ display: block; }
+
+/* Controles */
+.gi-slider .gi-controls{
+  position: absolute;
+  inset: auto 0 24px 0;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.gi-slider .gi-controls button{
+  appearance: none;
+  border: 1px solid #e5eaef;
+  border-radius: 999px;
+  width: 46px;
+  height: 46px;
+  background: #ffffff;
+  color: var(--gi-accent);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(9,43,63,.08);
+}
+.gi-slider .gi-controls button:hover{ background:#f7fafc; }
+.gi-slider .gi-controls button:active{ background:#eef5fb; }
+
+/* Accesibilidad (foco) */
+.gi-slider .gi-item:focus-visible{
+  outline: 3px solid rgba(9,43,63,.45);
+  outline-offset: 2px;
+}
+
+/* Header / títulos de cada galería */
+.gi-slider .gi-header{
+  position: absolute;
+  top: var(--gi-header-top);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 3;
+  pointer-events: none;
+}
+.gi-slider .gi-title{
+  margin: 0;
+  color: var(--gi-accent);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(26px, 3vw, 40px);
+}
+.gi-slider .gi-subtitle{
+  margin: .25rem 0 0;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: #5f6b76;
+  font-size: clamp(14px, 1.5vw, 18px);
+}
+
+/* Variante clara (idéntica aquí pero se deja para futuras personalizaciones) */
+.gi-slider.gi-light{ }
+
+/* Responsive */
+@media (max-width: 992px){
+  .gi-slider{
+    padding: 28px 16px 72px;
+    min-height: 72vh;
+  }
+  .gi-slider .gi-stage{
+    gap: 14px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 6px;
+  }
+  .gi-slider .gi-item{
+    scroll-snap-align: center;
+    --gi-width-closed: 90px;
+    --gi-width-open: min(88vw, 540px);
+    --gi-height-open: min(60vh, 560px);
+  }
+  .gi-slider .gi-ribbon{ font-size: 28px; }
+  .gi-slider .gi-details h4{ font-size: 22px; }
+  .gi-slider .gi-details p{ font-size: 16px; }
+  .gi-slider .gi-item:not(.is-active) .gi-ribbon{ --gi-ribbon-top-offset: 12px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .gi-slider .gi-item{ transition: none; }
+}
+
+/* Header del sitio transparente mientras hay una galería a la vista (opcional) */
+body.gi-in-view header.fixed-top{
+  background: rgba(255,255,255,.72) !important;
+  box-shadow: 0 8px 20px rgba(9,43,63,.06) !important;
+  backdrop-filter: saturate(1.1) blur(6px) !important;
+}
+
+
+
+/* Abrir un poco menos para asegurar encaje en pantallas medianas */
+.gi-slider{
+  --gi-width-open: clamp(320px, 56vw, 720px); /* antes 62vw/766px */
+}
+
+/* Simetría de alturas hasta 9 items */
+.gi-slider .gi-item:nth-child(8){ height: var(--gi-height-closed-2); }
+.gi-slider .gi-item:nth-child(9){ height: var(--gi-height-closed-1); }

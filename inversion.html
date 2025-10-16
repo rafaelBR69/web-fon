@@ -34,11 +34,13 @@
 
   <main id="main" class="main-wrap" role="main">
     <!-- ===== Intro sección inversión ===== -->
-    <section class="invest-intro" aria-label="Introducción a la inversión">
+    <section class="invest-intro"
+             aria-label="Introducción a la inversión"
+             data-i18n-attr="aria-label|invest.intro.aria">
       <div class="invest-intro__container">
-        <p class="invest-intro__eyebrow">Inversión</p>
-        <h1 class="invest-intro__title">Explora la oportunidad en Lombok</h1>
-        <p class="invest-intro__lead">
+        <p class="invest-intro__eyebrow" data-i18n="invest.intro.eyebrow">Inversión</p>
+        <h1 class="invest-intro__title" data-i18n="invest.intro.title">Explora la oportunidad en Lombok</h1>
+        <p class="invest-intro__lead" data-i18n="invest.intro.lead">
           Aquí podrás consultar un resumen ejecutivo con KPIs, áreas y costes; y un panel de gráficos con
           comparativas clave (incluidas las llegadas internacionales a BIZAM 2024/2025). Abre los widgets para profundizar.
         </p>
@@ -46,7 +48,9 @@
     </section>
 
     <!-- ===== Lanzadores (2 widgets) ===== -->
-    <section class="widget-launch" aria-label="Secciones de inversión">
+    <section class="widget-launch"
+             aria-label="Secciones de inversión"
+             data-i18n-attr="aria-label|invest.widgets.aria">
       <div class="widget-launch__container">
         <div class="widget-launch__grid">
           <!-- Widget Oportunidad -->
@@ -54,11 +58,13 @@
                   class="widget-card"
                   data-bs-toggle="modal"
                   data-bs-target="#modal-opty"
-                  id="btnOpenOpty">
+                  id="btnOpenOpty"
+                  data-i18n-attr="aria-label|invest.widgets.opty.aria"
+                  aria-label="Abrir sección Oportunidad">
             <span class="widget-card__icon" aria-hidden="true"><i class="fa-solid fa-clipboard-list"></i></span>
-            <h3 class="widget-card__title">Oportunidad</h3>
-            <p class="widget-card__text">KPIs, áreas, costes y comparativa resumidos en una vista.</p>
-            <p class="widget-card__cta">Abrir &nbsp;→</p>
+            <h3 class="widget-card__title" data-i18n="invest.widgets.opty.title">Oportunidad</h3>
+            <p class="widget-card__text" data-i18n="invest.widgets.opty.text">KPIs, áreas, costes y comparativa resumidos en una vista.</p>
+            <p class="widget-card__cta" data-i18n="invest.widgets.openCta">Abrir →</p>
           </button>
 
           <!-- Widget Gráficos -->
@@ -66,11 +72,13 @@
                   class="widget-card"
                   data-bs-toggle="modal"
                   data-bs-target="#modal-charts"
-                  id="btnOpenCharts">
+                  id="btnOpenCharts"
+                  data-i18n-attr="aria-label|invest.widgets.charts.aria"
+                  aria-label="Abrir sección Gráficos">
             <span class="widget-card__icon" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></span>
-            <h3 class="widget-card__title">Gráficos</h3>
-            <p class="widget-card__text">Comparativas clave e internacionales BIZAM 2024/25.</p>
-            <p class="widget-card__cta">Abrir &nbsp;→</p>
+            <h3 class="widget-card__title" data-i18n="invest.widgets.charts.title">Gráficos</h3>
+            <p class="widget-card__text" data-i18n="invest.widgets.charts.text">Comparativas clave e internacionales BIZAM 2024/25.</p>
+            <p class="widget-card__cta" data-i18n="invest.widgets.openCta">Abrir →</p>
           </button>
         </div>
       </div>
@@ -83,8 +91,9 @@
     <div class="modal-dialog modal-fullscreen">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalOptyLabel">Oportunidad</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          <h5 class="modal-title" id="modalOptyLabel" data-i18n="invest.modals.opty.title">Oportunidad</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Cerrar" data-i18n-attr="aria-label|invest.modals.close"></button>
         </div>
         <div class="modal-body">
           <div id="opty-modal-host" class="modal-host" aria-live="polite"></div>
@@ -98,8 +107,9 @@
     <div class="modal-dialog modal-fullscreen">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalChartsLabel">Gráficos</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          <h5 class="modal-title" id="modalChartsLabel" data-i18n="invest.modals.charts.title">Gráficos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Cerrar" data-i18n-attr="aria-label|invest.modals.close"></button>
         </div>
         <div class="modal-body">
           <div id="charts-modal-host" class="modal-host" aria-live="polite"></div>

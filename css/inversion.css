@@ -96,7 +96,6 @@
   margin: var(--hdr-h) 0 0;
 }
 .modal--below-header .modal-content{
-  border-radius: 16px 16px 0 0;
   border:1px solid var(--opty-border, #e5eaef);
 }
 .modal--below-header .modal-header{
